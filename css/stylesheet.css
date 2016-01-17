@@ -35,6 +35,30 @@ html, body
 	}
 }
 
+.register-div
+{
+	position: relative;
+	/*
+	left: 20%;
+	transform: translate(-50%, 0%);
+	*/
+
+	width: 30%;
+	margin: 0 auto;
+
+	height: 80%;
+}
+
+@media screen and (max-width: 750px) {
+	.register-div
+	{
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+
+
 #register-form
 {
 
