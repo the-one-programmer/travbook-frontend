@@ -1,0 +1,41 @@
+html, body
+{
+	height: 100%;
+}
+
+.jumbotron
+{
+	height: 100%;
+
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+}
+
+.login-div
+{
+	position: relative;
+	/*
+	left: 20%;
+	transform: translate(-50%, 0%);
+	*/
+
+	margin-left: 5%;
+
+	width: 30%;
+	min-width: 310px;
+
+	height: 80%;
+}
+
+@media screen and (max-width: 750px) {
+	.login-div
+	{
+		width: 80%;
+		margin: 0 auto;
+	}
+}
+
+#register-form
+{
+
+}

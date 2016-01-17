@@ -29,17 +29,20 @@
 
   </head>
   <body ng-app="TravBook">
-    <div ng-controller="registerCtrl">
-      <div class="well">
-      <form name="registerForm" novalidate ng-submit="registerUser(newUser)">
-        <label>Name:</label><input name="userName" type="text" class="form-control" required ng-model="newUser.name">
-        <label>Email:</label><input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
-        <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
-        <button type="submit" ng-disabled="myForm.$invalid">Register</button>
-      </form>
-      </div>
-      message:{{message}}
-      valid:{{registerForm.$valid}}
+
+	<div class="jumbotron" ng-controller="registerCtrl">
+
+	    	<div class="well login-div">
+	    	<form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
+	    		<label>Name:</label><input name="userName" type="text" class="form-control" required ng-model="newUser.name">
+		        <label>Email:</label><input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
+		        <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
+		        <button type="submit" ng-disabled="myForm.$invalid">Register</button>
+	    	</form>
+		    </div>
+
+	    message:{{message}}
+	    valid:{{registerForm.$valid}}
 
     </div>
 
