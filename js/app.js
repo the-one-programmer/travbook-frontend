@@ -5,15 +5,15 @@ app.config(function ($routeProvider)
   $routeProvider
   .when('/', {
     controller: "LoginController",
-    templateUrl: "login.html"
+    templateUrl: "views/login.html"
   })
   .when('/register', {
     controller: "RegisterController",
-    templateUrl: "register.html"
+    templateUrl: "views/register.html"
   })
   .when('/profile/:id', {
     controller: "ProfileController",
-    templateUrl: "profile.html"
+    templateUrl: "views/profile.html"
   })
   .otherwise({
     redirectTo: '/'
