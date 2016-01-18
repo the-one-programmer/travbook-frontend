@@ -35,12 +35,23 @@
     <h3> Register an Account</h3>
         <div class="well">
         <form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
-          <label>Name:</label><input name="userName" type="text" class="form-control" required ng-model="newUser.name">
-            <label>Email:</label><input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
-            <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
-
-            <br>
-            <button type="submit" ng-disabled="myForm.$invalid">Register</button>
+          <label>Name:</label>
+          <input name="userName" type="text" class="form-control" required ng-model="newUser.name">
+          <label>Email:</label>
+          <input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
+          <label>Password:</label>
+          <input name="userPassword" type="password" class="form-control" required ng-model="newUser.password">
+          <label>Password confirmation:</label>
+          <input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="newUser.passwordConfirmation">
+          <label>Country of residence:</label>
+          <select name="userNationResidence" id="repeatSelect" ng-model="newUser.nationResidence" required>
+            <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
+          </select>
+          <label>Countries you want to go to:</label>checkboxes<br>
+          <label>Hobbies:</label>Checkboxes<br>
+          <label><input name="WillingToHost" type="checkbox" class="form-control" required ng-model="newUser.willingToHost">I'm willing to Host</label>
+          <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label><br>
+          <button type="submit" ng-disabled="myForm.$invalid">Register</button>
         </form>
         </div>
 
