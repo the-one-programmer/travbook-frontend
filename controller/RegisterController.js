@@ -1,4 +1,5 @@
-app.controller("registerCtrl",function($scope)
+app.controller("RegisterController", ['$scope',
+  function($scope)
 {
   $scope.registerUser = function(newUser) {
     $scope.message = newUser.name + newUser.email+newUser.agreed;
@@ -11,4 +12,5 @@ app.controller("registerCtrl",function($scope)
       {id: '3', name: 'Taiwan'}
     ]};
   $scope.message = "Ready";
-});
+
+}]);

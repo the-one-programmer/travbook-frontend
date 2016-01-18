@@ -1,0 +1,18 @@
+<div ng-controller="LoginController">
+    	<div class="well login-div">
+    	<form name="loginForm" novalidate ng-submit="loginUser(newUser)" id="login-form">
+    		<label>Name:</label><input name="userName" type="text" class="form-control" required ng-model="newUser.name">
+	        <label>Email:</label><input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
+	        <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
+	        <br>
+	        <button type="submit" ng-disabled="myForm.$invalid">Login</button>
+
+	        <br>
+	        <a href="register.html">Register</a> | <a href="">Forgot Your Password?</a>
+    	</form>
+	    </div>
+
+    message:{{message}}
+    valid:{{loginForm.$valid}}
+
+</div>

@@ -10,44 +10,31 @@
     <title>Title</title>
 
     <link href="css/stylesheet.css" rel="stylesheet">
-    <link href="css/social-stylesheet.css" rel="stylesheet">
 
-    <!-- Favicon -->
-	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
-	<link rel="icon" type="image/ico" href="favicon.ico" />
+      <!-- Favicon -->
+  	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+  	<link rel="icon" type="image/ico" href="favicon.ico" />
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
+      <!-- Font Awesome -->
+  	<link rel="stylesheet" href="css/font-awesome.min.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="controller/LoginController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 
+    <script src="js/app.js"></script>
+    <script src="controller/LoginController.js"></script>
+    <script src="controller/RegisterController.js"></script>
+    <script src="controller/ProfileController.js"></script>
+    <script src="js/services/profile.js"></script>
 
   </head>
+
   <body ng-app="TravBook">
 
-	<div class="jumbotron" ng-controller="loginCtrl">
-	    	<div class="well login-div">
-	    	<form name="loginForm" novalidate ng-submit="loginUser(newUser)" id="login-form">
-	    		<label>Name:</label><input name="userName" type="text" class="form-control" required ng-model="newUser.name">
-		        <label>Email:</label><input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
-		        <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
-		        <br>
-		        <button type="submit" ng-disabled="myForm.$invalid">Login</button>
-
-		        <br>
-		        <a href="register.html">Register</a> | <a href="">Forgot Your Password?</a>
-	    	</form>
-		    </div>
-
-	    message:{{message}}
-	    valid:{{loginForm.$valid}}
-
-    </div>
+    <div ng-view class="jumbotron"></div>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
