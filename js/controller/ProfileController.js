@@ -1,8 +1,8 @@
-app.controller("ProfileController", ['$scope', 'profile',
-  function($scope, profile) {
+app.controller("ProfileController", ['$scope', 'profile', "$routeParams",
+  function($scope, profile, $routeParams) {
     profile.success(function(data)
     {
-      // Display profile
+      // Display profile - name, photo, etc
       $scope.user = data;
     });
 
@@ -11,5 +11,5 @@ app.controller("ProfileController", ['$scope', 'profile',
       // Display error
     });
 
-    $scope.username = "Lim Ah Seng";
+    $scope.username = $routeParams.id;
 }]);
