@@ -15,26 +15,7 @@
           <select name="userNationResidence" id="repeatSelect" ng-model="newUser.nationResidence" required>
             <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
           </select>
-          <label>Countries you want to go to:</label>
-          <label ng-repeat="nation in data.nations">
-            <input
-            type="checkbox"
-            name="selectedNations[]"
-            value="{{nation.id}}"
-            ng-checked="nationSelection.indexOf(nation.id) > -1"
-            ng-click="toggleNationSelection(nation.id)"
-            > {{nation.name}}
-          </label><br>
-          <label>Hobbies:
-          <label ng-repeat="hobby in data.hobbies">
-            <input
-            type="checkbox"
-            name="selectedHobbies[]"
-            value="{{hobby.id}}"
-            ng-checked="hobbySelection.indexOf(hobby.id) > -1"
-            ng-click="toggleHobbySelection(hobby.id)"
-            > {{hobby.name}}
-          </label><br>
+
           <label><input name="WillingToHost" type="checkbox" class="form-control" ng-model="newUser.willingToHost">I'm willing to Host</label>
           <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label><br>
           <button type="submit" ng-disabled="registerForm.$invalid">Register</button>

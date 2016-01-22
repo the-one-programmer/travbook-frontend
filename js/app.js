@@ -15,6 +15,10 @@ app.config(function ($routeProvider)
     controller: "ProfileController",
     templateUrl: "views/profile.html"
   })
+  .when('/edit', {
+    controller: "EditProfileController",
+    templateUrl: "views/edit.html"
+  })
   .otherwise({
     redirectTo: '/'
   });
