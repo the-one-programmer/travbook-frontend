@@ -10,7 +10,7 @@
           <label>Password:</label>
           <input name="userPassword" type="password" class="form-control" required ng-model="newUser.password">
           <label>Password confirmation:</label>
-          <input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="newUser.passwordConfirmation">
+          <input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="newUser.passwordConfirmation" compare-to="newUser.password">
           <label>Country of residence:</label>
           <select name="userNationResidence" id="repeatSelect" ng-model="newUser.nationResidence" required>
             <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
@@ -35,9 +35,9 @@
             ng-click="toggleHobbySelection(hobby.id)"
             > {{hobby.name}}
           </label><br>
-          <label><input name="WillingToHost" type="checkbox" class="form-control" required ng-model="newUser.willingToHost">I'm willing to Host</label>
+          <label><input name="WillingToHost" type="checkbox" class="form-control" ng-model="newUser.willingToHost">I'm willing to Host</label>
           <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label><br>
-          <button type="submit" ng-disabled="myForm.$invalid">Register</button>
+          <button type="submit" ng-disabled="registerForm.$invalid">Register</button>
         </form>
         </div>
 
