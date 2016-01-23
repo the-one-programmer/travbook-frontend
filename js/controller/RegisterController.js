@@ -1,22 +1,24 @@
-app.controller("RegisterController", ['$scope',
-  function($scope)
+app.controller("RegisterController",
+  function($scope,$http)
 {
   $scope.nationSelection = [];
   $scope.registerUser = function(newUser) {
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
   }
-  $scope.data={
-    nations: [
-      {id: 1, name: 'China'},
-      {id: 2, name: 'Singapore'},
-      {id: 3, name: 'Taiwan'}
-    ]
-  };
+
+  $scope.data={};
+
+  var nationURL = BACKEND_URL + "nations";
+  $http.get(nationURL).success(function (data){
+    $scope.data.nations = data;
+  }).error(function(error){
+    $scope.data.error = error;
+  })
 
   $scope.message = "Ready";
 
-}]);
+});
 
 var compareTo = function() {
     return {

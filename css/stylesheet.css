@@ -138,3 +138,6 @@ html, body
 {
 
 }
+//TODO shift this to suitable place
+form .ng-invalid.ng-dirty {background-color: lightpink;}
+form .ng-valid.ng-dirty {background-color: lightgreen;}

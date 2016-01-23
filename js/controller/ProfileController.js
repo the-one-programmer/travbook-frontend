@@ -8,22 +8,23 @@ app.controller("ProfileController", ['$scope', 'profile', "$routeParams",
       // Move load of data here
     });
 
-    // TODO: Remove and load from http request
     $scope.nationSelection = [];
     $scope.hobbySelection = [];
+    $scope.data={};
+    var nationURL = BACKEND_URL + "nations";
+    $http.get(nationURL).success(function (data){
+      $scope.data.nations = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    })
 
-    $scope.data={
-      nations: [
-        {id: 1, name: 'China'},
-        {id: 2, name: 'Singapore'},
-        {id: 3, name: 'Taiwan'}
-      ],
-      hobbies: [
-        {id: 1, name: 'video games'},
-        {id: 2, name: 'anime'},
-        {id: 3, name: 'machine learning'}
-      ]
-    };
+    var hobbyURL = BACKEND_URL + "hobbies";
+    $http.get(hobbyURL).success(function (data){
+      $scope.data.hobbies = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    })
+
 
     // TODO: Load from backend instead of this
     $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", nationResidenceIndex: 1,
