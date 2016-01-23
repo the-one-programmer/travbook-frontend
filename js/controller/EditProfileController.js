@@ -80,3 +80,24 @@ app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*
     };
 }]);
 
+var compareTo = function() {
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compare-to"
+        },
+        link: function(scope, element, attributes, ngModel) {
+
+            ngModel.$validators.compareTo = function(modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+
+            scope.$watch("otherModelValue", function() {
+                ngModel.$validate();
+            });
+        }
+    };
+};
+
+app.directive("compare-to", compareTo);
+

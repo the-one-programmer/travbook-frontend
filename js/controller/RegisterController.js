@@ -22,7 +22,7 @@ var compareTo = function() {
     return {
         require: "ngModel",
         scope: {
-            otherModelValue: "=compareTo"
+            otherModelValue: "=compare-to"
         },
         link: function(scope, element, attributes, ngModel) {
 
@@ -37,4 +37,4 @@ var compareTo = function() {
     };
 };
 
-app.directive("compareTo", compareTo);
+app.directive("compare-to", compareTo);

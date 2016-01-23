@@ -9,12 +9,6 @@
 		<label>Email:</label>
 		<input name="userEmail" type="email" class="form-control" required ng-model="user.email">
 
-		<label>Password:</label>
-		<input name="userPassword" type="password" class="form-control" required ng-model="user.password">
-
-		<label>Password confirmation:</label>
-		<input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="user.passwordConfirmation" compare-to="user.password">
-
 		<br>
 
 		<label>Country of residence:</label>
@@ -44,8 +38,14 @@
 		> {{hobby.name}}
 		</label>
 		<br>
-
+		
 		<label><input name="WillingToHost" type="checkbox" class="form-control" ng-model="user.willingToHost">I'm willing to host</label>
+
+		<label>Password:</label>
+		<input name="userPassword" type="password" class="form-control" required ng-model="user.password">
+
+		<label>Password confirmation:</label>
+		<input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="user.passwordConfirmation" compare-to="user.password">
 
 		<br>
 		<button type="submit" ng-disabled="updateProfileForm.$invalid">Update Profile</button>
