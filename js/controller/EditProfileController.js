@@ -5,13 +5,10 @@ app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*
       // TODO: Display profile - name, photo, etc, load into variables
       $scope.user = data;
 
-      $scope.username = "Hello";
-      $scope.nationSelection = [];
-      $scope.hobbySelection = [];
+      // Move load of data here
     });
 
     // TODO: Remove and load from http request
-    $scope.username = "Hello";
     $scope.nationSelection = [];
     $scope.hobbySelection = [];
 
@@ -29,7 +26,7 @@ app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*
     };
 
     // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", email: "test@email.com", password: "", passwordConfirmation: "", nationResidenceIndex: 1,
+    $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", nationResidenceIndex: 1,
                     willingToHost: true, nationsToGo: [1, 3], hobbies: [1, 3]};
     $scope.user.nationResidence = $scope.data.nations[$scope.user.nationResidenceIndex];
     $scope.nationSelection = $scope.user.nationsToGo;

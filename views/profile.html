@@ -1,5 +1,28 @@
 <div ng-controller="ProfileController">
   	<div class="well profile-div">
-    <h1>{{ username }}</h1>
+    <img ng-src="{{ user.profilePic }}"><h3>{{ user.name }}</h3>
+
+    <br>
+
+	<label>Country of residence:</label>
+	{{ user.nationResidence.name }}
+
+	<label>Countries {{ user.name }} wants to go to:</label>
+	<ul>
+	<li ng-repeat="nation in data.nations | filter: wantsToGo">
+	{{ nation.name }}
+	</li>
+	</ul>
+	<br>
+
+	<label>{{ user.name }}'s Hobbies:</label>
+	<ul>
+	<li ng-repeat="hobby in data.hobbies | filter: hasHobby">
+	{{ hobby.name }}
+	</li>
+	</ul>
+
+	<label>{{ user.name }} is {{ user.willingToHost ? "willing to host." : "not willing to host." }}</label>
+
     </div>
 </div>
