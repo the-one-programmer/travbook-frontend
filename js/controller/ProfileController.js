@@ -1,5 +1,5 @@
-app.controller("ProfileController", ['$scope', 'profile', "$routeParams",
-  function($scope, profile, $routeParams) {
+app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams",
+  function($scope, $http, profile, $routeParams) {
     profile.success(function(data)
     {
       // TODO: Display profile - name, photo, etc, load into variables
@@ -8,23 +8,41 @@ app.controller("ProfileController", ['$scope', 'profile', "$routeParams",
       // Move load of data here
     });
 
+    profile.error(function(data)
+    {
+      // Display error
+    });
+
     $scope.nationSelection = [];
     $scope.hobbySelection = [];
-    $scope.data={};
+
+    // TODO: Remove
+    $scope.data={
+        nations: [
+          {id: 1, name: 'China'},
+          {id: 2, name: 'Singapore'},
+          {id: 3, name: 'Taiwan'}
+        ],
+        hobbies: [
+          {id: 1, name: 'video games'},
+          {id: 2, name: 'anime'},
+          {id: 3, name: 'machine learning'}
+        ]
+    };
+
     var nationURL = BACKEND_URL + "nations";
     $http.get(nationURL).success(function (data){
       $scope.data.nations = data;
     }).error(function(error){
       $scope.data.error = error;
-    })
+    });
 
     var hobbyURL = BACKEND_URL + "hobbies";
     $http.get(hobbyURL).success(function (data){
       $scope.data.hobbies = data;
     }).error(function(error){
       $scope.data.error = error;
-    })
-
+    });
 
     // TODO: Load from backend instead of this
     $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", nationResidenceIndex: 1,
@@ -32,11 +50,6 @@ app.controller("ProfileController", ['$scope', 'profile', "$routeParams",
     $scope.user.nationResidence = $scope.data.nations[$scope.user.nationResidenceIndex];
     $scope.nationSelection = $scope.user.nationsToGo;
     $scope.hobbySelection = $scope.user.hobbies;
-
-    profile.error(function(data)
-    {
-      // Display error
-    });
 
     $scope.updateProfile = function(user)
     {
