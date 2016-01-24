@@ -9,7 +9,7 @@ app.controller("RegisterController",
 
   $scope.data={};
 
-  var nationURL = BACKEND_URL + "nations";
+  var nationURL = BACKEND_URL + "countries";
   $http.get(nationURL).success(function (data){
     $scope.data.nations = data;
   }).error(function(error){

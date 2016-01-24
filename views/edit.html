@@ -29,9 +29,9 @@
 		<label ng-repeat="nation in data.nations">
 		<input
 		type="checkbox"
-		name="selectedNations[]"
+		name="{{nation.name}}"
 		value="{{nation.id}}"
-		ng-checked="nationSelection.indexOf(nation.id) > -1"
+		ng-checked="wantsToGo(nation)"
 		ng-click="toggleNationSelection(nation.id)"
 		> {{nation.name}}
 		</label>
@@ -42,9 +42,9 @@
 		<label ng-repeat="hobby in data.hobbies">
 		<input
 		type="checkbox"
-		name="selectedHobbies[]"
+		name="{{hobby.name}}"
 		value="{{hobby.id}}"
-		ng-checked="hobbySelection.indexOf(hobby.id) > -1"
+		ng-checked="hasHobby(hobby)"
 		ng-click="toggleHobbySelection(hobby.id)"
 		> {{hobby.name}}
 		</label>

@@ -1,5 +1,5 @@
-app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*/
-  function($scope, profile/*, $routeParams*/) {
+app.controller("EditProfileController", ['$scope', "$http", 'profile', /*"$routeParams",*/
+  function($scope, $http, profile/*, $routeParams*/) {
     profile.success(function(data)
     {
       // TODO: Display profile - name, photo, etc, load into variables
@@ -8,34 +8,32 @@ app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*
       // Move load of data here
     });
 
-    // TODO: Remove and load from http request
-    $scope.nationSelection = [];
-    $scope.hobbySelection = [];
-
-    $scope.data={
-      nations: [
-        {id: 1, name: 'China'},
-        {id: 2, name: 'Singapore'},
-        {id: 3, name: 'Taiwan'}
-      ],
-      hobbies: [
-        {id: 1, name: 'video games'},
-        {id: 2, name: 'anime'},
-        {id: 3, name: 'machine learning'}
-      ]
-    };
-
-    // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", nationResidenceIndex: 1,
-                    willingToHost: true, nationsToGo: [1, 3], hobbies: [1, 3]};
-    $scope.user.nationResidence = $scope.data.nations[$scope.user.nationResidenceIndex];
-    $scope.nationSelection = $scope.user.nationsToGo;
-    $scope.hobbySelection = $scope.user.hobbies;
-
     profile.error(function(data)
     {
       // Display error
     });
+
+    $scope.data = {};
+
+    // TODO: Load from backend instead of this
+    $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+                    nationResidenceId: 0, willingToHost: true, nationsToGo: [1], hobbies: []};
+
+    var nationURL = BACKEND_URL + "countries";
+    $http.get(nationURL).success(function (data){
+      $scope.data.nations = data;
+
+      $scope.user.nationResidence = data[$scope.user.nationResidenceId];
+    }).error(function(error){
+      $scope.data.error = error;
+    });
+
+    var hobbyURL = BACKEND_URL + "interests";
+    $http.get(hobbyURL).success(function (data){
+      $scope.data.hobbies = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    })
 
     $scope.updateProfile = function(user)
     {
@@ -74,6 +72,16 @@ app.controller("EditProfileController", ['$scope', 'profile', /*"$routeParams",*
         $scope.hobbySelection.push(hobbyID);
       }
       console.log($scope.hobbySelection);
+    };
+
+    $scope.wantsToGo = function(nation)
+    {
+      return $scope.user.nationsToGo.indexOf(nation.id) > -1
+    };
+
+    $scope.hasHobby = function(hobby)
+    {
+      return $scope.user.hobbies.indexOf(hobby.id) > -1
     };
 }]);
 

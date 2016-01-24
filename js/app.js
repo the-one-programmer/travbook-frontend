@@ -1,5 +1,5 @@
 var app = angular.module("TravBook", ["ngRoute"]);
-var BACKEND_URL ="http://localhost:5500/";
+var BACKEND_URL ="http://localhost:3000/";
 
 app.config(function ($routeProvider)
 {
