@@ -16,7 +16,7 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', /*"$route
     $scope.data = {};
 
     // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
                     nationResidenceId: 0, willingToHost: true, nationsToGo: [1], hobbies: []};
 
     var nationURL = BACKEND_URL + "countries";

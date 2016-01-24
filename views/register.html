@@ -20,6 +20,7 @@
                 Uh please enter something
               </span>
           </div>
+
           <label>Password:</label>
           <input name="userPassword" type="password" class="form-control" required ng-model="newUser.password">
           <label>Password confirmation:</label>
@@ -39,6 +40,16 @@
               </span>
           </div>
 
+          <br>
+
+          <label>Gender:</label>
+          <div ng-init="newUser.gender='male'">
+          <input type="radio" name="answer" value="male" ng-model="newUser.gender"/>Male
+          <input type="radio" name="answer" value="female" ng-model="newUser.gender"/>Female
+          </div>
+
+          <br>
+          
           <label><input name="WillingToHost" type="checkbox" class="form-control" ng-model="newUser.willingToHost">I'm willing to Host</label>
           <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label><br>
           <button type="submit" ng-disabled="registerForm.$invalid">Register</button>

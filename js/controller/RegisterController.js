@@ -1,7 +1,6 @@
 app.controller("RegisterController",
   function($scope,$http)
 {
-  $scope.nationSelection = [];
   $scope.registerUser = function(newUser) {
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
