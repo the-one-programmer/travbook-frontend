@@ -1,6 +1,6 @@
 <div ng-controller="LoginController">
     	<div class="well login-div">
-    	<h2>Welcome Back.</h2>
+    	<h2 class="header-text">Welcome Back.</h2>
     	<br>
 
     	<form name="loginForm" novalidate ng-submit="loginUser(newUser)" id="login-form">
@@ -16,11 +16,19 @@
 
             <br>
 
-	        <button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid">Login</button>
+	        <button type="submit" class="btn btn-orange" ng-disabled="loginForm.$invalid">Login</button>
     	</form>
 
-        <a href="register.html" class="btn btn-default">Register</a> <a href="" class="btn btn-default">Forgot Your Password?</a>
-	    </div>
+        <div id="menu-container">
+            <div class="menu-left">
+                <ul id="menu-principal" class="menu">
+                    <li><a href="register.html" class="btn-orange">Register</a></li>
+                    <li><a href="" class="btn-orange">Forgot Password?</a></li>
+                </ul>
+            </div>
+        </div>
+
+        </div>
 
         <h3 id="quote-text">{{ quote.text }} - {{ quote.author }}</h3>
 

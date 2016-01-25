@@ -1,6 +1,13 @@
 html, body
 {
 	height: 100%;
+
+}
+
+.header-text
+{
+	color: #FFF;
+	font-family: 'Roboto', sans-serif;
 }
 
 .jumbotron
@@ -10,16 +17,91 @@ html, body
 	background-image: url("../images/background.jpg");
 	background-size: cover;
 }
+ 
+.btn-orange {
+    background: #F68F1E;
+    color: #DDDDDC;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+
+    border: 0 none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    border-radius: 8px;
+
+	transition: all 0.4s ease;
+}
+ 
+.btn-orange:hover, .btn-orange:focus, .btn-orange:active, .btn-orange.active, .open > .dropdown-toggle.btn-orange {
+    background: #DA4926;
+    color: #DDDDDC !important;
+}
+ 
+.btn-orange:active, .btn-orange.active {
+    background: #DA4926;
+    box-shadow: none;
+}
+
 
 /* Login Page CSS */
 
+#menu-container
+{
+	background: transparent;
+	border-radius: 0;
+	display: inline-block;
+	width:100%;
+	margin:0px;
+}
+
+.menu-left ul
+{
+	margin: 0;
+	padding:0;
+	font-size: 17px; 
+    width: 100%;
+}
+
+.menu-left ul li
+{
+	display:inline-block;
+	vertical-align: top;
+	width: 40%;
+}
+
+.menu-left ul li a
+{
+	color: #FFF;
+	text-decoration: none;
+    text-align: center;
+	outline: none;
+
+	padding: 15px 0;
+	height: 60px;
+
+	display: block;
+
+	background: #F68F1E;
+
+	transition: all 0.4s ease;
+}
+
+.menu-left ul li a:active,
+.menu-left ul li a:hover
+{
+	background: #DA4926;
+}
+
 #quote-text
 {
+	font-family: 'Roboto', sans-serif;
+
 	position: absolute;
 	left: 50%;
 	top: 30%;
 
-	color: #333;
+	color: #FFF;
 }
 
 @media screen and (max-width: 750px) {
