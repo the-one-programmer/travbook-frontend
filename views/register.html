@@ -1,19 +1,18 @@
 <div ng-controller="RegisterController">
-  <div class="register-div">
-    <h3> Register an Account</h3>
-        <div class="well">
+  <div class="register-main-div">
+    <h3 id="tagline">Register an Account</h3>
+
+        <div class="well register-div">
         <form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
-          <label>Name:</label>
-          <input name="userName" type="text" class="form-control" required ng-model="newUser.name">
-          <div class="error" ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
+          <input name="userName" type="text" class="form-control left-form" required ng-model="newUser.name" placeholder="Name">
+          <div class="error left-form" ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
               <span ng-show="registerForm.userName.$error.required">
                 Uh please enter something
               </span>
           </div>
 
-          <label>Email:</label>
-          <input name="userEmail" type="email" class="form-control" required ng-model="newUser.email">
-          <div class="error" ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
+          <input name="userEmail" type="email" class="form-control left-form" required ng-model="newUser.email" placeholder="Email">
+          <div class="error left-form" ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
               <span ng-show="registerForm.userEmail.$error.email">
                 Please enter a valid email address
               </span>
@@ -22,21 +21,23 @@
               </span>
           </div>
 
-          <label>Password:</label>
-          <input name="userPassword" type="password" class="form-control" required ng-model="newUser.password">
-          <label>Password confirmation:</label>
-          <input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="newUser.passwordConfirmation" compare-to="newUser.password">
-          <div class="error" ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
+          <input name="userPassword" type="password" class="form-control left-form" required ng-model="newUser.password" placeholder="Password">
+          <input name="userPasswordConfirmation" type="password" class="form-control left-form" required ng-model="newUser.passwordConfirmation" compare-to="newUser.password" placeholder="Re-enter Password">
+          <div class="error left-form" ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
               <span ng-show="registerForm.userPasswordConfirmation.$error">
                 Passwords don't match
               </span>
           </div>
 
-          <label>Country of residence:</label>
-          <select name="userNationResidence" id="repeatSelect" ng-model="newUser.nationResidence" required>
+          <br>
+
+          <label class="left-form">Country of residence:
+          <select name="userNationResidence" id="repeatSelect" class="" ng-model="newUser.nationResidence" required>
             <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
           </select>
-          <div class="error" ng-show="registerForm.userNationResidence.$invalid">
+          </label>
+
+          <div class="error left-form" ng-show="registerForm.userNationResidence.$invalid">
               <span ng-show="registerForm.userNationResidence.$error.required">
                 Uh please choose your nationality
               </span>
@@ -44,21 +45,24 @@
 
           <br>
 
-          <label>Gender:</label>
+          <label class="left-form">Gender:
           <div ng-init="newUser.gender='male'">
           <input type="radio" name="answer" value="male" ng-model="newUser.gender"/>Male
           <input type="radio" name="answer" value="female" ng-model="newUser.gender"/>Female
           </div>
+          </label>
 
           <br>
           
-          <label><input name="WillingToHost" type="checkbox" class="form-control" ng-model="newUser.willingToHost">I'm willing to Host</label>
+          <label class="left-form"><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
 
-          <label><input name="agreed" type="checkbox" class="form-control" required ng-model="newUser.agreed">agree with terms</label>
+          <textarea class="right-form" name="Text1" cols="40" rows="5" ... ></textarea>
+
+          <label class="right-form"><input name="agreed" type="checkbox" required ng-model="newUser.agreed">Agree</label>
 
           <br>
 
-          <button type="submit" ng-disabled="registerForm.$invalid">Register</button>
+          <button class="right-form" type="submit" ng-disabled="registerForm.$invalid">Register</button>
         </form>
         </div>
 

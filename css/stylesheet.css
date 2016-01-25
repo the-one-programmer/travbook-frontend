@@ -164,8 +164,15 @@ html, body
 
 /* Register Form CSS */
 
-.register-div
+#tagline
 {
+	text-align: center;
+}
+
+.register-main-div
+{
+	font-family: 'Roboto', sans-serif;
+
 	position: relative;
 	/*
 	left: 20%;
@@ -179,17 +186,54 @@ html, body
 }
 
 @media screen and (max-width: 750px) {
-	.register-div
+	.register-main-div
 	{
 		width: 80%;
 		margin: 0 auto;
 	}
 }
 
+.register-div
+{
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
 
 #register-form
 {
+}
 
+.left-form
+{
+	position: relative;
+	left: -50%;
+}
+
+.right-form
+{
+	position: relative;
+	left: 100%;
+}
+
+#register-form input[type=text], input[type=email], input[type=password]
+{
+	background: rgba(255, 255, 255, 0.5);
+	color: #000;
+
+	text-align: center;
+}
+
+#register-form input[type=radio]
+{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+#register-form input
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 /* Profile CSS */
@@ -208,11 +252,22 @@ html, body
 	height: 80%;
 }
 
+/* Mobile stuff */
 @media screen and (max-width: 750px) {
 	.profile-div
 	{
 		width: 80%;
 		margin: 0 auto;
+	}
+
+	.left-form
+	{
+		left: 0%;
+	}
+
+	.right-form
+	{
+		left: 0%;
 	}
 }
 
