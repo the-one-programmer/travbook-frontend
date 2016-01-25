@@ -31,20 +31,30 @@
 
           <br>
 
-          <label class="left-form">Country of residence:
-          <select name="userNationResidence" id="repeatSelect" class="" ng-model="newUser.nationResidence" required>
+          <label class="left-form">city of residence:
+          <select name="userNationResidence" id="repeatSelect" class="" ng-model="newUser.nationResidence" ng-change="changeCitiesOption(newUser.nationResidence)" required>
             <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
           </select>
           </label>
 
           <div class="error left-form" ng-show="registerForm.userNationResidence.$invalid">
               <span ng-show="registerForm.userNationResidence.$error.required">
-                Uh please choose your nationality
+                Uh please choose your residence
               </span>
           </div>
 
           <br>
+          <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.cityResidence" required>
+            <option ng-repeat="city in data.cities" value="{{city.id}}">{{city.name}}</option>
+          </select>
+          </label>
 
+          <div class="error left-form" ng-show="registerForm.userCityResidence.$invalid">
+              <span ng-show="registerForm.userCityResidence.$error.required">
+                Uh please choose your residence
+              </span>
+          </div>
+          <br>
           <label class="left-form">Gender:
           <div ng-init="newUser.gender='male'">
           <input type="radio" name="answer" value="male" ng-model="newUser.gender"/>Male
@@ -53,7 +63,7 @@
           </label>
 
           <br>
-          
+
           <label class="left-form"><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
 
           <textarea class="right-form" name="Text1" cols="40" rows="5" ... ></textarea>

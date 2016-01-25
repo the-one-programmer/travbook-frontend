@@ -5,16 +5,25 @@ app.controller("RegisterController",
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
   }
-
+  $scope.changeCitiesOption = function(item) {
+    findCitiesByNationID(item);
+  }
   $scope.data={};
-
   var nationURL = BACKEND_URL + "countries";
   $http.get(nationURL).success(function (data){
     $scope.data.nations = data;
   }).error(function(error){
     $scope.data.error = error;
   })
-
+  var findCitiesByNationID = function(nationID){
+    console.log(nationID);
+    for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
+      if($scope.data.nations[i].id==nationID){
+        $scope.data.cities = $scope.data.nations[i].cities;
+        break;
+      }
+    }
+  }
   $scope.message = "Ready";
 
 });
