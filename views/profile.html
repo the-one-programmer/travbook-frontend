@@ -1,5 +1,7 @@
 <div ng-controller="ProfileController">
-  	<div class="well profile-div">
+  	<div class="profile-div">
+
+  	<div class="well profile-sidebar">
     <img ng-src="{{ user.profilePic }}"><h3>{{ user.name }}</h3>
 	<label>{{ user.gender ? "Male" : "Female" }}</label>
 
@@ -24,6 +26,11 @@
 	</ul>
 
 	<label>{{ user.name }} is {{ user.willingToHost ? "willing to host." : "not willing to host." }}</label>
+	</div>
+
+	<div class="well profile-main">
+	blah blah blah
+	</div>
 
     </div>
 </div>
