@@ -22,7 +22,7 @@
           </div>
 
           <input name="userPassword" type="password" class="form-control left-form" required ng-model="newUser.password" placeholder="Password">
-          <input name="userPasswordConfirmation" type="password" class="form-control left-form" required ng-model="newUser.passwordConfirmation" compare-to="newUser.password" placeholder="Re-enter Password">
+          <input name="userPasswordConfirmation" type="password" class="form-control left-form" required ng-model="newUser.password_confirmation" compare-to="newUser.password" placeholder="Re-enter Password">
           <div class="error left-form" ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
               <span ng-show="registerForm.userPasswordConfirmation.$error">
                 Passwords don't match
@@ -44,7 +44,7 @@
           </div>
 
           <br>
-          <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.cityResidence" required>
+          <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.city_id" required>
             <option ng-repeat="city in data.cities" value="{{city.id}}">{{city.name}}</option>
           </select>
           </label>

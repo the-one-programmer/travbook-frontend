@@ -2,8 +2,18 @@ app.controller("RegisterController",
   function($scope,$http)
 {
   $scope.registerUser = function(newUser) {
+    var registerURL = BACKEND_URL + "/users"
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
+    $http.post(registerURL,newUser).success(function(data){
+      console.log("success")
+      console.log(data);
+      //TODO redirect to profile
+    }).error(function(error){
+      console.log("error")
+      console.log(error);
+      //TODO shows error message
+    });
   }
   $scope.changeCitiesOption = function(item) {
     findCitiesByNationID(item);
