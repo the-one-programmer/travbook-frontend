@@ -1,18 +1,20 @@
 <div ng-controller="RegisterController">
   <div class="register-main-div">
-    <h3 id="tagline">Register an Account</h3>
+    <h3 id="tagline">You Adventure Begins Here</h3>
 
         <div class="well register-div">
+
+        <div class="left-form">
         <form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
-          <input name="userName" type="text" class="form-control left-form" required ng-model="newUser.name" placeholder="Name">
-          <div class="error left-form" ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
+          <input name="userName" type="text" class="form-control " required ng-model="newUser.name" placeholder="Name">
+          <div class="error " ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
               <span ng-show="registerForm.userName.$error.required">
                 Uh please enter something
               </span>
           </div>
 
-          <input name="userEmail" type="email" class="form-control left-form" required ng-model="newUser.email" placeholder="Email">
-          <div class="error left-form" ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
+          <input name="userEmail" type="email" class="form-control " required ng-model="newUser.email" placeholder="Email">
+          <div class="error " ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
               <span ng-show="registerForm.userEmail.$error.email">
                 Please enter a valid email address
               </span>
@@ -21,9 +23,9 @@
               </span>
           </div>
 
-          <input name="userPassword" type="password" class="form-control left-form" required ng-model="newUser.password" placeholder="Password">
-          <input name="userPasswordConfirmation" type="password" class="form-control left-form" required ng-model="newUser.passwordConfirmation" compare-to="newUser.password" placeholder="Re-enter Password">
-          <div class="error left-form" ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
+          <input name="userPassword" type="password" class="form-control " required ng-model="newUser.password" placeholder="Password">
+          <input name="userPasswordConfirmation" type="password" class="form-control " required ng-model="newUser.passwordConfirmation" compare-to="newUser.password" placeholder="Re-enter Password">
+          <div class="error " ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
               <span ng-show="registerForm.userPasswordConfirmation.$error">
                 Passwords don't match
               </span>
@@ -31,53 +33,69 @@
 
           <br>
 
-          <label class="left-form">city of residence:
+          <label class="">Country of residence:
           <select name="userNationResidence" id="repeatSelect" class="" ng-model="newUser.nationResidence" ng-change="changeCitiesOption(newUser.nationResidence)" required>
             <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
           </select>
           </label>
 
-          <div class="error left-form" ng-show="registerForm.userNationResidence.$invalid">
+          <div class="error " ng-show="registerForm.userNationResidence.$invalid">
               <span ng-show="registerForm.userNationResidence.$error.required">
                 Uh please choose your residence
               </span>
           </div>
 
           <br>
+          <label>City:
           <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.cityResidence" required>
             <option ng-repeat="city in data.cities" value="{{city.id}}">{{city.name}}</option>
           </select>
           </label>
 
-          <div class="error left-form" ng-show="registerForm.userCityResidence.$invalid">
+          <div class="error " ng-show="registerForm.userCityResidence.$invalid">
               <span ng-show="registerForm.userCityResidence.$error.required">
                 Uh please choose your residence
               </span>
           </div>
           <br>
-          <label class="left-form">Gender:
+
           <div ng-init="newUser.gender='male'">
           <input type="radio" name="answer" value="male" ng-model="newUser.gender"/>Male
           <input type="radio" name="answer" value="female" ng-model="newUser.gender"/>Female
           </div>
-          </label>
+
+          <br>
+          <label class=""><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
+
+          </div>
+
+          <div class="right-form">
+
+          <label>Terms and Conditions</label>
+          <textarea readonly id="terms-text" class="" name="terms-text" cols="40" rows="10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quam nibh, pellentesque non pellentesque eget, consectetur sed mauris. Nulla convallis aliquet rhoncus. Phasellus dictum id lacus quis pellentesque. Aliquam vehicula libero ac turpis scelerisque lacinia. Morbi sit amet est in nunc elementum ullamcorper. Fusce efficitur nulla nulla, ac volutpat justo pharetra a. Nunc porta elit id eros rutrum laoreet. Nulla at imperdiet risus. Phasellus id est justo. Nulla et orci sit amet tortor pulvinar luctus eget vel ex. Fusce quis dolor ullamcorper, bibendum dui non, gravida lectus. Ut sagittis molestie fringilla. Cras venenatis sem at interdum rhoncus. Nullam malesuada metus sed lorem dignissim imperdiet.
+
+          Cras risus dolor, eleifend vitae tellus ornare, sagittis semper elit. Proin dapibus bibendum tempor. Ut sem felis, euismod dictum congue fermentum, fermentum eu nibh. Curabitur vel ante a mi malesuada sodales. Maecenas sit amet ornare nulla. Suspendisse mattis ultrices justo. Sed rhoncus, ex a venenatis tincidunt, velit diam tincidunt lectus, vel bibendum purus erat vel dui. Ut sit amet posuere quam, in efficitur felis. Vivamus nisl elit, cursus id euismod eget, lobortis eu felis. Cras eu mauris magna. Mauris ac pretium odio, vel consequat odio.
+
+          Etiam vehicula at sapien et lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras nec leo accumsan, posuere magna ut, eleifend ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus rhoncus ullamcorper tincidunt. Aliquam erat volutpat. Aenean diam diam, vehicula ut aliquam et, commodo dictum neque. Duis quis elit elit.
+
+          Pellentesque volutpat augue in lectus pretium consequat. Sed vestibulum lacus sed sem rutrum ullamcorper. Aliquam volutpat tellus ac mollis ornare. Nullam dictum at dolor non interdum. Nunc ornare eros quis posuere aliquet. Mauris mollis placerat nisl nec euismod. Aliquam et nibh nisi.
+
+          Sed neque arcu, semper vel elit non, eleifend rhoncus nisl. Nulla sodales dui at orci volutpat laoreet sit amet sit amet tellus. Ut et lacus quis ex imperdiet pretium sed id nisi. Nunc in nibh ac orci egestas vestibulum et eu dui. Quisque efficitur sapien vel ante efficitur rhoncus. Morbi suscipit leo ut sodales molestie. Cras id erat non mauris congue tristique. In magna sapien, efficitur et egestas quis, tincidunt nec tortor. Nullam ac odio accumsan, placerat est nec, hendrerit magna. Cras vel turpis dui. Vivamus in ipsum facilisis, dignissim nulla a, condimentum erat. Aliquam ullamcorper nec ex eu dignissim. Etiam ultricies vel augue a malesuada. Integer fringilla tempus mattis.
+          </textarea>
+
+          <label class=""><input name="agreed" type="checkbox" required ng-model="newUser.agreed">Agree</label>
 
           <br>
 
-          <label class="left-form"><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
-
-          <textarea class="right-form" name="Text1" cols="40" rows="5" ... ></textarea>
-
-          <label class="right-form"><input name="agreed" type="checkbox" required ng-model="newUser.agreed">Agree</label>
-
-          <br>
-
-          <button class="right-form" type="submit" ng-disabled="registerForm.$invalid">Register</button>
+          <button class="btn btn-orange" type="submit" ng-disabled="registerForm.$invalid">Let's Ride</button>
+          </div>
         </form>
         </div>
 
+      <!--
       message:{{message}}
       valid:{{registerForm.$valid}}
+      -->
 
     </div>
   </div>

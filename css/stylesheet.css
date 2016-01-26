@@ -43,6 +43,13 @@ html, body
     box-shadow: none;
 }
 
+input[type=text], input[type=email], input[type=password]
+{
+	background: rgba(255, 255, 255, 0.5);
+	color: #000;
+
+	text-align: center;
+}
 
 /* Login Page CSS */
 
@@ -144,6 +151,7 @@ html, body
 	*/
 
 	margin-left: 5%;
+	margin-top: 3%;
 
 	width: 20%;
 	min-width: 310px;
@@ -166,6 +174,7 @@ html, body
 
 #tagline
 {
+	color: #DDDDDC;
 	text-align: center;
 }
 
@@ -179,22 +188,17 @@ html, body
 	transform: translate(-50%, 0%);
 	*/
 
-	width: 30%;
+	width: 60%;
 	margin: 0 auto;
 
 	height: 80%;
 }
 
-@media screen and (max-width: 750px) {
-	.register-main-div
-	{
-		width: 80%;
-		margin: 0 auto;
-	}
-}
-
 .register-div
 {
+	margin: auto;
+	width: 100%;
+
 	background-color: transparent !important;
 	border: none !important;
 	box-shadow: none !important;
@@ -206,35 +210,63 @@ html, body
 
 .left-form
 {
-	position: relative;
-	left: -50%;
+	width: 40%;
+	margin-left: 5%;
+	float: left;
 }
 
 .right-form
 {
-	position: relative;
-	left: 100%;
-}
-
-#register-form input[type=text], input[type=email], input[type=password]
-{
-	background: rgba(255, 255, 255, 0.5);
-	color: #000;
+	width: 40%;
+	margin-right: 5%;
+	float: right;
 
 	text-align: center;
 }
 
 #register-form input[type=radio]
 {
-	margin-left: 10px;
-	margin-right: 5px;
+	margin: 0 10px 0 10px;
 }
 
 #register-form input
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin: 5px 0 5px 0;
 }
+
+#terms-text
+{
+	background-color: rgba(255, 255, 255, 0.5);
+
+	border-radius: 16px;
+	border: none;
+
+	padding: 10px;
+}
+
+/* Mobile stuff */
+@media screen and (max-width: 750px) {
+	.register-main-div
+	{
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.left-form
+	{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.right-form
+	{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+}
+
 
 /* Profile CSS */
 
@@ -246,10 +278,33 @@ html, body
 	transform: translate(-50%, 0%);
 	*/
 
-	width: 30%;
+	width: 100%;
 	margin: 0 auto;
 
 	height: 80%;
+}
+
+
+.profile-sidebar
+{
+	width: 20%;
+	margin-left: 5%;
+	float: left;
+
+	text-align: center;
+}
+
+.profile-main
+{
+	width: 60%;
+	margin-right: 5%;
+	float: right;
+
+	text-align: center;
+}
+
+#update-form
+{
 }
 
 /* Mobile stuff */
@@ -260,21 +315,23 @@ html, body
 		margin: 0 auto;
 	}
 
-	.left-form
+	.profile-sidebar
 	{
-		left: 0%;
+		float: none;
+		width: 100%;
+		margin: 0 auto;
 	}
 
-	.right-form
+	.profile-main
 	{
-		left: 0%;
+		float: none;
+		width: 100%;
+		margin: 0 auto;
 	}
 }
 
-#update-form
-{
 
-}
-//TODO shift this to suitable place
+/*TODO shift this to suitable place*/
+
 form .ng-invalid.ng-dirty {background-color: lightpink;}
 form .ng-valid.ng-dirty {background-color: lightgreen;}
