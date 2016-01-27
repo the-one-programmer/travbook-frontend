@@ -15,6 +15,11 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
 
     $scope.data = {};
 
+    $scope.isEditable = false;
+
+    // true means the field is currently being edited
+    $scope.editing = {username: true};
+
     // TODO: Load from backend instead of this
     $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
                     nationResidenceId: 0, willingToHost: true, nationsToGo: [1, 2], hobbies: [1]};

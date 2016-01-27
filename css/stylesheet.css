@@ -316,6 +316,35 @@ input[type=text], input[type=email], input[type=password]
 {
 }
 
+/* Profile editing methods */
+
+#username-textfield
+{
+	font-size: 28px;
+	height: 40px;
+
+	margin: 10px 0 10px 0;
+}
+
+.textfield-noneditable
+{
+	background-color: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.edit-span
+{
+	background-color: transparent !important;
+	border: none !important;
+}
+
+.edit-button
+{
+	float: right;
+	font-size: 14px !important;
+}
+
 /* Mobile stuff */
 @media screen and (max-width: 750px) {
 	.profile-div
