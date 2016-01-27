@@ -1,7 +1,6 @@
 html, body
 {
 	height: 100%;
-
 }
 
 .alert
@@ -17,10 +16,14 @@ html, body
 
 .jumbotron
 {
-	height: 100%;
+	background: url("../images/background.jpg") no-repeat center center fixed;
 
-	background-image: url("../images/background.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
+
+	height: 100%;
 }
  
 .btn-orange {
@@ -253,7 +256,7 @@ input[type=text], input[type=email], input[type=password]
 	padding: 10px;
 }
 
-/* Mobile stuff */
+/* Register Page - Mobile stuff */
 @media screen and (max-width: 750px) {
 	.register-main-div
 	{
@@ -281,6 +284,8 @@ input[type=text], input[type=email], input[type=password]
 
 .profile-div
 {
+	font-family: 'Roboto', sans-serif;
+
 	position: relative;
 	/*
 	left: 20%;
@@ -312,42 +317,8 @@ input[type=text], input[type=email], input[type=password]
 	text-align: center;
 }
 
-#update-form
-{
-}
 
-/* Profile editing methods */
-
-/*
-#username-textfield
-{
-	font-size: 28px;
-	height: 40px;
-
-	margin: 10px 0 10px 0;
-}
-
-.textfield-noneditable
-{
-	background-color: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
-}
-
-.edit-span
-{
-	background-color: transparent !important;
-	border: none !important;
-}
-
-.edit-button
-{
-	float: right;
-	font-size: 14px !important;
-}
-*/
-
-/* Mobile stuff */
+/* Profile - Mobile stuff */
 @media screen and (max-width: 750px) {
 	.profile-div
 	{
@@ -368,6 +339,28 @@ input[type=text], input[type=email], input[type=password]
 		width: 100%;
 		margin: 0 auto;
 	}
+}
+
+/* Edit Profile */
+
+.edit-profile-div
+{
+	font-family: 'Roboto', sans-serif;
+
+	position: relative;
+	/*
+	left: 20%;
+	transform: translate(-50%, 0%);
+	*/
+
+	width: 40%;
+	margin: 0 auto;
+
+	height: 80%;
+}
+
+#update-form
+{
 }
 
 

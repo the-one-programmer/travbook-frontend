@@ -1,5 +1,5 @@
 <div ng-controller="EditProfileController">
-  	<div class="well profile-div">
+  	<div class="well edit-profile-div">
 
     <h3>Edit Profile</h3>
 	<form name="updateProfileForm" novalidate ng-submit="updateProfile(user)" id="update-form">
@@ -48,17 +48,24 @@
 		ng-click="toggleHobbySelection(hobby.id)"
 		> {{hobby.name}}
 		</label>
+
 		<br>
 		
 		<label>Gender:</label>
 		<input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
 		<input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
 
+		<br>
+
 		<label><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to host</label>
+
+		<br>
 
 		<label>Password:</label>
 		<input name="userPassword" type="password" class="form-control" required ng-model="user.password">
 
+		<br>
+		
 		<label>Password confirmation:</label>
 		<input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="user.passwordConfirmation" compare-to="user.password">
 

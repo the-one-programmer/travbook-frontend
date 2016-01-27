@@ -1,5 +1,5 @@
-app.controller("EditProfileController", ['$scope', "$http", 'profile', /*"$routeParams",*/
-  function($scope, $http, profile/*, $routeParams*/) {
+app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routeParams",
+  function($scope, $http, profile, $routeParams) {
     profile.success(function(data)
     {
       // TODO: Display profile - name, photo, etc, load into variables
@@ -23,7 +23,7 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', /*"$route
     $http.get(nationURL).success(function (data){
       $scope.data.nations = data;
 
-      $scope.user.nationResidence = data[$scope.user.nationResidenceId];
+    $scope.user.nationResidence = data[$scope.user.nationResidenceId];
     }).error(function(error){
       $scope.data.error = error;
     });

@@ -15,7 +15,8 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
 
     $scope.data = {};
 
-    $scope.isEditable = false;
+    $scope.isEditable = true;
+    //$scope.isEditing = false;
 
     // TODO: Load from backend instead of this
     $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
@@ -37,10 +38,23 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
       $scope.data.error = error;
     });
 
+    /*
     $scope.toggleEditing = function()
     {
-      
+      // TODO: Swap profile form with editable one
+      alert("Edit!");
+      $scope.isEditing = !$scope.isEditing;
+
+      if($scope.isEditing)
+      {
+        // Show editing form
+      }
+      else
+      {
+        // Show normal profile
+      }
     }
+    */
 
     $scope.wantsToGo = function(nation)
     {
