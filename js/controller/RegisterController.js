@@ -2,7 +2,7 @@ app.controller("RegisterController",
   function($scope,$http)
 {
   $scope.registerUser = function(newUser) {
-    var registerURL = BACKEND_URL + "/users"
+    var registerURL = BACKEND_URL + "register"
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
     $http.post(registerURL,newUser).success(function(data){

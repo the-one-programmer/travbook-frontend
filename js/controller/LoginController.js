@@ -1,14 +1,23 @@
-app.controller("LoginController", ['$scope',
-  function($scope)
+app.controller("LoginController",
+  function($scope,$http)
 {
 
   $scope.loginUser = function(userDetails) {
-    $scope.message = userDetails.username + userDetails.password;
+    var loginURL = BACKEND_URL + "login"
+    $http.post(loginURL,userDetails).success(function(data){
+      console.log("success")
+      console.log(data);
+      //TODO redirect to profile
+    }).error(function(error){
+      console.log("error")
+      console.log(error);
+      //TODO shows error message
+    });
   }
 
   $scope.message = "Ready";
   $scope.quote = {text: "Blah blah blah", author: "Ma Tanghao"};
-}]);
+});
 
 var compareTo = function() {
     return {
