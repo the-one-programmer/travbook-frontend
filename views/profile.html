@@ -4,11 +4,15 @@
   	<div class="well profile-sidebar">
     <img ng-src="{{ user.profilePic }}">
 
+    <!--
     <div class="input-group">
-    <input name="userName" type="text" id="username-textfield" ng-class="{'textfield-noneditable': editing.username}" class="form-control" required ng-model="user.name" ng-readonly="editing.username">
+    <input name="userName" type="text" id="username-textfield" ng-class="{'textfield-noneditable': !editing.username}" class="form-control" required ng-model="user.name" ng-readonly="!editing.username">
 
      <span class="edit-span input-group-addon" id="basic-addon2"><button ng-click="editing.username = !editing.username" class="edit-button fa fa-pencil" ng-disabled="isEditable"></button></span>
      </div>
+     -->
+
+	 <h3>{{ user.name }}</h3>
 
 	<label>{{ user.gender ? "Male" : "Female" }}</label>
 

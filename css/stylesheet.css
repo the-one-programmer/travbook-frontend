@@ -318,6 +318,7 @@ input[type=text], input[type=email], input[type=password]
 
 /* Profile editing methods */
 
+/*
 #username-textfield
 {
 	font-size: 28px;
@@ -344,6 +345,7 @@ input[type=text], input[type=email], input[type=password]
 	float: right;
 	font-size: 14px !important;
 }
+*/
 
 /* Mobile stuff */
 @media screen and (max-width: 750px) {
