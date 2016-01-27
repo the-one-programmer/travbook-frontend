@@ -1,7 +1,9 @@
 <div ng-controller="RegisterController">
   <div class="register-main-div">
-    <h3 id="tagline">You Adventure Begins Here</h3>
+    <h3 id="tagline">Your Adventure Begins Here</h3>
 
+        <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+        
         <div class="well register-div">
 
         <div class="left-form">

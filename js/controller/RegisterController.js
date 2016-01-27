@@ -1,18 +1,30 @@
 app.controller("RegisterController",
   function($scope,$http)
 {
-  $scope.registerUser = function(newUser) {
+  $scope.registerUser = function(newUser)
+  {
+    // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed, 
     var registerURL = BACKEND_URL + "register"
     $scope.message = newUser.name + newUser.email+newUser.agreed;
     console.log(newUser);
+
+    // Register user
     $http.post(registerURL,newUser).success(function(data){
       console.log("success")
       console.log(data);
+
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Woohoo! Redirecting..";
+      
       //TODO redirect to profile
-    }).error(function(error){
-      console.log("error")
+
+    }).error(function(error)
+    {
+      // Show error message
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "There was an error submitting your form. Please try again later.";
+
       console.log(error);
-      //TODO shows error message
     });
   }
   $scope.changeCitiesOption = function(item) {

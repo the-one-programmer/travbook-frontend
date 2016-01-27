@@ -1,5 +1,8 @@
-<div ng-controller="LoginController">
+<div ng-controller="LoginController" class="main-login-div">
+        <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+        
     	<div class="well login-div">
+
     	<h2 class="header-text">Welcome Back.</h2>
     	<br>
 
@@ -22,7 +25,7 @@
         <div id="menu-container">
             <div class="menu-left">
                 <ul id="menu-principal" class="menu">
-                    <li><a href="register.html" id="register-button" class="btn-orange">Register</a></li>
+                    <li><a href="register" id="register-button" class="btn-orange">Register</a></li>
                     <li><a href="" class="btn-orange">Forgot Password?</a></li>
                 </ul>
             </div>

@@ -4,6 +4,11 @@ html, body
 
 }
 
+.alert
+{
+	margin: 0 5% 0 5%;
+}
+
 .header-text
 {
 	color: #FFF;
@@ -138,6 +143,10 @@ input[type=text], input[type=email], input[type=password]
 #password-input
 {
 	display: inline;
+}
+
+.main-login-div
+{
 }
 
 .login-div

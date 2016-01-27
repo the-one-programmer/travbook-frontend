@@ -1,5 +1,5 @@
 app.controller("LoginController",
-  function($scope,$http)
+  function($scope,$http, $location)
 {
 
   $scope.loginUser = function(userDetails) {
@@ -7,11 +7,22 @@ app.controller("LoginController",
     $http.post(loginURL,userDetails).success(function(data){
       console.log("success")
       console.log(data);
+
+      alert("Welcome!");
+
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Woohoo! Redirecting..";
+      
       //TODO redirect to profile
+      //$scope.pathURL = "profile"
+      //$location.path($scope.pathURL);
     }).error(function(error){
       console.log("error")
       console.log(error);
-      //TODO shows error message
+
+      // Show error message
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "There was an error logging you in. Please try again later.";
     });
   }
 
