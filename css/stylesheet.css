@@ -1,6 +1,5 @@
 html, body
 {
-	height: 100%;
 }
 
 .alert
@@ -16,7 +15,9 @@ html, body
 
 .jumbotron
 {
-	background: url("../images/background.jpg") no-repeat center center fixed;
+	background-image: url("../images/background.jpg");
+	background-position: center;
+	background-attachment: fixed;
 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -279,7 +280,6 @@ input[type=text], input[type=email], input[type=password]
 	}
 }
 
-
 /* Profile CSS */
 
 .profile-div
@@ -343,6 +343,11 @@ input[type=text], input[type=email], input[type=password]
 
 /* Edit Profile */
 
+.main-edit-div
+{
+	text-align: center;
+}
+
 .edit-profile-div
 {
 	font-family: 'Roboto', sans-serif;
@@ -357,12 +362,32 @@ input[type=text], input[type=email], input[type=password]
 	margin: 0 auto;
 
 	height: 80%;
+
+	text-align: left;
 }
 
-#update-form
+#edit-form
 {
 }
 
+#edit-form input[type=radio]
+{
+	margin: 0 10px 0 10px;
+}
+
+#edit-form input
+{
+	margin: 5px 0 5px 0;
+}
+
+/* Register Page - Mobile stuff */
+@media screen and (max-width: 750px) {
+	.edit-profile-div
+	{
+		width: 80%;
+		margin: 0 auto;
+	}
+}
 
 /*TODO shift this to suitable place*/
 

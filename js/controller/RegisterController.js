@@ -27,9 +27,11 @@ app.controller("RegisterController",
       console.log(error);
     });
   }
+
   $scope.changeCitiesOption = function(item) {
     findCitiesByNationID(item);
   }
+  
   $scope.data={};
   var nationURL = BACKEND_URL + "countries";
   $http.get(nationURL).success(function (data){

@@ -1,79 +1,96 @@
-<div ng-controller="EditProfileController">
+<div ng-controller="EditProfileController" class="main-edit-div">
+  	<h3>Edit Profile</h3>
+    <br>
+
+    <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
   	<div class="well edit-profile-div">
 
-    <h3>Edit Profile</h3>
-	<form name="updateProfileForm" novalidate ng-submit="updateProfile(user)" id="update-form">
-	    <label></label>
-	    <img ng-src="{{ user.profilePic }}">
+        <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
+          <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
+          <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
+              <span ng-show="editForm.userName.$error.required">
+                Uh please enter something
+              </span>
+          </div>
 
-	    <br>
+          <input name="userEmail" type="email" class="form-control " required ng-model="user.email" placeholder="Email">
+          <div class="error " ng-show="editForm.userEmail.$invalid && editForm.userEmail.$dirty">
+              <span ng-show="editForm.userEmail.$error.email">
+                Please enter a valid email address
+              </span>
+              <span ng-show="editForm.userEmail.$error.required">
+                Uh please enter something
+              </span>
+          </div>
 
-		<label>Name:</label>
-		<input name="userName" type="text" class="form-control" required ng-model="user.name">
+          <input name="userPassword" type="password" class="form-control " required ng-model="user.password" placeholder="Password">
+          <input name="userPasswordConfirmation" type="password" class="form-control " required ng-model="user.password_confirmation" compare-to="user.password" placeholder="Re-enter Password">
+          <div class="error " ng-show="editForm.userPasswordConfirmation.$invalid && editForm.userPasswordConfirmation.$dirty">
+              <span ng-show="editForm.userPasswordConfirmation.$error">
+                Passwords don't match
+              </span>
+          </div>
 
-	    <br>
+          <br>
 
-		<label>Email:</label>
-		<input name="userEmail" type="email" class="form-control" required ng-model="user.email">
+          <label class="">Country of residence:
+          <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationResidence" ng-change="changeCitiesOption(user.nationResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
+          </select>
+          </label>
 
-		<br>
+          <div class="error " ng-show="editForm.userNationResidence.$invalid">
+              <span ng-show="editForm.userNationResidence.$error.required">
+                Uh please choose your country
+              </span>
+          </div>
 
-		<label>Country of residence:</label>
-		<select name="userNationResidence" id="country-select" ng-options="nation as nation.name for nation in data.nations track by nation.id" ng-model="user.nationResidence" required>
-		<!--<option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>-->
-		</select>
+          <br>
 
-	    <br>
+          <label>City:
+          <select name="userCityResidence" id="repeatSelect" class="" ng-model="user.city_id" ng-options="city.id as city.name for city in data.cities" required>
+          </select>
+          </label>
 
-		<label>Countries you want to go to:</label>
-		<label ng-repeat="nation in data.nations">
-		<input
-		type="checkbox"
-		name="{{nation.name}}"
-		value="{{nation.id}}"
-		ng-checked="wantsToGo(nation)"
-		ng-click="toggleNationSelection(nation.id)"
-		> {{nation.name}}
-		</label>
+          <div class="error " ng-show="editForm.userCityResidence.$invalid">
+              <span ng-show="editForm.userCityResidence.$error.required">
+                Uh please choose your city
+              </span>
+          </div>
+          <br>
+          <br>
 
-		<br>
+          <div>
+          <label>Nations to visit
+          <div ng-repeat="nations in data.nations">
+          <label>{{nations.name}}<input type="checkbox" ng-model="user.nationsToGo[nations.id - 1]"></label>
+			</div>
+          </label>
+          </div>
 
-		<label>Hobbies:</label>
-		<label ng-repeat="hobby in data.hobbies">
-		<input
-		type="checkbox"
-		name="{{hobby.name}}"
-		value="{{hobby.id}}"
-		ng-checked="hasHobby(hobby)"
-		ng-click="toggleHobbySelection(hobby.id)"
-		> {{hobby.name}}
-		</label>
+          <br>
 
-		<br>
-		
-		<label>Gender:</label>
-		<input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
-		<input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
+          <div>
+          <label>Interests
+          <div ng-repeat="hobby in data.hobbies">
+          <label>{{hobby.name}}<input type="checkbox" ng-model="user.hobbies[hobby.id - 1]"></label>
+			</div>
+          </label>
+          </div>
 
-		<br>
+          <br>
 
-		<label><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to host</label>
+          <div ng-init="user.gender">
+          <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
+          <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
+          </div>
 
-		<br>
+          <br>
+          <label class=""><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to Host</label>
 
-		<label>Password:</label>
-		<input name="userPassword" type="password" class="form-control" required ng-model="user.password">
+          </div>
 
-		<br>
-		
-		<label>Password confirmation:</label>
-		<input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="user.passwordConfirmation" compare-to="user.password">
-
-		<br>
-		<button type="submit" ng-disabled="updateProfileForm.$invalid">Update Profile</button>
-	</form>
-    </div>
-
-	message:{{message}}
-	valid:{{updateProfileForm.$valid}}
+          <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Let's Ride</button>
+          </div>
+        </form>
+</div>
 </div>

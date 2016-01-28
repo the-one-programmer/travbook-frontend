@@ -13,17 +13,16 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
       // Display error
     });
 
-    $scope.data = {};
-
-    // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
-                    nationResidenceId: 0, willingToHost: true, nationsToGo: [1], hobbies: []};
+    $scope.changeCitiesOption = function(item) {
+      findCitiesByNationID(item);
+    }
+    
+    $scope.data={};
 
     var nationURL = BACKEND_URL + "countries";
     $http.get(nationURL).success(function (data){
       $scope.data.nations = data;
-
-    $scope.user.nationResidence = data[$scope.user.nationResidenceId];
+      $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
     }).error(function(error){
       $scope.data.error = error;
     });
@@ -33,56 +32,57 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
       $scope.data.hobbies = data;
     }).error(function(error){
       $scope.data.error = error;
-    })
+    });
+
+    var findCitiesByNationID = function(nationID){
+      console.log(nationID);
+      for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
+        if($scope.data.nations[i].id==nationID){
+          $scope.data.cities = $scope.data.nations[i].cities;
+          break;
+        }
+      }
+    }
+
+    $scope.message = "Ready";
+    // TODO: Load from backend instead of this
+    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+                    nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
+    //$scope.changeCitiesOption(0);
 
     $scope.updateProfile = function(user)
     {
       // TODO: Update user details
       // user.name, user.email, user.password, user.passwordConfirmation, user.nationResidence, user.willingToHost, user.agreed
 
+      // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed, 
+
+      // TODO: Change
+      var updateURL = BACKEND_URL + "update"
       $scope.message = user.name + user.email+user.agreed;
-      user.nationsToGo = $scope.nationSelection;
-      user.hobbies = $scope.hobbySelection;
+      console.log(user);
+
+      // Register user
+      $http.post(updateURL,user).success(function(data){
+        console.log("success")
+        console.log(data);
+
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Woohoo! Redirecting..";
+        
+        //TODO redirect to profile
+
+      }).error(function(error)
+      {
+        // Show error message
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "There was an error submitting your form. Please try again later.";
+
+        console.log(error);
+      });
     }
 
-    $scope.toggleNationSelection = function toggleSelection(nationID)
-    {
-      var idx = $scope.nationSelection.indexOf(nationID);
-      if (idx > -1)
-      {
-        $scope.nationSelection.splice(idx, 1);
-      }
-      else
-      {
-        $scope.nationSelection.push(nationID);
-      }
 
-      console.log($scope.nationSelection);
-    };
-
-    $scope.toggleHobbySelection = function toggleHobbySelection(hobbyID)
-    {
-      var idx = $scope.hobbySelection.indexOf(hobbyID);
-      if (idx > -1)
-      {
-        $scope.hobbySelection.splice(idx, 1);
-      }
-      else
-      {
-        $scope.hobbySelection.push(hobbyID);
-      }
-      console.log($scope.hobbySelection);
-    };
-
-    $scope.wantsToGo = function(nation)
-    {
-      return $scope.user.nationsToGo.indexOf(nation.id) > -1
-    };
-
-    $scope.hasHobby = function(hobby)
-    {
-      return $scope.user.hobbies.indexOf(hobby.id) > -1
-    };
 }]);
 
 var compareTo = function() {
