@@ -19,6 +19,22 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
     
     $scope.data={};
 
+    var currentUserURL = BACKEND_URL + 'current_user';
+    console.log(sessionStorage.getItem("auth_token"));
+    $http({
+      method: 'GET',
+      url: currentUserURL,
+      headers: {
+        'Authorization': sessionStorage.getItem("auth_token")
+      },
+    }).then(function successCallback(response) {
+      $scope.data.current_user_id = response.data.id;
+      // TODO: Set $scope.data to user data
+    }, function errorCallback(response) {
+      console.log(response);
+      //TODO
+    });
+
     var nationURL = BACKEND_URL + "countries";
     $http.get(nationURL).success(function (data){
       $scope.data.nations = data;

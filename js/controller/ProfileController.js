@@ -23,6 +23,7 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
       },
     }).then(function successCallback(response) {
       $scope.data.current_user_id = response.data.id;
+      // TODO: Set $scope.data to user data
     }, function errorCallback(response) {
       console.log(response);
       //TODO
