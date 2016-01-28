@@ -91,7 +91,7 @@
 
           <br>
 
-          <button class="btn btn-orange" type="submit" ng-disabled="registerForm.$invalid">Let's Ride</button>
+          <button class="btn btn-orange" type="submit" ng-disabled="registerForm.$invalid || !newUser.agreed">Let's Ride</button>
           </div>
         </form>
         </div>
