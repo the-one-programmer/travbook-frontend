@@ -5,14 +5,13 @@ app.controller("LoginController",
   $scope.loginUser = function(userDetails) {
     var loginURL = BACKEND_URL + "login"
     $http.post(loginURL,userDetails).success(function(data){
-      console.log("success")
       console.log(data);
-
+      sessionStorage.setItem("auth_token",data.auth_token);
       alert("Welcome!");
 
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Woohoo! Redirecting..";
-      
+
       //TODO redirect to profile
       //$scope.pathURL = "profile"
       //$location.path($scope.pathURL);
