@@ -12,14 +12,31 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
     {
       // Display error
     });
-
     $scope.data = {};
+    var currentUserURL = BACKEND_URL + 'current_user';
+    console.log(sessionStorage.getItem("auth_token"));
+    $http({
+      method: 'GET',
+      url: currentUserURL,
+      headers: {
+        'Authorization': sessionStorage.getItem("auth_token")
+      },
+    }).then(function successCallback(response) {
+      $scope.data.current_user_id = response.data.id;
+    }, function errorCallback(response) {
+      console.log(response);
+      //TODO
+    });
+    if ($routeParams.id.to_i == $scope.data.current_user_id){
+      $scope.isEditable = true;
+    }else{
+      $scope.isEditable = false;
+    }
 
-    $scope.isEditable = true;
     //$scope.isEditing = false;
 
     // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
                     nationResidenceId: 0, willingToHost: true, nationsToGo: [1, 2], hobbies: [1]};
 
     var nationURL = BACKEND_URL + "countries";
