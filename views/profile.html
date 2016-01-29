@@ -1,8 +1,26 @@
 <div ng-controller="ProfileController">
   	<div class="profile-div">
 
+  	<div class="profile-nav">
+	  	<div class="profile-nav-left">
+	    <img class="display-pic" ng-src="{{ user.profilePic }}">
+	    </div>
+
+	    <div class="profile-nav-right">
+		    <h1>{{ user.name }}</h1>
+
+			<div class="well profile-quote">
+			{{ user.quote }}
+			</div>
+	    </div>
+    </div>
+
+    <div style="clear: left"></div>
+
+    <br>
+
   	<div class="well profile-sidebar">
-    <img ng-src="{{ user.profilePic }}">
+
   	<button ng-click="toggleEditing()" class="edit-button fa fa-pencil" ng-disabled="!isEditable"></button>
 
     <!--
@@ -19,29 +37,70 @@
 
     <br>
 
-	<label>Country of residence:</label>
-	{{ user.nationResidence.name }}
+	<label>{{ user.nationResidence.name }}</label>
 
+	<!--
 	<label>Countries {{ user.name }} wants to go to:</label>
 	<ul>
 	<li ng-repeat="nation in data.nations | filter: wantsToGo">
 	{{ nation.name }}
 	</li>
 	</ul>
+	-->
+
 	<br>
 
+	<!--
 	<label>{{ user.name }}'s Hobbies:</label>
 	<ul>
 	<li ng-repeat="hobby in data.hobbies | filter: hasHobby">
 	{{ hobby.name }}
 	</li>
 	</ul>
+	-->
 
 	<label>{{ user.name }} is {{ user.willingToHost ? "willing to host." : "not willing to host." }}</label>
 	</div>
 
-	<div class="well profile-main">
-	blah blah blah
+	<div class="profile-main">
+		<div class="well profile-section interests-div">
+		<h3 class="title">Personal Interests</h3>
+		<br>
+
+		<table>
+			<tbody>
+			<tr class="spaceUnder">
+			<td class="title">Countries</td>
+			<td class="content">
+				<li ng-repeat="nation in data.nations" ng-if="wantsToGo(nation)">{{ nation.name }}</li>
+			</td>
+			</tr>
+			<tr class="spaceUnder">
+			<td class="title">Role</td>
+			<td class="content">
+				<li ng-repeat="role in user.roles">{{ role }}</li>				
+			</td>
+			</tr>
+			<tr class="spaceUnder">
+			<td class="title">Interests</td>
+			<td class="content">
+				<li ng-repeat="hobby in data.hobbies" ng-if="hasHobby(hobby)">{{ hobby.name }}</li>				
+			</td>
+			</tr>
+			</tbody>
+		</table>
+
+		</div>
+
+		<div class="well profile-section hobbies-div">
+		<h3 class="title">Hobbies</h3>
+		<br>
+		</div>
+
+		<div class="well profile-section history-div">
+		<h3 class="title">History</h3>
+		<br>
+		</div>
 	</div>
 
     </div>

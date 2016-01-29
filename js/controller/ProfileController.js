@@ -40,6 +40,8 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
     // TODO: Load from backend instead of this
     $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
                     nationResidenceId: 0, willingToHost: true, nationsToGo: [1, 2], hobbies: [1]};
+    $scope.user.quote = "Wake me up when it's time to travel and I will get up from my beer barrel";
+    $scope.user.roles = ["Accomodation", "Pick-up Services", "Private Transport", "Tour Guide Service"];
 
     var nationURL = BACKEND_URL + "countries";
     $http.get(nationURL).success(function (data){

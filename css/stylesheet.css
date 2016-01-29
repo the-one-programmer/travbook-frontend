@@ -1,6 +1,6 @@
 html
 {
-	background: url("../images/background.jpg") no-repeat center center fixed; 
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/background.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -253,7 +253,7 @@ input[type=text], input[type=email], input[type=password]
 {
 	background-color: rgba(255, 255, 255, 0.5);
 
-	border-radius: 16px;
+	border-radius: 8px;
 	border: none;
 
 	padding: 10px;
@@ -301,9 +301,73 @@ input[type=text], input[type=email], input[type=password]
 }
 
 
+.profile-nav
+{
+	padding: 0 0 0px 0;
+	text-align: left;
+}
+
+.profile-nav .name
+{
+	color: #FFF;
+	font-size: 32px;
+}
+
+.profile-nav-left
+{
+	width: 20%;
+	margin-left: 5%;
+
+	padding: 20px;
+
+	text-align: center;
+
+	display: inline-block;
+
+	float: left;
+}
+
+.profile-nav-right
+{
+	width: 65%;
+	float: right;
+	margin-right: 5%;
+
+	text-align: left;
+
+	display: inline-block;
+
+	float: right;
+}
+
+.profile-nav-right h1
+{
+	color: #FFF !important;
+}
+
+.display-pic
+{
+	width: 100%;
+	min-width: 200px;
+
+	border-style: solid;
+	border-width: 6px;
+	border-color: #333;
+	border-radius: 16px;
+}
+
+.profile-quote
+{
+	width: 100%;
+
+	margin-bottom: 0px;
+}
+
 .profile-sidebar
 {
 	width: 20%;
+	min-width: 200px;
+
 	margin-left: 5%;
 	float: left;
 
@@ -312,16 +376,90 @@ input[type=text], input[type=email], input[type=password]
 
 .profile-main
 {
-	width: 60%;
+	width: 65%;
 	margin-right: 5%;
 	float: right;
 
 	text-align: center;
+
+	display: inline-block;
 }
 
+.profile-main .profile-section
+{
+	width: 100%;
+}
+
+.profile-section .title
+{
+	text-align: left;
+}
+
+.interests-div
+{
+	width: 100%;
+}
+
+.interests-div table
+{
+	text-align: left;
+}
+
+tr.spaceUnder > td
+{
+	padding-bottom: 10px;
+	padding-right: 50px;
+}
+
+.interests-div table tbody .title
+{
+	font-weight: bold;
+}
+
+.interests-div table tbody .content
+{
+	width: 80%;
+}
+
+.hobbies-div
+{
+
+}
+
+.history-div
+{
+
+}
 
 /* Profile - Mobile stuff */
 @media screen and (max-width: 750px) {
+
+	.profile-quote
+	{
+		position: relative;
+	}
+
+	.profile-nav
+	{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.profile-nav-left
+	{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.profile-nav-right
+	{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+
 	.profile-div
 	{
 		width: 80%;
