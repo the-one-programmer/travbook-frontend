@@ -13,8 +13,7 @@ app.controller("LoginController",
       $scope.alertMessage = "Woohoo! Redirecting..";
 
       //TODO redirect to profile
-      //$scope.pathURL = "profile"
-      //$location.path($scope.pathURL);
+      //$scope.changeView('/profile/' + user_id)
     }).error(function(error){
       console.log("error")
       console.log(error);
@@ -27,6 +26,11 @@ app.controller("LoginController",
 
   $scope.message = "Ready";
   $scope.quote = {text: "Blah blah blah", author: "Ma Tanghao"};
+
+  $scope.changeView = function(url)
+  {
+    $location.path(url);
+  }
 });
 
 var compareTo = function() {

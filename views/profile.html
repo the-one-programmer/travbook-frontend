@@ -21,7 +21,7 @@
 
   	<div class="well profile-sidebar">
 
-  	<button ng-click="toggleEditing()" class="edit-button fa fa-pencil" ng-disabled="!isEditable"></button>
+  	<button ng-show="isEditable" ng-click="editProfile()" class="edit-button fa fa-pencil" ng-disabled="!isEditable"></button>
 
     <!--
     <div class="input-group">
