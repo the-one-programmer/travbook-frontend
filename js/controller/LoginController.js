@@ -13,7 +13,7 @@ app.controller("LoginController",
       $scope.alertMessage = "Woohoo! Redirecting..";
 
       //TODO redirect to profile
-      //$scope.changeView('/profile/' + user_id)
+      $scope.changeView('/edit')
     }).error(function(error){
       console.log("error")
       console.log(error);

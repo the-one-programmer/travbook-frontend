@@ -16,7 +16,7 @@ app.config(function ($routeProvider)
     controller: "ProfileController",
     templateUrl: "views/profile.html"
   })
-  .when('/edit/:id', {
+  .when('/edit/', {
     controller: "EditProfileController",
     templateUrl: "views/edit.html"
   })
