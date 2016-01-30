@@ -3,7 +3,7 @@
 
   	<div class="profile-nav">
 	  	<div class="profile-nav-left">
-	    <img class="display-pic" ng-src="{{ user.profilePic }}">
+	    <img class="display-pic" ng-src="{{ profilePic }}">
 	    </div>
 
 	    <div class="profile-nav-right">
@@ -59,7 +59,7 @@
 	</ul>
 	-->
 
-	<label>{{ user.name }} is {{ user.willingToHost ? "willing to host." : "not willing to host." }}</label>
+	<label>{{ user.name }} is {{ user.willing_to_host ? "willing to host." : "not willing to host." }}</label>
 	</div>
 
 	<div class="profile-main">
@@ -72,19 +72,25 @@
 			<tr class="spaceUnder">
 			<td class="title">Countries</td>
 			<td class="content">
-				<li ng-repeat="nation in data.nations" ng-if="wantsToGo(nation)">{{ nation.name }}</li>
+				<li ng-repeat="country in user.countries_want_to_go">{{ country.country_name }}</li>
 			</td>
 			</tr>
 			<tr class="spaceUnder">
 			<td class="title">Role</td>
 			<td class="content">
-				<li ng-repeat="role in user.roles">{{ role }}</li>				
+				<li ng-repeat="role in user.roles">{{ role }}</li>
 			</td>
 			</tr>
 			<tr class="spaceUnder">
-			<td class="title">Interests</td>
+			<td class="title">Hobbies</td>
 			<td class="content">
-				<li ng-repeat="hobby in data.hobbies" ng-if="hasHobby(hobby)">{{ hobby.name }}</li>				
+				<li ng-repeat="interest in user.interests">{{ interest.interest_name }}</li>
+			</td>
+			</tr>
+      <tr class="spaceUnder">
+			<td class="title">Languages</td>
+			<td class="content">
+				<li ng-repeat="language in user.languages">{{ language.language_name }}</li>
 			</td>
 			</tr>
 			</tbody>

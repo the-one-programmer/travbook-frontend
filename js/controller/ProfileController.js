@@ -1,16 +1,18 @@
-app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams",
-  function($scope, $http, profile, $routeParams) {
-    profile.success(function(data)
-    {
-      // TODO: Display profile - name, photo, etc, load into variables
-      $scope.user = data;
-
-      // Move load of data here
-    });
-
-    profile.error(function(data)
-    {
-      // Display error
+app.controller("ProfileController", ["$scope", "$http", "$routeParams",
+  function($scope, $http, $routeParams) {
+    profileURL = BACKEND_URL + 'show/' + $routeParams.id;
+    $http({
+      method: 'GET',
+      url: profileURL,
+      headers: {
+        'Authorization': sessionStorage.getItem("auth_token")
+      },
+    }).then(function successCallback(response) {
+      $scope.user = response.data;
+      console.log($scope.user);
+    }, function errorCallback(response) {
+      console.log(response);
+      //TODO
     });
     $scope.data = {};
     var currentUserURL = BACKEND_URL + 'current_user';
@@ -24,10 +26,10 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
     }).then(function successCallback(response) {
       $scope.data.current_user_id = response.data.id;
       // TODO: Set $scope.data to user data
-      $scope.data.user = response;
+
     }, function errorCallback(response) {
       console.log(response);
-      //TODO
+      //TODO if the profile is not found, redirect to somewhere
     });
     if ($routeParams.id.to_i == $scope.data.current_user_id){
       $scope.isEditable = true;
@@ -38,16 +40,15 @@ app.controller("ProfileController", ["$scope", "$http", "profile", "$routeParams
     //$scope.isEditing = false;
 
     // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
-                    nationResidenceId: 0, willingToHost: true, nationsToGo: [1, 2], hobbies: [1]};
-    $scope.user.quote = "Wake me up when it's time to travel and I will get up from my beer barrel";
-    $scope.user.roles = ["Accomodation", "Pick-up Services", "Private Transport", "Tour Guide Service"];
-
+    //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
+                //    nationResidenceId: 0, willingToHost: true, nationsToGo: [1, 2], hobbies: [1]};
+    //$scope.user.quote = "Wake me up when it's time to travel and I will get up from my beer barrel";
+    //$scope.user.roles = ["Accomodation", "Pick-up Services", "Private Transport", "Tour Guide Service"];
+    $scope.profilePic="http://lorempixel.com/200/200/";
     var nationURL = BACKEND_URL + "countries";
     $http.get(nationURL).success(function (data){
       $scope.data.nations = data;
 
-      $scope.user.nationResidence = data[$scope.user.nationResidenceId];
     }).error(function(error){
       $scope.data.error = error;
     });
