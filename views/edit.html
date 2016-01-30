@@ -60,6 +60,13 @@
           <br>
 
           <div>
+          <label>Birthday:
+          <input type="text" class="form-control" id="datepicker" placeholder="DDMMYYYY" ng-model="user.birthday">
+          </label>
+          </div>
+          <br>
+
+          <div>
           <label>Nations to visit
           <div ng-repeat="nations in data.nations">
           <label>{{nations.name}}<input type="checkbox" ng-model="user.nationsToGo[nations.id - 1]"></label>

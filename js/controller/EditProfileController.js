@@ -1,26 +1,29 @@
-app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routeParams",
-  function($scope, $http, profile, $routeParams) {
-    profile.success(function(data)
-    {
-      // TODO: Display profile - name, photo, etc, load into variables
-      $scope.user = data;
-
-      // Move load of data here
+app.controller("EditProfileController", ['$scope', "$http", "$location", "$routeParams",
+  function($scope, $http, $location, $routeParams) {
+    // Get data of the profile currently being viewed
+    profileURL = BACKEND_URL + 'show/' + $routeParams.id;
+    $http({
+      method: 'GET',
+      url: profileURL,
+      headers: {
+        'Authorization': sessionStorage.getItem("auth_token")
+      },
+    }).then(function successCallback(response) {
+      $scope.user = response.data;
+      console.log($scope.user);
+    }, function errorCallback(response) {
+      console.log(response);
+      //TODO
     });
 
-    profile.error(function(data)
-    {
-      // Display error
-    });
+    $scope.profilePic="http://lorempixel.com/200/200/";
 
-    $scope.changeCitiesOption = function(item) {
-      findCitiesByNationID(item);
-    }
-    
-    $scope.data={};
+    $scope.data = {};
 
+    // Get user auth token to determine if he can edit
     var currentUserURL = BACKEND_URL + 'current_user';
     console.log(sessionStorage.getItem("auth_token"));
+
     $http({
       method: 'GET',
       url: currentUserURL,
@@ -29,11 +32,46 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
       },
     }).then(function successCallback(response) {
       $scope.data.current_user_id = response.data.id;
-      // TODO: Set $scope.data to user data
     }, function errorCallback(response) {
       console.log(response);
-      //TODO
+      //TODO if the profile is not found, redirect to error page
+      $scope.changeView('/');
     });
+
+    if ($routeParams.id.to_i == $scope.data.current_user_id){
+      $scope.isEditable = true;
+    }else{
+      $scope.isEditable = false;
+    }
+
+    $scope.profilePic="http://lorempixel.com/200/200/";
+
+    $scope.data = {};
+
+    // Get user auth token to determine if he can edit
+    var currentUserURL = BACKEND_URL + 'current_user';
+    console.log(sessionStorage.getItem("auth_token"));
+
+    $http({
+      method: 'GET',
+      url: currentUserURL,
+      headers: {
+        'Authorization': sessionStorage.getItem("auth_token")
+      },
+    }).then(function successCallback(response) {
+      $scope.data.current_user_id = response.data.id;
+    }, function errorCallback(response) {
+      console.log(response);
+      // Current user not logged in, redirect to login
+    });
+
+    if ($routeParams.id == $scope.data.current_user_id){
+      // Can edit
+      alert("ok!");
+    }else{
+      // Not current_user's profile, cannot edit, redirect
+      alert("Bad!");
+    }
 
     var nationURL = BACKEND_URL + "countries";
     $http.get(nationURL).success(function (data){
@@ -62,8 +100,8 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
 
     $scope.message = "Ready";
     // TODO: Load from backend instead of this
-    $scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
-                    nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
+    //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+    //                nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
     //$scope.changeCitiesOption(0);
 
     $scope.updateProfile = function(user)
@@ -98,7 +136,11 @@ app.controller("EditProfileController", ['$scope', "$http", 'profile', "$routePa
       });
     }
 
-
+    $scope.changeView = function(url)
+    {
+      alert("!");
+        $location.path(url);
+    }
 }]);
 
 var compareTo = function() {
@@ -122,3 +164,8 @@ var compareTo = function() {
 
 app.directive("compare-to", compareTo);
 
+/*
+$(function() {
+  $( "#datepicker" ).datepicker();
+});
+*/

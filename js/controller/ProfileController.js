@@ -34,7 +34,7 @@ app.controller("ProfileController", ["$scope", "$location", "$http", "$routePara
       $scope.data.current_user_id = response.data.id;
     }, function errorCallback(response) {
       console.log(response);
-      //TODO if the profile is not found, redirect to error page
+      // Current user not logged in, redirect to login
       $scope.changeView('/');
     });
 
@@ -85,7 +85,6 @@ app.controller("ProfileController", ["$scope", "$location", "$http", "$routePara
 
     $scope.changeView = function(url)
     {
-      alert("!");
         $location.path(url);
     }
 }]);
