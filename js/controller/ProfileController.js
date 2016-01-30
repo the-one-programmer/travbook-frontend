@@ -75,7 +75,7 @@ app.controller("ProfileController", ["$scope", "$location", "$http", "$routePara
       if($routeParams.id == $scope.data.current_user_id)
       {
         // Redirect to editing page
-        $scope.changeView('/edit/' + $scope.data.current_user_id);
+        $scope.changeView('/edit');
       }
       else
       {

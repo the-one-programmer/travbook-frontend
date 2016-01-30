@@ -1,5 +1,5 @@
 app.controller("RegisterController",
-  function($scope,$http)
+  function($scope,$http,$location)
 {
   $scope.registerUser = function(newUser)
   {
@@ -17,6 +17,7 @@ app.controller("RegisterController",
       $scope.alertMessage = "Woohoo! Redirecting..";
       
       //TODO redirect to profile
+      $scope.changeView('/edit');
 
     }).error(function(error)
     {
@@ -50,6 +51,10 @@ app.controller("RegisterController",
   }
   $scope.message = "Ready";
 
+  $scope.changeView = function(url)
+  {
+      $location.path(url);
+  }
 });
 
 var compareTo = function() {
