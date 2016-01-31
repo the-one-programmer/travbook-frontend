@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="TravBook">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Google Description">
-    <title>Title</title>
+    <title ng-bind="title"></title>
 
     <link href="css/stylesheet.css" rel="stylesheet">
     <link href="css/profile-stylesheet.css" rel="stylesheet">
@@ -39,7 +39,7 @@
 
   </head>
 
-  <body ng-app="TravBook">
+  <body>
     <!--
     <nav class="navbar navbar-default">
     <div class="container-fluid">

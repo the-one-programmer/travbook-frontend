@@ -1,5 +1,4 @@
-<div ng-controller="ProfileController">
-  	<div class="profile-div">
+<div ng-controller="ProfileController" class="profile-div">
 
   	<div class="profile-nav">
 	  	<div class="profile-nav-left">
@@ -9,6 +8,15 @@
 	    <div class="profile-nav-right">
 		    <h1>{{ user.name }}</h1>
 
+			<ul class="nav nav-pills">
+			  <li role="presentation" class="active"><a href="#">Journal</a></li>
+			  <li role="presentation"><a href="#">Photographs</a></li>
+			  <li role="presentation"><a href="#">Travels</a></li>
+			  <li role="presentation"><a href="#">Information</a></li>
+			</ul>
+
+			<br>
+
 			<div class="well profile-quote">
 			{{ user.quote }}
 			</div>
@@ -16,6 +24,7 @@
     </div>
 
     <div style="clear: left"></div>
+
     <br>
 
   	<div class="well profile-sidebar">
@@ -112,5 +121,4 @@
 		</div>
 	</div>
 
-    </div>
 </div>

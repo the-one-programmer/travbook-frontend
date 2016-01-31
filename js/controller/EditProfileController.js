@@ -45,7 +45,7 @@ app.controller("EditProfileController",
       // Redirect to profile after delay
       $timeout(function() {
         $scope.changeView('/');
-      }, 1000);
+      }, 3000);
     });
 
     var nationURL = BACKEND_URL + "countries";

@@ -1,6 +1,8 @@
 app.controller("ProfileController",
-  function($scope, $location, current_user, $http, $routeParams) {
+  function($rootScope, $scope, $location, $http, $routeParams, current_user) {
     // Initialize variables
+
+    $rootScope.title = "Hello";
 
     $scope.profilePic="http://lorempixel.com/200/200/";
 

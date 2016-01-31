@@ -7,6 +7,11 @@ html
 	background-size: cover;
 }
 
+body
+{
+	background-color: transparent !important;
+}
+
 .alert
 {
 	margin: 0 5% 0 5%;
@@ -20,7 +25,7 @@ html
 
 .jumbotron
 {
-	background-color: transparent !important;
+	background-color: #000 !important;
 	height: 100%;
 }
 

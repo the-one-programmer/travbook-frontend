@@ -14,19 +14,18 @@
 	margin: 0 auto;
 
 	height: 80%;
+
+	/*background-color: #000 !important;*/
 }
 
 
 .profile-nav
 {
-	padding: 0 0 0px 0;
+	padding: 0 0 0 0;
 	text-align: left;
-}
+	position: relative;
 
-.profile-nav .name
-{
-	color: #FFF;
-	font-size: 32px;
+	width: 100%;
 }
 
 .profile-nav-left
@@ -46,6 +45,8 @@
 .profile-nav-right
 {
 	width: 65%;
+	height: 250px;
+
 	float: right;
 	margin-right: 5%;
 
@@ -56,9 +57,27 @@
 	float: right;
 }
 
+/* Name */
 .profile-nav-right h1
 {
 	color: #FFF !important;
+}
+
+.nav-pills a {
+    color: #ffffff;
+
+    background-color: #000;
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: #560000;
+}
+
+.nav-pills .active a:hover {
+    color: #560000;
+    background-color: #000;
 }
 
 .display-pic
