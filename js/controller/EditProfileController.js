@@ -1,22 +1,15 @@
-app.controller("EditProfileController", ['$scope', "$http", "$location",
-  function($scope, $http, $location) {
-
-    // Get user auth token to determine if he can edit
-    var currentUserURL = BACKEND_URL + 'current_user';
-    console.log(sessionStorage.getItem("auth_token"));
+app.controller("EditProfileController", ['$scope', "$http", "$location", "current_user",
+  function($scope, $http, $location, current_user) {
 
     $scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
 
-    $http({
-      method: 'GET',
-      url: currentUserURL,
-      headers: {
-        'Authorization': sessionStorage.getItem("auth_token")
-      },
-    }).then(function successCallback(response) {
-      $scope.data.current_user_id = response.data.id;
+    current_user.success(function(data)
+    {
+      // Move load of data here
+      // Current user ID - only if user is logged in
+      $scope.data.current_user_id = data.id;
 
       // Get data of the profile currently being viewed
       profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
@@ -31,22 +24,15 @@ app.controller("EditProfileController", ['$scope', "$http", "$location",
         console.log($scope.user);
       }, function errorCallback(response) {
         console.log(response);
-        //TODO
-        // Not current_user's profile, cannot edit, redirect
+        // TODO: Not current_user's profile, cannot edit, show error and redirect
         $scope.changeView('/');
       });
+    });
 
-      /*
-      if ($routeParams.id.to_i == $scope.data.current_user_id){
-        $scope.isEditable = true;
-      }else{
-        $scope.isEditable = false;
-      }
-      */
-      
-    }, function errorCallback(response) {
-      console.log(response);
-      //TODO if the profile is not found, redirect to error page
+    current_user.error(function(data)
+    {
+      // Current user not logged in, redirect to login
+      // TODO: Show error
       $scope.changeView('/');
     });
 

@@ -9,12 +9,12 @@
     	<form name="loginForm" novalidate ng-submit="loginUser(newUser)" id="login-form">
             <div class="input-group">
                 <span class="input-group-addon" id="user-icon-addon"><i class="icon fa fa-user"></i></span>
-                <input id="username-input" name="user-name" type="text" class="form-control" required ng-model="newUser.email">
+                <input id="username-input" name="user-name" type="text" class="form-control" placeholder="example@email.com" required ng-model="newUser.email">
             </div>
 
             <div class="input-group">
                 <span class="input-group-addon" id="password-icon-addon"><i class="fa fa-unlock-alt"></i></span>
-                <input id="password-input" name="user-password" type="password" class="form-control" required ng-model="newUser.password">
+                <input id="password-input" name="user-password" type="password" class="form-control" placeholder="Password" required ng-model="newUser.password">
             </div>
 
             <br>
