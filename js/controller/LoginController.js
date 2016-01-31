@@ -1,5 +1,5 @@
 app.controller("LoginController",
-  function($scope,$http, $location)
+  function($scope,$http, $location, $timeout, current_user)
 {
 
   $scope.loginUser = function(userDetails) {
@@ -7,13 +7,14 @@ app.controller("LoginController",
     $http.post(loginURL,userDetails).success(function(data){
       console.log(data);
       sessionStorage.setItem("auth_token",data.auth_token);
-      alert("Welcome!");
 
       $scope.alertClass = "alert-success";
-      $scope.alertMessage = "Woohoo! Redirecting..";
+      $scope.alertMessage = "Successfully logged you in!";
 
-      //TODO redirect to profile
-      $scope.changeView('/edit')
+      // Redirect to profile after delay
+      $timeout(function() {
+        $scope.changeView('/edit');
+      }, 1000);
     }).error(function(error){
       console.log("error")
       console.log(error);

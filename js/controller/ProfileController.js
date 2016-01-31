@@ -1,4 +1,4 @@
-app.controller("ProfileController", ["$scope", "$location", "current_user", "$http", "$routeParams",
+app.controller("ProfileController",
   function($scope, $location, current_user, $http, $routeParams) {
     // Initialize variables
 
@@ -83,4 +83,4 @@ app.controller("ProfileController", ["$scope", "$location", "current_user", "$ht
     {
         $location.path(url);
     }
-}]);
+});

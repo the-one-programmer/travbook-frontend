@@ -1,5 +1,5 @@
-app.controller("EditProfileController", ['$scope', "$http", "$location", "current_user",
-  function($scope, $http, $location, current_user) {
+app.controller("EditProfileController",
+  function($scope, $http, $location, $timeout, current_user) {
 
     $scope.profilePic="http://lorempixel.com/200/200/";
 
@@ -24,16 +24,28 @@ app.controller("EditProfileController", ['$scope', "$http", "$location", "curren
         console.log($scope.user);
       }, function errorCallback(response) {
         console.log(response);
-        // TODO: Not current_user's profile, cannot edit, show error and redirect
-        $scope.changeView('/');
+        // Error
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "There was an error. Please try again.";
+
+        // Redirect to profile after delay
+        $timeout(function() {
+          $scope.changeView('/');
+        }, 1000);
       });
     });
 
     current_user.error(function(data)
     {
       // Current user not logged in, redirect to login
-      // TODO: Show error
-      $scope.changeView('/');
+      // Error
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "You are not logged in. Please log in and try again.";
+
+      // Redirect to profile after delay
+      $timeout(function() {
+        $scope.changeView('/');
+      }, 1000);
     });
 
     var nationURL = BACKEND_URL + "countries";
@@ -103,7 +115,7 @@ app.controller("EditProfileController", ['$scope', "$http", "$location", "curren
     {
       $location.path(url);
     }
-}]);
+});
 
 var compareTo = function() {
     return {
