@@ -2,8 +2,6 @@ app.controller("ProfileController",
   function($rootScope, $scope, $location, $http, $routeParams, current_user) {
     // Initialize variables
 
-    $rootScope.title = "Hello";
-
     $scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
@@ -30,6 +28,8 @@ app.controller("ProfileController",
       },
     }).then(function successCallback(response) {
       $scope.user = response.data;
+
+      $rootScope.title = "Profile for " + $scope.user.name;
       console.log($scope.user);
     }, function errorCallback(response) {
       console.log(response);
