@@ -1,7 +1,7 @@
 <div ng-controller="RegisterController">
   <div class="register-main-div">
     <div class="header">
-    <img src="./images/logo256.png">
+    <img src="./images/logo256.png" class="logo">
     <h3 id="tagline">Your Adventure Begins Here</h3>
     </div>
 
@@ -12,14 +12,14 @@
     <div class="left-form">
     <form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
       <input name="userName" type="text" class="form-control " required ng-model="newUser.name" placeholder="Name">
-      <div class="error " ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
+      <div class="alert alert-danger error " ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
           <span ng-show="registerForm.userName.$error.required">
             Uh please enter something
           </span>
       </div>
 
       <input name="userEmail" type="email" class="form-control " required ng-model="newUser.email" placeholder="Email">
-      <div class="error " ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
+      <div class="error" ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
           <span ng-show="registerForm.userEmail.$error.email">
             Please enter a valid email address
           </span>
@@ -52,6 +52,7 @@
 
       <br>
 
+      <div class="city" ng-show="newUser.nationResidence">
       <label>City:
       <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.city_id" required>
         <option ng-repeat="city in data.cities" value="{{city.id}}">{{city.name}}</option>
@@ -63,11 +64,16 @@
             Uh please choose your residence
           </span>
       </div>
+      </div>
       <br>
 
-      <div ng-init="newUser.gender='male'">
+      <br>
+
+      <div class="gender-input" ng-init="newUser.gender='male'">
+      <label>Gender:
       <input type="radio" name="answer" value="male" ng-model="newUser.gender"/>Male
       <input type="radio" name="answer" value="female" ng-model="newUser.gender"/>Female
+      </label>
       </div>
 
       <br>
@@ -89,7 +95,7 @@
       Sed neque arcu, semper vel elit non, eleifend rhoncus nisl. Nulla sodales dui at orci volutpat laoreet sit amet sit amet tellus. Ut et lacus quis ex imperdiet pretium sed id nisi. Nunc in nibh ac orci egestas vestibulum et eu dui. Quisque efficitur sapien vel ante efficitur rhoncus. Morbi suscipit leo ut sodales molestie. Cras id erat non mauris congue tristique. In magna sapien, efficitur et egestas quis, tincidunt nec tortor. Nullam ac odio accumsan, placerat est nec, hendrerit magna. Cras vel turpis dui. Vivamus in ipsum facilisis, dignissim nulla a, condimentum erat. Aliquam ullamcorper nec ex eu dignissim. Etiam ultricies vel augue a malesuada. Integer fringilla tempus mattis.
       </textarea>
 
-      <label>Agree<input name="agreed" type="checkbox" ng-model="newUser.agreed" required></label>
+      <label><input name="agreed" type="checkbox" ng-model="newUser.agreed" required>  I Agree</label>
 
       <br>
 
