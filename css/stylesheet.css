@@ -17,6 +17,14 @@ body
 	margin: 0 5% 0 5%;
 }
 
+.error
+{
+	color: #FFF;
+	background-color: #DA4926;
+	padding: 8px;
+	border-radius: 8px;
+}
+
 .header-text
 {
 	color: #FFF;
@@ -231,14 +239,6 @@ input[type=text], input[type=email], input[type=password]
 	margin-top: -30px;
 }
 
-.register-div .error
-{
-	color: #FFF;
-	background-color: #DA4926;
-	padding: 8px;
-	border-radius: 8px;
-}
-
 .register-div
 {
 	margin: auto;
@@ -279,6 +279,11 @@ input[type=text], input[type=email], input[type=password]
 #register-form input[type=radio]
 {
 	margin: 0 10px 0 10px;
+}
+
+#register-form input[type=checkbox]
+{
+	margin: 0 10px 0 0;
 }
 
 .gender-input

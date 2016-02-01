@@ -9,27 +9,27 @@
 		    <h1>{{ user.name }}</h1>
 
 			<ul class="nav nav-pills">
-			  <li role="presentation" class="active"><a href="#">Journal</a></li>
-			  <li role="presentation"><a href="#">Photographs</a></li>
-			  <li role="presentation"><a href="#">Travels</a></li>
-			  <li role="presentation"><a href="#">Information</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 0}"><a href ng-click="currentTab=0">Journal</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 1}"><a href ng-click="currentTab=1">Photographs</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 2}"><a href ng-click="currentTab=2">Travels</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 3}"><a href ng-click="currentTab=3">Information</a></li>
 			</ul>
 
 			<br>
 
 			<div class="well profile-quote">
-			{{ user.quote }}
+			{{ user.quote ? user.quote : "You are not currently displaying a quote."}}
+			<a href ng-click="changeView('edit')" class="edit-quote-btn"><i class="fa fa-pencil"></i></a>
 			</div>
 	    </div>
+    <div style="clear: both"></div>
+
     </div>
 
-    <div style="clear: left"></div>
-
+    <br>
     <br>
 
-  	<div class="well profile-sidebar">
-
-  	<button ng-show="isEditable" ng-click="editProfile()" class="edit-button fa fa-pencil" ng-disabled="!isEditable"></button>
+  	<div class="well profile-sidebar profile-section">
 
     <!--
     <div class="input-group">
@@ -40,6 +40,11 @@
      -->
 
 	 <h3>{{ user.name }}</h3>
+
+  	<button ng-show="isEditable" ng-click="editProfile()" class="btn btn-primary edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"> Edit my profile</i></button>
+
+  	<br>
+  	<br>
 
 	<label>{{ user.gender ? "Male" : "Female" }}</label>
 
@@ -75,6 +80,36 @@
 	</div>
 
 	<div class="profile-main">
+
+	<div class="info-div" ng-show="currentTab == 0">
+		<div class="well profile-section journal-div">
+		<h3 class="title">My Journal</h3>
+		<br>
+
+		<div class="journal-entry">
+		Boring journal entries here
+		</div>
+
+		</div>
+	</div>
+
+	<div class="info-div" ng-show="currentTab == 1">
+		<div class="well profile-section photograph-div">
+		<h3 class="title">Photographs</h3>
+		<br>
+		Boring photographs here
+		</div>
+	</div>
+
+	<div class="info-div" ng-show="currentTab == 2">
+		<div class="well profile-section travels-div">
+		<h3 class="title">Travels</h3>
+		<br>
+		Where I've been
+		</div>
+	</div>
+
+	<div class="info-div" ng-show="currentTab == 3">
 		<div class="well profile-section interests-div">
 		<h3 class="title">Personal Interests</h3>
 		<br>
@@ -119,6 +154,8 @@
 		<h3 class="title">History</h3>
 		<br>
 		</div>
+	</div>
+
 	</div>
 
 </div>

@@ -5,6 +5,7 @@ app.controller("ProfileController",
     $scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
+    $scope.currentTab = 0;
 
     current_user.success(function(data)
     {
