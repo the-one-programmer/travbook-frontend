@@ -21,6 +21,14 @@ app.config(function ($routeProvider)
     controller: "EditProfileController",
     templateUrl: "views/edit.html",
     css: "css/edit-stylesheet.css"
+  }).when('/forgotpassword/', {
+    controller: "ForgotPasswordController",
+    templateUrl: "views/forgotpassword.html",
+    css: "css/edit-stylesheet.css"
+  }).when('/resetpassword', {
+    controller: "ResetPasswordController",
+    templateUrl: "views/resetpassword.html",
+    css: "css/edit-stylesheet.css"
   })
   .otherwise({
     redirectTo: '/'
