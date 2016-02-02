@@ -10,6 +10,11 @@ body
 	background-color: #DDDDDC !important;
 }
 
+.jumbotron
+{
+	padding-top: 0px;
+}
+
 .profile-div
 {
 	font-family: 'Roboto', sans-serif;
@@ -44,6 +49,8 @@ body
 
 	width: 100%;
 	height: 100%;
+
+	padding-top: 60px;
 
 	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/background.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
@@ -90,6 +97,7 @@ body
 .profile-nav-right h1
 {
 	color: #FFF !important;
+	margin-bottom: 30px;
 }
 
 .nav-pills a {

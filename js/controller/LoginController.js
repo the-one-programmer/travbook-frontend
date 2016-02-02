@@ -1,6 +1,7 @@
 app.controller("LoginController",
-  function($scope,$http, $location, $timeout, current_user)
+  function($scope, $rootScope, $http, $location, $timeout, current_user)
 {
+  $rootScope.showNav = false;
 
   $scope.loginUser = function(userDetails) {
     var loginURL = BACKEND_URL + "login"

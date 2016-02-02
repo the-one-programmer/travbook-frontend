@@ -1,6 +1,8 @@
 app.controller("RegisterController",
-  function($scope,$http,$location)
+  function($scope, $rootScope, $http, $location)
 {
+  $rootScope.showNav = false;
+  
   $scope.registerUser = function(newUser)
   {
     // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed, 

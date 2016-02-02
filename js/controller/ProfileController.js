@@ -7,6 +7,8 @@ app.controller("ProfileController",
     $scope.data = {};
     $scope.currentTab = 0;
 
+    $rootScope.showNav = true;
+
     current_user.success(function(data)
     {
       // Current user ID - only if user is logged in

@@ -1,9 +1,13 @@
 app.controller("EditProfileController",
-  function($scope, $http, $location, $timeout, current_user) {
+  function($scope, $rootScope, $http, $location, $timeout, current_user) {
 
     $scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
+    $scope.currentTab = 0;
+
+    $rootScope.showNav = true;
+    $rootScope.title = "Edit Profile";
 
     current_user.success(function(data)
     {

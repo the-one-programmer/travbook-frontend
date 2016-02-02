@@ -1,103 +1,115 @@
 <div ng-controller="EditProfileController" class="main-edit-div">
-    <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
-  	<h3>Edit Profile</h3>
-    <br>
+  <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+	<br>
+  <br>
 
-  	<div class="well edit-profile-div">
+  <div class="header">
+  <h1>Edit Profile</h>
+  </div>
 
-        <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
-          <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
-          <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
-              <span ng-show="editForm.userName.$error.required">
-                Uh please enter something
-              </span>
-          </div>
+  <br>
 
-          <input name="userEmail" type="email" class="form-control " required ng-model="user.email" placeholder="Email">
-          <div class="error " ng-show="editForm.userEmail.$invalid && editForm.userEmail.$dirty">
-              <span ng-show="editForm.userEmail.$error.email">
-                Please enter a valid email address
-              </span>
-              <span ng-show="editForm.userEmail.$error.required">
-                Uh please enter something
-              </span>
-          </div>
+  <div class="edit-profile-nav">
+    <ul class="nav nav-pills nav-stacked col-md-3">
+    <li><a href ng-click="currentTab=0"><i class="fa fa-cogs"></i> General Settings</a></li>
+    <li><a href ng-click="currentTab=1"><i class="fa fa-plane"></i> Travel Preferences</a></li>
+    <li><a href ng-click="currentTab=2">Hobbies</a></li>
+    </ul>
+  </div>
 
-          <input name="userPassword" type="password" class="form-control " required ng-model="user.password" placeholder="Password">
-          <input name="userPasswordConfirmation" type="password" class="form-control " required ng-model="user.password_confirmation" compare-to="user.password" placeholder="Re-enter Password">
-          <div class="error " ng-show="editForm.userPasswordConfirmation.$invalid && editForm.userPasswordConfirmation.$dirty">
-              <span ng-show="editForm.userPasswordConfirmation.$error">
-                Passwords don't match
-              </span>
-          </div>
+  <div class="edit-profile-div col-md-7">
+    <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
 
-          <br>
+      <div class="well general-settings" ng-show="currentTab == 0">
+        <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
+        <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
+        <span ng-show="editForm.userName.$error.required">
+        Uh please enter something
+        </span>
+        </div>
 
-          <label class="">Country of residence:
-          <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationResidence" ng-change="changeCitiesOption(user.nationResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
-          </select>
-          </label>
+        <input name="userEmail" type="email" class="form-control " required ng-model="user.email" placeholder="Email">
+        <div class="error " ng-show="editForm.userEmail.$invalid && editForm.userEmail.$dirty">
+        <span ng-show="editForm.userEmail.$error.email">
+        Please enter a valid email address
+        </span>
+        <span ng-show="editForm.userEmail.$error.required">
+        Uh please enter something
+        </span>
+        </div>
 
-          <div class="error " ng-show="editForm.userNationResidence.$invalid">
-              <span ng-show="editForm.userNationResidence.$error.required">
-                Uh please choose your country
-              </span>
-          </div>
+        <input name="userPassword" type="password" class="form-control " required ng-model="user.password" placeholder="Password">
+        <input name="userPasswordConfirmation" type="password" class="form-control " required ng-model="user.password_confirmation" compare-to="user.password" placeholder="Re-enter Password">
+        <div class="error " ng-show="editForm.userPasswordConfirmation.$invalid && editForm.userPasswordConfirmation.$dirty">
+        <span ng-show="editForm.userPasswordConfirmation.$error">
+        Passwords don't match
+        </span>
+        </div>
 
-          <br>
+        <label class="">Country of residence:
+        <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationResidence" ng-change="changeCitiesOption(user.nationResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
+        </select>
+        </label>
 
-          <label>City:
-          <select name="userCityResidence" id="repeatSelect" class="" ng-model="user.city_id" ng-options="city.id as city.name for city in data.cities" required>
-          </select>
-          </label>
+        <div class="error " ng-show="editForm.userNationResidence.$invalid">
+        <span ng-show="editForm.userNationResidence.$error.required">
+        Uh please choose your country
+        </span>
+        </div>
 
-          <div class="error " ng-show="editForm.userCityResidence.$invalid">
-              <span ng-show="editForm.userCityResidence.$error.required">
-                Uh please choose your city
-              </span>
-          </div>
-          <br>
-          <br>
+        <br>
 
-          <div>
-          <label>Birthday:
-          <input type="text" class="form-control" id="datepicker" placeholder="DDMMYYYY" ng-model="user.birthday">
-          </label>
-          </div>
-          <br>
+        <label>City:
+        <select name="userCityResidence" id="repeatSelect" class="" ng-model="user.city_id" ng-options="city.id as city.name for city in data.cities" required>
+        </select>
+        </label>
 
-          <div>
-          <label>Nations to visit
-          <div ng-repeat="nations in data.nations">
-          <label>{{nations.name}}<input type="checkbox" ng-model="user.nationsToGo[nations.id - 1]"></label>
-			</div>
-          </label>
-          </div>
+        <div class="error " ng-show="editForm.userCityResidence.$invalid">
+        <span ng-show="editForm.userCityResidence.$error.required">
+        Uh please choose your city
+        </span>
+        </div>
+        <br>
+        <br>
 
-          <br>
+        <div>
+        <label>Birthday:
+        <input type="text" class="form-control" id="datepicker" placeholder="DDMMYYYY" ng-model="user.birthday">
+        </label>
+        </div>
+        <br>
 
-          <div>
-          <label>Interests
-          <div ng-repeat="hobby in data.hobbies">
-          <label>{{hobby.name}}<input type="checkbox" ng-model="user.hobbies[hobby.id - 1]"></label>
-			</div>
-          </label>
-          </div>
+        <div ng-init="user.gender">
+        <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
+        <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
+        </div>
 
-          <br>
+        <br>
+        <label class=""><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to Host</label>
+      </div>
 
-          <div ng-init="user.gender">
-          <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
-          <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
-          </div>
+      <div class="well travel-settings" ng-show="currentTab == 1">
+        <div>
+        <label>Nations to visit
+        <div ng-repeat="nations in data.nations">
+        <label>{{nations.name}}<input type="checkbox" ng-model="user.nationsToGo[nations.id - 1]"></label>
+    		</div>
+        </label>
+        </div>
+      </div>
 
-          <br>
-          <label class=""><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to Host</label>
+      <div class="well interests-settings" ng-show="currentTab == 2">
+        <div>
+        <label>Interests
+        <div ng-repeat="hobby in data.hobbies">
+        <label>{{hobby.name}}<input type="checkbox" ng-model="user.hobbies[hobby.id - 1]"></label>
+        </div>
+        </label>
+        </div>
+      </div>
 
-          </div>
-
-          <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Let's Ride</button>
-          </div>
-        </form>
+      <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Let's Ride</button>
+      </div>
+    </form>
 </div>
 </div>

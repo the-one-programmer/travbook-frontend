@@ -1,0 +1,81 @@
+/* Edit Profile */
+
+.main-edit-div
+{
+	text-align: center;
+}
+
+.main-edit-div .header h1
+{
+	color: #FFF;
+	font-size: 32px;
+}
+
+.edit-profile-nav
+{
+	margin-left: 5%;
+}
+
+.nav-pills a {
+    background-color: #DDDDDC;
+    margin: 10px 0 10px 0;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-pills a:hover {
+    color: #DDDDDC;
+    background-color: #000 !important;
+}
+
+.nav-pills .active a {
+    color: #000;
+    background-color: #000 !important;
+}
+
+.nav-pills .active a:hover {
+	/*
+    color: #000 !important;
+    background-color: #FFF !important;
+    */
+}
+
+.nav>li>a:hover,
+.nav>li>a:focus {
+    text-decoration: none;
+    background-color: #000 !important;
+}
+
+.edit-profile-div
+{
+	font-family: 'Roboto', sans-serif;
+
+	position: relative;
+	/*
+	left: 20%;
+	transform: translate(-50%, 0%);
+	*/
+
+	margin-right: 5%;
+
+	height: 80%;
+
+	text-align: left;
+
+	float: right;
+}
+
+#edit-form
+{
+}
+
+#edit-form input[type=radio]
+{
+	margin: 0 10px 0 10px;
+}
+
+#edit-form input
+{
+	margin: 5px 0 5px 0;
+}

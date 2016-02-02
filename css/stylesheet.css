@@ -12,6 +12,21 @@ body
 	background-color: transparent !important;
 }
 
+.navbar-default
+{
+	background-color: #DDDDDC !important;
+
+	margin-bottom: 0px;
+	padding-bottom: 10px;
+
+	border: none !important;
+}
+
+.jumbotron
+{
+	margin-bottom: 0px;
+}
+
 .alert
 {
 	margin: 0 5% 0 5%;
@@ -327,46 +342,6 @@ input[type=text], input[type=email], input[type=password]
 		width: 100%;
 		margin: 0 auto;
 	}
-}
-
-
-/* Edit Profile */
-
-.main-edit-div
-{
-	text-align: center;
-}
-
-.edit-profile-div
-{
-	font-family: 'Roboto', sans-serif;
-
-	position: relative;
-	/*
-	left: 20%;
-	transform: translate(-50%, 0%);
-	*/
-
-	width: 40%;
-	margin: 0 auto;
-
-	height: 80%;
-
-	text-align: left;
-}
-
-#edit-form
-{
-}
-
-#edit-form input[type=radio]
-{
-	margin: 0 10px 0 10px;
-}
-
-#edit-form input
-{
-	margin: 5px 0 5px 0;
 }
 
 /* Register Page - Mobile stuff */
