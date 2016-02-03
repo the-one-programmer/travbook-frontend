@@ -1,5 +1,7 @@
 app.controller("ResetPasswordController",
   function($rootScope, $scope, $location, $http) {
+
+    $rootScope.showNav = true;
     updateURL = BACKEND_URL + 'update';
     console.log($location.search().token)
     $scope.resetPassword = function(userDetails){

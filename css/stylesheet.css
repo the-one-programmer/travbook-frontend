@@ -16,7 +16,6 @@ body
 {
 	position: relative;
 
-
 	background-color: #000 !important;
 
 	width: 100%;
@@ -29,6 +28,21 @@ body
 }
 
 .forget-password-form
+{
+	width: 50%;
+}
+
+.reset-password-main-div
+{
+}
+
+.reset-password-main-div .header h1
+{
+	color: #FFF;
+	font-size: 32px;
+}
+
+.reset-password-div
 {
 	width: 50%;
 }
