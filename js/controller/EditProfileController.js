@@ -123,7 +123,7 @@ app.controller("EditProfileController",
       $scope.message = user.name + user.email+user.agreed;
       // Update city
       var countryData = getCountryForCityName($scope.cityResidence.name);
-      $scope.user.city = countryData[1].name;
+      $scope.user.city_id = countryData[1].id;
       
       console.log(user);
 
