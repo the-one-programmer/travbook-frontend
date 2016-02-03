@@ -113,8 +113,11 @@ app.controller("EditProfileController",
         console.log(data);
 
         $scope.alertClass = "alert-success";
-        $scope.alertMessage = "Woohoo! Redirecting..";
+        $scope.alertMessage = "Updated your profile!";
 
+        $timeout(function() {
+          $scope.changeView('/edit');
+        }, 2000);
       }).error(function(error)
       {
         // Show error message

@@ -48,7 +48,7 @@
         </div>
 
         <label class="">Country of residence:
-        <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationality" ng-change="changeCitiesOption(user.nationality)" ng-options="nation.id as nation.name for nation in data.nations" required>
+        <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationResidence" ng-change="changeCitiesOption(user.nationResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
         </select>
         </label>
 
@@ -96,7 +96,7 @@
         <div>
         <label>Nations to visit
         <div ng-repeat="nations in data.nations">
-        <label>{{nations.name}}<input type="checkbox" ng-model="user.nationsToGo[nations.id - 1]"></label>
+        <label>{{nations.name}}<input type="checkbox" ng-model="user.countries_want_to_go[nations.id - 1]"></label>
     		</div>
         </label>
 
