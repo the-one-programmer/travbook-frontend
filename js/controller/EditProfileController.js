@@ -77,6 +77,11 @@ app.controller("EditProfileController",
       }
     }
 
+    $scope.changeCitiesOption = function(nationID)
+    {
+      findCitiesByNationID(nationID);
+    }
+
     $scope.message = "Ready";
     // TODO: Load from backend instead of this
     //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
@@ -90,20 +95,25 @@ app.controller("EditProfileController",
 
       // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed, 
 
-      // TODO: Change
-      var updateURL = BACKEND_URL + "update"
+      var updateURL = BACKEND_URL + "update";
       $scope.message = user.name + user.email+user.agreed;
       console.log(user);
+      alert("pls");
 
       // Register user
-      $http.post(updateURL,user).success(function(data){
+      $http({
+        method: 'POST',
+        url: updateURL,
+        headers: {
+          'Authorization': sessionStorage.getItem("auth_token")
+        },
+        data: user
+      }).success(function(data){
         console.log("success")
         console.log(data);
 
         $scope.alertClass = "alert-success";
         $scope.alertMessage = "Woohoo! Redirecting..";
-        
-        //TODO redirect to profile
 
       }).error(function(error)
       {
