@@ -25,6 +25,12 @@ app.controller("EditProfileController",
         },
       }).then(function successCallback(response) {
         $scope.user = response.data;
+
+        var countryData = getCountryForCityName($scope.user.city);
+        $scope.countryResidence = countryData[0].id;
+        $scope.cityResidence = countryData[1];
+        $scope.changeCitiesOption($scope.countryResidence);
+
         console.log($scope.user);
       }, function errorCallback(response) {
         console.log(response);
@@ -67,6 +73,24 @@ app.controller("EditProfileController",
       $scope.data.error = error;
     });
 
+    var getCountryForCityName = function(cityName)
+    {
+      for(var i = 0; i < $scope.data.nations.length; i++)
+      {
+        var country = $scope.data.nations[i];
+        var cities = country.cities;
+
+        for(var j = 0; j < cities.length; j ++)
+        {
+          var current_city = cities[j];
+          if(current_city.name == cityName)
+          {
+            return [country, current_city];
+          }
+        }
+      }
+    }
+
     var findCitiesByNationID = function(nationID){
       console.log(nationID);
       for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
@@ -97,8 +121,11 @@ app.controller("EditProfileController",
 
       var updateURL = BACKEND_URL + "update";
       $scope.message = user.name + user.email+user.agreed;
+      // Update city
+      var countryData = getCountryForCityName($scope.cityResidence.name);
+      $scope.user.city = countryData[1].name;
+      
       console.log(user);
-      alert("pls");
 
       // Register user
       $http({

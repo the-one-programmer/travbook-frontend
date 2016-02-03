@@ -48,7 +48,7 @@
         </div>
 
         <label class="">Country of residence:
-        <select name="userNationResidence" id="repeatSelect" class="" ng-model="user.nationResidence" ng-change="changeCitiesOption(user.nationResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
+        <select name="userNationResidence" id="repeatSelect" class="" ng-model="countryResidence" ng-change="changeCitiesOption(countryResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
         </select>
         </label>
 
@@ -61,7 +61,7 @@
         <br>
 
         <label>City:
-        <select name="userCityResidence" id="repeatSelect" class="" ng-model="user.city_id" ng-options="city.id as city.name for city in data.cities" required>
+        <select name="userCityResidence" id="repeatSelect" class="" ng-model="cityResidence" ng-options="city as city.name for city in data.cities" required>
         </select>
         </label>
 
