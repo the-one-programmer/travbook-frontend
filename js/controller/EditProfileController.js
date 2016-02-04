@@ -1,5 +1,5 @@
 app.controller("EditProfileController",
-  function($scope, $rootScope, $http, $location, $timeout, current_user) {
+  function($scope, $rootScope, $http, $location, $timeout, current_user,$cookies) {
 
     $scope.profilePic="http://lorempixel.com/200/200/";
 
@@ -14,14 +14,14 @@ app.controller("EditProfileController",
       // Move load of data here
       // Current user ID - only if user is logged in
       $scope.data.current_user_id = data.id;
-
+      console.log(data.id);
       // Get data of the profile currently being viewed
       profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
       $http({
         method: 'GET',
         url: profileURL,
         headers: {
-          'Authorization': sessionStorage.getItem("auth_token")
+          'Authorization': $cookies.get("Travbook_auth_token")
         },
       }).then(function successCallback(response) {
         $scope.user = response.data;
@@ -30,8 +30,9 @@ app.controller("EditProfileController",
         $scope.countryResidence = countryData[0].id;
         $scope.cityResidence = countryData[1];
         $scope.changeCitiesOption($scope.countryResidence);
-
-        console.log($scope.user);
+        $scope.countrySelection = response.data.countries_want_to_go;
+        $scope.hobbySelection = response.data.interests;
+        console.log(response.data.countries_want_to_go);
       }, function errorCallback(response) {
         console.log(response);
         // Error
@@ -108,7 +109,7 @@ app.controller("EditProfileController",
 
     $scope.message = "Ready";
     // TODO: Load from backend instead of this
-    //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "", 
+    //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
     //                nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
     //$scope.changeCitiesOption(0);
 
@@ -117,14 +118,15 @@ app.controller("EditProfileController",
       // TODO: Update user details
       // user.name, user.email, user.password, user.passwordConfirmation, user.nationResidence, user.willingToHost, user.agreed
 
-      // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed, 
+      // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed,
 
       var updateURL = BACKEND_URL + "update";
       $scope.message = user.name + user.email+user.agreed;
       // Update city
       var countryData = getCountryForCityName($scope.cityResidence.name);
       $scope.user.city_id = countryData[1].id;
-      
+      user.countries_want_to_go = $scope.countrySelection;
+      user.interests = $scope.hobbySelection;
       console.log(user);
 
       // Register user
@@ -132,7 +134,7 @@ app.controller("EditProfileController",
         method: 'POST',
         url: updateURL,
         headers: {
-          'Authorization': sessionStorage.getItem("auth_token")
+          'Authorization': $cookies.get("Travbook_auth_token")
         },
         data: user
       }).success(function(data){
@@ -159,6 +161,26 @@ app.controller("EditProfileController",
     {
       $location.path(url);
     }
+    $scope.toggleNationSelection = function toggleSelection(nationID) {
+      var idx = $scope.countrySelection.indexOf(nationID);
+      if (idx > -1) {
+        $scope.countrySelection.splice(idx, 1);
+      }
+      else {
+        $scope.countrySelection.push(nationID);
+      }
+      console.log($scope.countrySelection);
+  };
+  $scope.toggleHobbySelection = function toggleHobbySelection(hobbyID) {
+        var idx = $scope.hobbySelection.indexOf(hobbyID);
+        if (idx > -1) {
+          $scope.hobbySelection.splice(idx, 1);
+        }
+        else {
+          $scope.hobbySelection.push(hobbyID);
+        }
+        console.log($scope.hobbySelection);
+    };
 });
 
 var compareTo = function() {

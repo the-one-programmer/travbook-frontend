@@ -1,5 +1,5 @@
 app.controller("LoginController",
-  function($scope, $rootScope, $http, $location, $timeout, current_user)
+  function($scope, $rootScope, $http, $location, $timeout, current_user, $cookies)
 {
   $rootScope.showNav = false;
 
@@ -8,7 +8,7 @@ app.controller("LoginController",
     $http.post(loginURL,userDetails).success(function(data){
       console.log(data);
       sessionStorage.setItem("auth_token",data.auth_token);
-
+      $cookies.put("Travbook_auth_token",data.auth_token);
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Successfully logged you in!";
 

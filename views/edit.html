@@ -73,13 +73,6 @@
         <br>
         <br>
 
-        <div>
-        <label>Birthday:
-        <input type="text" class="form-control" id="datepicker" placeholder="DDMMYYYY" ng-model="user.birthday">
-        </label>
-        </div>
-        <br>
-
         <div ng-init="user.gender">
         <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
         <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
@@ -88,7 +81,7 @@
         <br>
         <label class=""><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to Host</label>
         <br>
-        
+
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
       </div>
 
@@ -96,7 +89,7 @@
         <div>
         <label>Nations to visit
         <div ng-repeat="nations in data.nations">
-        <label>{{nations.name}}<input type="checkbox" ng-model="user.countries_want_to_go[nations.id - 1]"></label>
+        <label>{{nations.name}}<input type="checkbox" name="user.countries_want_to_go[]" ng-checked="user.countries_want_to_go.indexOf(nations.id) > -1" ng-click="toggleNationSelection(nations.id)"></label>
     		</div>
         </label>
 
@@ -108,7 +101,7 @@
       <div class="well interests-settings" ng-show="currentTab == 2">
         <label>Interests
         <div ng-repeat="hobby in data.hobbies">
-        <label>{{hobby.name}}<input type="checkbox" ng-model="user.hobbies[hobby.id - 1]"></label>
+        <label>{{hobby.name}}<input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="user.interests.indexOf(hobby.id) > -1" ng-click="toggleHobbySelection(hobby.id)"></label>
         </div>
         </label>
 

@@ -1,4 +1,4 @@
-var app = angular.module("TravBook", ["ngRoute"]);
+var app = angular.module("TravBook", ["ngRoute","ngCookies"]);
 var BACKEND_URL ="http://localhost:3000/api/";
 
 app.config(function ($routeProvider)

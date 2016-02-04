@@ -1,5 +1,5 @@
 app.controller("ProfileController",
-  function($rootScope, $scope, $location, $http, $routeParams, current_user) {
+  function($rootScope, $scope, $location, $http, $routeParams, current_user,$cookies) {
     // Initialize variables
 
     $scope.profilePic="http://lorempixel.com/200/200/";
@@ -27,7 +27,7 @@ app.controller("ProfileController",
       method: 'GET',
       url: profileURL,
       headers: {
-        'Authorization': sessionStorage.getItem("auth_token")
+        'Authorization': $cookies.get("Travbook_auth_token")
       },
     }).then(function successCallback(response) {
       $scope.user = response.data;
@@ -36,7 +36,6 @@ app.controller("ProfileController",
       $scope.genderIcon = $scope.user.gender ? 'fa fa-mars' : 'fa fa-venus';
 
       $rootScope.title = "Profile for " + $scope.user.name;
-      console.log($scope.user);
     }, function errorCallback(response) {
       console.log(response);
       // TODO: Profile not found - show error
