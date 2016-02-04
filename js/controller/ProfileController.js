@@ -32,6 +32,9 @@ app.controller("ProfileController",
     }).then(function successCallback(response) {
       $scope.user = response.data;
 
+      $rootScope.username = $scope.user.name;
+      $scope.genderIcon = $scope.user.gender ? 'fa fa-mars' : 'fa fa-venus';
+
       $rootScope.title = "Profile for " + $scope.user.name;
       console.log($scope.user);
     }, function errorCallback(response) {

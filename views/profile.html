@@ -2,7 +2,7 @@
 
   	<div class="profile-nav">
 	  	<div class="profile-nav-left">
-	    <img class="display-pic" ng-src="{{ profilePic }}">
+	    <img class="display-pic shadow" ng-src="{{ profilePic }}">
 	    </div>
 
 	    <div class="profile-nav-right">
@@ -39,44 +39,17 @@
      </div>
      -->
 
-	 <h3>{{ user.name }}</h3>
-
-  	<button ng-show="isEditable" ng-click="editProfile()" class="btn btn-primary edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"> Edit my profile</i></button>
+	 <h3>{{ user.name }} <a href ng-show="isEditable" ng-click="editProfile()" class="edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"></i></a></h3>
 
   	<br>
-  	<br>
 
-	<label>{{ user.gender ? "Male" : "Female" }}</label>
-
-	<br>
-
-	<label>{{ user.birthday }}</label>
-
-    <br>
-
-	<label>{{ user.nationResidence.name }}</label>
-
-	<!--
-	<label>Countries {{ user.name }} wants to go to:</label>
-	<ul>
-	<li ng-repeat="nation in data.nations | filter: wantsToGo">
-	{{ nation.name }}
-	</li>
+  	<ul class="user-details">
+	<li><i ng-class="genderIcon"></i> <label>{{ user.gender ? "Male" : "Female" }}</label></li>
+	<li><i class="fa fa-birthday-cake"></i> <label>{{ user.birthday ? user.birthday : "None" }}</label></li>
+	<li><i class="fa fa-globe"></i> <label>{{ user.city }}</label></li>
+	<li><i class="fa fa-home"></i> <label>{{ user.willing_to_host ? "Willing to host!" : "Not willing to host." }}</label></li>
 	</ul>
-	-->
 
-	<br>
-
-	<!--
-	<label>{{ user.name }}'s Hobbies:</label>
-	<ul>
-	<li ng-repeat="hobby in data.hobbies | filter: hasHobby">
-	{{ hobby.name }}
-	</li>
-	</ul>
-	-->
-
-	<label>{{ user.name }} is {{ user.willing_to_host ? "willing to host." : "not willing to host." }}</label>
 	</div>
 
 	<div class="profile-main">

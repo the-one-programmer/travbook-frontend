@@ -15,6 +15,20 @@ body
 	padding-top: 0px;
 }
 
+.well
+{
+	-webkit-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+.shadow
+{
+	-webkit-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
 .profile-div
 {
 	font-family: 'Roboto', sans-serif;
@@ -33,8 +47,33 @@ body
 	height: 100%;
 }
 
+.user-details
+{
+	list-style: none;
+	text-align: left;
+}
+
+.user-details li
+{
+	margin: 3px 0 3px 0;
+}
+
+.user-details li i
+{
+	margin-right: 5px;
+	color: #999;
+}
+
 .edit-button
 {
+	font-size: 16px;
+
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 5px;
+
+	color: #000;
+	opacity: 0.7;
 }
 
 .edit-quote-btn
@@ -57,11 +96,6 @@ body
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
-
-.nav-pills li
-{
-	padding: 0 0 0 5px;
 }
 
 .profile-nav-left
@@ -100,31 +134,34 @@ body
 	margin-bottom: 30px;
 }
 
-.nav-pills a {
-    background-color: #DDDDDC;
+.nav-pills li
+{
+	padding: 0 8px 0 0;
 }
 
-.nav-pills a:hover {
-    color: #DDDDDC;
-    background-color: #000 !important;
+.nav-pills a {
+	color: #FFF;
+    background-color: #F68F1E;
+
+    border-radius: 0px !important;
 }
 
 .nav-pills .active a {
-    color: #000;
-    background-color: #000 !important;
+	color: #FFF;
+    background-color: #DA4926 !important;
+    /*#28B1D7*/
 }
 
 .nav-pills .active a:hover {
-	/*
-    color: #000 !important;
-    background-color: #FFF !important;
-    */
 }
 
 .nav>li>a:hover,
 .nav>li>a:focus {
     text-decoration: none;
-    background-color: #000 !important;
+	color: #FFF;
+    background-color: #DA4926 !important;
+
+	transition: all 0.3s linear;
 }
 
 .display-pic
@@ -135,15 +172,17 @@ body
 
 	border-style: solid;
 	border-width: 6px;
-	border-color: #333;
-	border-radius: 16px;
+	border-color: rgba(255, 255, 255, 1);
 }
 
 .profile-quote
 {
 	width: 100%;
-
 	margin-bottom: 0px;
+
+	opacity: 0.7;
+
+	border-radius: 0px;
 }
 
 .profile-sidebar
@@ -185,11 +224,26 @@ body
 	border-radius: 10px;
 	background-color: #FFF;
 	*/
+
+	border-radius: 0px;
 }
+ 
 
 .profile-section .title
 {
 	text-align: left;
+
+	color: #000;
+}
+
+.info-div
+{
+	transition: all 0.2s ease;
+}
+
+.info-div.ng-hide
+{
+	opacity: 0;
 }
 
 .interests-div
