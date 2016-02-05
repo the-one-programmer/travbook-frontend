@@ -76,7 +76,7 @@
       </div>
 
       <br>
-      <label class=""><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
+      <label class="checkbox-label" ng-class="{ checked: newUser.willingToHost }"><input name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">I'm willing to Host</label>
 
       </div>
 
@@ -96,7 +96,7 @@
 
       <br><br>
       
-      <label><input name="agreed" type="checkbox" ng-model="newUser.agreed" required>&nbsp;&nbsp;I Agree</label>
+      <label class="checkbox-label" ng-class="{ checked: newUser.agreed }"><input name="agreed" type="checkbox" ng-model="newUser.agreed" required>&nbsp;&nbsp;I Agree</label>
 
       <br><br>
 

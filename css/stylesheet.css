@@ -144,8 +144,11 @@ input[type=text], input[type=email], input[type=password]
 
 input[type=checkbox]
 {
-	background-color: #000 !important;
 	margin: 0 10px 0 0 !important;
+}
+
+input[type=checkbox]:checked
+{
 }
 
 .checkbox-label
@@ -154,7 +157,16 @@ input[type=checkbox]
 	border: 1px solid #ccc;
 	border-radius: 4px;
 
+	color: #000 !important;
 	background-color: #FFF;
+	font-size: 14px !important;
+
+	opacity: 0.5;
+}
+
+.checked
+{
+	opacity: 1;
 }
 
 select

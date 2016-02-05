@@ -205,6 +205,21 @@ app.controller("EditProfileController",
         }
         console.log($scope.languageSelection);
     };
+
+    $scope.wantsToGo = function(nation_id)
+    {
+      return $scope.user.countries_want_to_go.indexOf(nation_id) > -1
+    }
+
+    $scope.hasHobby = function(hobby_id)
+    {
+      return $scope.user.interests.indexOf(hobby_id) > -1
+    }
+
+    $scope.hasLanguage = function(language_id)
+    {
+      return $scope.user.languages.indexOf(language_id) > -1
+    }
 });
 
 var compareTo = function() {
@@ -228,8 +243,9 @@ var compareTo = function() {
 
 app.directive("compare-to", compareTo);
 
-/*
-$(function() {
-  $( "#datepicker" ).datepicker();
+// Filter that capitalizes the first letter of a word
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+    }
 });
-*/

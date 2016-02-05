@@ -23,7 +23,7 @@
     <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
 
       <div class="well general-settings" ng-show="currentTab == 0">
-        <h3>General</h3>
+        <h3>General Settings</h3>
         <br>
 
         <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
@@ -87,7 +87,7 @@
         </div>
 
         <br>
-        <label class="checkbox-label"><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to host</label>
+        <label class="checkbox-label" ng-class="{ checked: user.willingToHost }"><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to host</label>
 
         <br>
         <br>
@@ -99,8 +99,8 @@
         <div>
         <h3>Nations to visit</h3>
         <br>
-        <div ng-repeat="nations in data.nations">
-        <label class="checkbox-label"><input type="checkbox" name="user.countries_want_to_go[]" ng-checked="user.countries_want_to_go.indexOf(nations.id) > -1" ng-click="toggleNationSelection(nations.id)">{{nations.name}}</label>
+        <div ng-repeat="nation in data.nations">
+        <label class="checkbox-label" ng-class="{ checked: wantsToGo(nation.id) }"><input type="checkbox" name="user.countries_want_to_go[]" ng-checked="wantsToGo(nation.id)" ng-click="toggleNationSelection(nation.id)">{{nation.name}}</label>
     		</div>
 
         <br>
@@ -112,7 +112,7 @@
         <h3>Interests</h3>
         <br>
         <div ng-repeat="hobby in data.hobbies">
-        <label class="checkbox-label"><input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="user.interests.indexOf(hobby.id) > -1" ng-click="toggleHobbySelection(hobby.id)">{{hobby.name}}</label>
+        <label class="checkbox-label" ng-class="{ checked: hasHobby(hobby.id) }"><input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="hasHobby(hobby.id)" ng-click="toggleHobbySelection(hobby.id)">{{hobby.name | capitalize}}</label>
         </div>
 
         <br>
@@ -123,7 +123,7 @@
             <h3>Languages</h3>
             <br>
             <div ng-repeat="language in data.languages">
-            <label class="checkbox-label"><input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="user.languages.indexOf(language.id) > -1" ng-click="toggleLanguageSelection(language.id)">{{language.name}}</label>
+            <label class="checkbox-label" ng-class="{ checked: hasLanguage(language.id) }"><input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="hasLanguage(language.id)" ng-click="toggleLanguageSelection(language.id)">{{language.name}}</label>
             </div>
             <br>
             <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>

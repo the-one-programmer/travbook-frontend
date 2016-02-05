@@ -27,7 +27,6 @@
 /* Navigation */
 .nav-pills li
 {
-	padding: 0 8px 0 0;
 }
 
 .nav-pills a {
@@ -103,4 +102,11 @@
 
 .languages-settings
 {
+}
+
+.general-settings h3, .travel-settings h3, .interests-settings h3, .languages-settings h3
+{
+	margin-top: 0px;
+	text-align: center;
+	text-decoration: underline;
 }
