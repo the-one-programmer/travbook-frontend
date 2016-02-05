@@ -44,7 +44,7 @@
   	<br>
 
   	<ul class="user-details">
-	<li><i ng-class="genderIcon"></i> <label>{{ user.gender ? "Male" : "Female" }}</label></li>
+	<li><i ng-class="genderIcon"></i> <label>{{ user.gender | capitalize }}</label></li>
 	<li><i class="fa fa-birthday-cake"></i> <label>{{ user.birthday ? user.birthday : "None" }}</label></li>
 	<li><i class="fa fa-globe"></i> <label>{{ user.city }}</label></li>
 	<li><i class="fa fa-home"></i> <label>{{ user.willing_to_host ? "Willing to host!" : "Not willing to host." }}</label></li>

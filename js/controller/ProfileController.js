@@ -33,7 +33,12 @@ app.controller("ProfileController",
       $scope.user = response.data;
 
       $rootScope.username = $scope.user.name;
-      $scope.genderIcon = $scope.user.gender ? 'fa fa-mars' : 'fa fa-venus';
+      $scope.genderIcon = 'fa fa-mars';
+
+      if($scope.user.gender == "female")
+      {
+        $scope.genderIcon = 'fa fa-venus';
+      }
 
       $rootScope.title = "Profile for " + $scope.user.name;
     }, function errorCallback(response) {
@@ -89,5 +94,12 @@ app.controller("ProfileController",
     $scope.changeView = function(url)
     {
         $location.path(url);
+    }
+});
+
+// Filter that capitalizes the first letter of a word
+app.filter('capitalize', function() {
+    return function(input) {
+      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 });
