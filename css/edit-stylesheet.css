@@ -9,6 +9,7 @@
 {
 	color: #FFF;
 	font-size: 32px;
+	font-family: 'Roboto', sans-serif;
 }
 
 .edit-profile-nav
@@ -16,43 +17,43 @@
 	margin-left: 5%;
 }
 
-.nav-pills
+.well
 {
+	-webkit-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow:    0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+	box-shadow:         0px 2px 1px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation */
+.nav-pills li
+{
+	padding: 0 8px 0 0;
 }
 
 .nav-pills a {
-    background-color: #DDDDDC;
-    margin: 10px 0 10px 0;
+	color: #FFF;
+    background-color: #F68F1E;
+	font-family: 'Roboto', sans-serif;
 
-    font-size: 16px;
-    font-weight: bold;
-
-	text-align: left;
-
-	padding-left: 10px !important;
-}
-
-.nav-pills a:hover {
-    color: #DDDDDC;
-    background-color: #000 !important;
+    border-radius: 0px !important;
 }
 
 .nav-pills .active a {
-    color: #000;
-    background-color: #000 !important;
+	color: #FFF;
+    background-color: #DA4926 !important;
+    /*#28B1D7*/
 }
 
 .nav-pills .active a:hover {
-	/*
-    color: #000 !important;
-    background-color: #FFF !important;
-    */
 }
 
 .nav>li>a:hover,
 .nav>li>a:focus {
     text-decoration: none;
-    background-color: #000 !important;
+	color: #FFF;
+    background-color: #DA4926 !important;
+
+	transition: all 0.3s linear;
 }
 
 .edit-profile-div
@@ -86,4 +87,20 @@
 #edit-form input
 {
 	margin: 5px 0 5px 0;
+}
+
+.general-settings
+{
+}
+
+.travel-settings
+{
+}
+
+.interests-settings
+{
+}
+
+.languages-settings
+{
 }

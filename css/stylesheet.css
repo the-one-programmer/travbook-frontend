@@ -142,6 +142,29 @@ input[type=text], input[type=email], input[type=password]
 	text-align: center;
 }
 
+input[type=checkbox]
+{
+	background-color: #000 !important;
+	margin: 0 10px 0 0 !important;
+}
+
+.checkbox-label
+{
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+
+	background-color: #FFF;
+}
+
+select
+{
+	font-weight: normal !important;
+	margin-left: 5px !important;
+
+	border: 1px solid #ccc;
+}
+
 /* Login Page CSS */
 
 #menu-container
