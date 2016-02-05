@@ -33,6 +33,7 @@ app.controller("EditProfileController",
       $scope.changeCitiesOption($scope.countryResidence);
       $scope.countrySelection = response.data.countries_want_to_go;
       $scope.hobbySelection = response.data.interests;
+      $scope.languageSelection = response.data.languages;
       console.log(response.data.countries_want_to_go);
     }, function errorCallback(response) {
       console.log(response);
@@ -71,6 +72,13 @@ app.controller("EditProfileController",
   var hobbyURL = BACKEND_URL + "interests";
   $http.get(hobbyURL).success(function (data){
     $scope.data.hobbies = data;
+  }).error(function(error){
+    $scope.data.error = error;
+  });
+
+  var languagesURL = BACKEND_URL + "languages";
+  $http.get(languagesURL).success(function (data){
+    $scope.data.languages = data;
   }).error(function(error){
     $scope.data.error = error;
   });
@@ -128,6 +136,8 @@ app.controller("EditProfileController",
     $scope.user.city_id = countryData[1].id;
     user.countries_want_to_go = $scope.countrySelection;
     user.interests = $scope.hobbySelection;
+    user.languages = $scope.languageSelection;
+
     console.log(user);
 
     // Register user
@@ -162,7 +172,7 @@ app.controller("EditProfileController",
   {
     $location.path(url);
   }
-  
+
   $scope.toggleNationSelection = function toggleSelection(nationID) {
     var idx = $scope.countrySelection.indexOf(nationID);
     if (idx > -1) {
@@ -183,6 +193,17 @@ app.controller("EditProfileController",
           $scope.hobbySelection.push(hobbyID);
         }
         console.log($scope.hobbySelection);
+    };
+
+  $scope.toggleLanguageSelection = function toggleLanguageSelection(languageID) {
+        var idx = $scope.languageSelection.indexOf(languageID);
+        if (idx > -1) {
+          $scope.languageSelection.splice(idx, 1);
+        }
+        else {
+          $scope.languageSelection.push(languageID);
+        }
+        console.log($scope.languageSelection);
     };
 });
 

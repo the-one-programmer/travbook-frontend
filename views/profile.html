@@ -92,7 +92,7 @@
 			<tr class="spaceUnder">
 			<td class="title">Countries</td>
 			<td class="content">
-				<li ng-repeat="country in user.countries_want_to_go">{{ country.country_name }}</li>
+				<li ng-repeat="country in data.nations" ng-if="wantsToGo(country.id)">{{ country.name }}</li>
 			</td>
 			</tr>
 			<tr class="spaceUnder">
@@ -104,13 +104,13 @@
 			<tr class="spaceUnder">
 			<td class="title">Hobbies</td>
 			<td class="content">
-				<li ng-repeat="interest in user.interests">{{ interest.interest_name }}</li>
+				<li ng-repeat="interest in data.hobbies" ng-if="hasHobby(interest.id)">{{ interest.name }}</li>
 			</td>
 			</tr>
-      <tr class="spaceUnder">
+	      <tr class="spaceUnder">
 			<td class="title">Languages</td>
 			<td class="content">
-				<li ng-repeat="language in user.languages">{{ language.language_name }}</li>
+				<li ng-repeat="language in data.languages" ng-if="hasLanguage(language.id)">{{ language.name }}</li>
 			</td>
 			</tr>
 			</tbody>

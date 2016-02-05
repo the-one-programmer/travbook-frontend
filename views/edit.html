@@ -15,6 +15,7 @@
     <li><a href ng-click="currentTab=0"><i class="fa fa-cogs"></i>&nbsp; General Settings</a></li>
     <li><a href ng-click="currentTab=1"><i class="fa fa-plane"></i>&nbsp; Travel Preferences</a></li>
     <li><a href ng-click="currentTab=2"><i class="fa fa-futbol-o"></i>&nbsp; Hobbies</a></li>
+    <li><a href ng-click="currentTab=3"><i class="fa fa-futbol-o"></i>&nbsp; Languages</a></li>
     </ul>
   </div>
 
@@ -108,6 +109,18 @@
         <br>
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
       </div>
+
+        <div class="well interests-settings" ng-show="currentTab == 3">
+            <label>Languages
+            <div ng-repeat="language in data.languages">
+            <label>{{language.name}}<input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="user.languages.indexOf(language.id) > -1" ng-click="toggleLanguageSelection(language.id)"></label>
+            </div>
+            </label>
+
+            <br>
+            <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+        </div>
+
       </div>
     </form>
 </div>

@@ -40,6 +40,8 @@ app.controller("ProfileController",
         $scope.genderIcon = 'fa fa-venus';
       }
 
+    console.log($scope.user);
+
       $rootScope.title = "Profile for " + $scope.user.name;
     }, function errorCallback(response) {
       console.log(response);
@@ -67,14 +69,26 @@ app.controller("ProfileController",
       $scope.data.error = error;
     });
 
-    $scope.wantsToGo = function(nation)
+    var languagesURL = BACKEND_URL + "languages";
+    $http.get(languagesURL).success(function (data){
+      $scope.data.languages = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    });
+
+    $scope.wantsToGo = function(nation_id)
     {
-      return $scope.user.nationsToGo.indexOf(nation.id) > -1
+      return $scope.user.countries_want_to_go.indexOf(nation_id) > -1
     }
 
-    $scope.hasHobby = function(hobby)
+    $scope.hasHobby = function(hobby_id)
     {
-      return $scope.user.hobbies.indexOf(hobby.id) > -1
+      return $scope.user.interests.indexOf(hobby_id) > -1
+    }
+
+    $scope.hasLanguage = function(language_id)
+    {
+      return $scope.user.languages.indexOf(language_id) > -1
     }
 
     $scope.editProfile = function()
