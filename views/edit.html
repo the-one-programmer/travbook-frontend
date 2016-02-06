@@ -87,9 +87,48 @@
         </div>
 
         <br>
-        <label class="checkbox-label" ng-class="{ checked: user.willingToHost }"><input name="WillingToHost" type="checkbox" ng-model="user.willingToHost">I'm willing to host</label>
+        <div class="host-div">
+        <label class="host-label" ng-class="{ checked: user.willing_to_host }"><input name="willing_to_host" type="checkbox" ng-model="user.willing_to_host">I'm willing to host</label>
 
-        <br>
+            <br>
+
+            <div class="host-details-div" ng-show="user.willing_to_host">
+
+            <div class="host-section-div">
+            <label ng-class="{ checked: user.can_accomendation }">
+            <input name="accomodation" type="checkbox" ng-model="user.can_accomendation">I can provide accomodation
+            </label>
+            <input name="accomodationDetail" ng-show="user.can_accomendation" type="text" class="form-control " ng-model="user.accomendation_detail" placeholder="Accomodation details">
+            <br>
+            </div>
+
+            <div class="host-section-div">
+            <label ng-class="{ checked: user.can_transport }">
+            <input name="accomodation" type="checkbox" ng-model="user.can_transport">I can transport
+            </label>
+            <input name="transportDetail" ng-show="user.can_transport" type="text" class="form-control " ng-model="user.transport_detail" placeholder="Transport details">
+            <br>
+            </div>
+
+            <div class="host-section-div">
+            <label ng-class="{ checked: user.can_tourguide }">
+            <input name="accomodation" type="checkbox" ng-model="user.can_tourguide">I can provide tour guide services
+            </label>
+            <input name="tourGuideDetail" ng-show="user.can_tourguide" type="text" class="form-control " ng-model="user.tourguide_detail" placeholder="Tour guide service details">
+            <br>
+            </div>
+
+            <div class="host-section-div">
+            <label ng-class="{ checked: user.can_pickup }">
+            <input name="accomodation" type="checkbox" ng-model="user.can_pickup">I can pick up
+            </label>
+            <input name="pickUpDetail" ng-show="user.can_pickup" type="text" class="form-control " ng-model="user.pickup_detail" placeholder="Pick up details">
+            </div>
+
+            </div>
+
+        </div>
+
         <br>
 
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>

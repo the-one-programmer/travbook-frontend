@@ -55,3 +55,11 @@ var compareTo = function() {
 };
 
 app.directive("compareTo", compareTo);
+
+$(function()
+{
+  $('input[type=text]').click(function(e) { 
+    alert("hi");
+    e.preventDefault();
+  });​
+});
