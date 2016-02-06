@@ -47,7 +47,14 @@
 	<li><i ng-class="genderIcon"></i> <label>{{ user.gender | capitalize }}</label></li>
 	<li><i class="fa fa-birthday-cake"></i> <label>{{ user.birthday ? user.birthday : "None" }}</label></li>
 	<li><i class="fa fa-globe"></i> <label>{{ user.city }}</label></li>
-	<li><i class="fa fa-home"></i> <label>{{ user.willing_to_host ? "Willing to host!" : "Not willing to host." }}</label></li>
+	<li><i class="fa fa-home"></i> <label>{{ user.willing_to_host ? "Willing to host!" : "Not willing to host." }}</label>
+		<ul class="host-details">
+			<li ng-show="user.can_transport"><i class="fa fa-car"></i> Can transport</li>
+			<li ng-show="user.can_tourguide"><i class="fa fa-users"></i> Can be a tour guide</li>
+			<li ng-show="user.can_accomendation"><i class="fa fa-home"></i> Can provide accomodation</li>
+			<li ng-show="user.can_pickup"><i class="fa fa-car"></i> Can pickup</li>
+		</ul>
+	</li>
 	</ul>
 
 	</div>
@@ -56,7 +63,7 @@
 
 	<div class="info-div" ng-show="currentTab == 0">
 		<div class="well profile-section journal-div">
-		<h3 class="title">My Journal</h3>
+		<h3 class="title"><i class="fa fa-bookmark"></i>&nbsp; My Journal</h3>
 		<br>
 
 		<div class="journal-entry">
@@ -68,7 +75,7 @@
 
 	<div class="info-div" ng-show="currentTab == 1">
 		<div class="well profile-section photograph-div">
-		<h3 class="title">Photographs</h3>
+		<h3 class="title"><i class="fa fa-camera"></i>&nbsp; Photographs</h3>
 		<br>
 		Boring photographs here
 		</div>
@@ -76,7 +83,7 @@
 
 	<div class="info-div" ng-show="currentTab == 2">
 		<div class="well profile-section travels-div">
-		<h3 class="title">Travels</h3>
+		<h3 class="title"><i class="fa fa-map-marker"></i>&nbsp; Travels</h3>
 		<br>
 		Where I've been
 		</div>
@@ -84,33 +91,46 @@
 
 	<div class="info-div" ng-show="currentTab == 3">
 		<div class="well profile-section interests-div">
-		<h3 class="title">Personal Interests</h3>
+		<h3 class="title"><i class="fa fa-info-circle"></i>&nbsp; Personal Interests</h3>
 		<br>
 
 		<table>
 			<tbody>
 			<tr class="spaceUnder">
-			<td class="title">Countries</td>
+			<td class="title"><i class="fa fa-globe"></i>&nbsp; Countries</td>
 			<td class="content">
-				<li ng-repeat="country in data.nations" ng-if="wantsToGo(country.id)">{{ country.name }}</li>
+				<span ng-repeat="country in data.nations" ng-if="wantsToGo(country.id)">{{ country.name }}
+				<span ng-show="$index < user.countries_want_to_go.length - 1">, </span>
+				</span>
 			</td>
 			</tr>
 			<tr class="spaceUnder">
-			<td class="title">Role</td>
+			<td class="title"><i class="fa fa-user"></i>&nbsp; Role</td>
 			<td class="content">
-				<li ng-repeat="role in user.roles">{{ role }}</li>
+			<ul class="role">
+				<li ng-show="user.can_transport"><i class="fa fa-car"></i> Driver: {{ user.transport_detail }}</li>
+				<li ng-show="user.can_tourguide"><i class="fa fa-users"></i> Tour guide: {{ user.tourguide_detail }}</li>
+				<li ng-show="user.can_accomendation"><i class="fa fa-home"></i> Accomodation: {{ user.accomendation_detail }}</li>
+				<li ng-show="user.can_pickup"><i class="fa fa-car"></i> Pick up services: {{ user.pickup_detail }}</li>
+			</ul>
 			</td>
 			</tr>
+			<!--
 			<tr class="spaceUnder">
 			<td class="title">Hobbies</td>
 			<td class="content">
-				<li ng-repeat="interest in data.hobbies" ng-if="hasHobby(interest.id)">{{ interest.name }}</li>
+				<span ng-repeat="interest in data.hobbies" ng-if="hasHobby(interest.id)">{{ interest.name }}
+				<span ng-show="$index < user.interests.length - 1">, </span>
+				</span>
 			</td>
 			</tr>
+			-->
 	      <tr class="spaceUnder">
-			<td class="title">Languages</td>
+			<td class="title"><i class="fa fa-language"></i>&nbsp; Languages</td>
 			<td class="content">
-				<li ng-repeat="language in data.languages" ng-if="hasLanguage(language.id)">{{ language.name }}</li>
+				<span ng-repeat="language in data.languages" ng-if="hasLanguage(language.id)">{{ language.name }}
+				<span ng-show="$index < user.languages.length - 1">, </span>
+				</span>
 			</td>
 			</tr>
 			</tbody>
@@ -119,12 +139,16 @@
 		</div>
 
 		<div class="well profile-section hobbies-div">
-		<h3 class="title">Hobbies</h3>
+		<h3 class="title"><i class="fa fa-soccer-ball-o"></i>&nbsp; Hobbies</h3>
 		<br>
+		<ul>
+		<li ng-repeat="interest in data.hobbies" ng-if="hasHobby(interest.id)">{{ interest.name }}</li>
+		</span>
+		</ul>
 		</div>
 
 		<div class="well profile-section history-div">
-		<h3 class="title">History</h3>
+		<h3 class="title"><i class="fa fa-history"></i>&nbsp; History</h3>
 		<br>
 		</div>
 	</div>
