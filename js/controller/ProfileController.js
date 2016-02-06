@@ -2,7 +2,7 @@ app.controller("ProfileController",
   function($rootScope, $scope, $location, $http, $routeParams, current_user,$cookies) {
     // Initialize variables
 
-    $scope.profilePic="http://lorempixel.com/200/200/";
+    //$scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
     $scope.currentTab = 0;

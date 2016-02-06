@@ -171,7 +171,6 @@ $http({
     $scope.alertMessage = "You are not logged in. Please log in and try again.";
 
     console.log(response);
-    alert('Pls');
 
     // Redirect to profile after delay
     $timeout(function() {

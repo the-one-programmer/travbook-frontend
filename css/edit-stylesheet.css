@@ -74,6 +74,11 @@
 	float: right;
 }
 
+.avatar-div
+{
+	text-align: center;
+}
+
 #edit-form
 {
 }

@@ -26,6 +26,13 @@
         <h3>General Settings</h3>
         <br>
 
+        <div class="avatar-div" align="center">
+        <img ng-src="user.avatar">
+        <input type="file" name="pic" accept="image/*" ng-model="user.avatar">
+        </div>
+
+        <br>
+
         <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
         <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
         <span ng-show="editForm.userName.$error.required">
