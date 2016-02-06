@@ -40,6 +40,33 @@ $http({
       $scope.hobbySelection = response.data.interests;
       $scope.languageSelection = response.data.languages;
       console.log(response.data.countries_want_to_go);
+
+      var nationURL = BACKEND_URL + "countries";
+      $http.get(nationURL).success(function (data){
+        $scope.data.nations = data;
+      //    $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
+
+          var countryData = getCountryForCityName($scope.user.city);
+          $scope.countryResidence = countryData[0].id;
+          $scope.cityResidence = countryData[1];
+          $scope.changeCitiesOption($scope.countryResidence);
+      }).error(function(error){
+        $scope.data.error = error;
+      });
+
+      var hobbyURL = BACKEND_URL + "interests";
+      $http.get(hobbyURL).success(function (data){
+        $scope.data.hobbies = data;
+      }).error(function(error){
+        $scope.data.error = error;
+      });
+
+      var languagesURL = BACKEND_URL + "languages";
+      $http.get(languagesURL).success(function (data){
+        $scope.data.languages = data;
+      }).error(function(error){
+        $scope.data.error = error;
+      });
     }, function errorCallback(response) {
       console.log(response);
       // Error
@@ -50,33 +77,6 @@ $http({
       $timeout(function() {
         $scope.changeView('/');
       }, 3000);
-    });
-
-    var nationURL = BACKEND_URL + "countries";
-    $http.get(nationURL).success(function (data){
-      $scope.data.nations = data;
-  //    $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
-
-        var countryData = getCountryForCityName($scope.user.city);
-        $scope.countryResidence = countryData[0].id;
-        $scope.cityResidence = countryData[1];
-        $scope.changeCitiesOption($scope.countryResidence);
-    }).error(function(error){
-      $scope.data.error = error;
-    });
-
-    var hobbyURL = BACKEND_URL + "interests";
-    $http.get(hobbyURL).success(function (data){
-      $scope.data.hobbies = data;
-    }).error(function(error){
-      $scope.data.error = error;
-    });
-
-    var languagesURL = BACKEND_URL + "languages";
-    $http.get(languagesURL).success(function (data){
-      $scope.data.languages = data;
-    }).error(function(error){
-      $scope.data.error = error;
     });
 
     var getCountryForCityName = function(cityName)

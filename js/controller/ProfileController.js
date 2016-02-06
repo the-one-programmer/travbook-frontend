@@ -17,6 +17,7 @@ app.controller("ProfileController",
 
     current_user.error(function(data)
     {
+      console.log(data);
       // Current user not logged in, redirect to login
       $scope.changeView('/');
     });

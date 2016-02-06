@@ -42,7 +42,7 @@ app.controller("RegisterController",
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Woohoo! Redirecting..";
       
-      //TODO redirect to profile
+      // Redirect to profile
       $scope.changeView('/edit');
 
     }).error(function(error)
