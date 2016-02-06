@@ -13,6 +13,7 @@ app.factory('current_user', ['$http', '$cookies', function($http, $cookies)
 	  },
 	})
 	.success(function(response) {
+		alert($cookies.get("Travbook_auth_token"));
 	  return response.data;
 	})
 	.error(function(response) {

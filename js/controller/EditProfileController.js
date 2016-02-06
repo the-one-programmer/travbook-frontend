@@ -27,10 +27,6 @@ app.controller("EditProfileController",
       $scope.user = response.data;
       $rootScope.username = $scope.user.name;
 
-      var countryData = getCountryForCityName($scope.user.city);
-      $scope.countryResidence = countryData[0].id;
-      $scope.cityResidence = countryData[1];
-      $scope.changeCitiesOption($scope.countryResidence);
       $scope.countrySelection = response.data.countries_want_to_go;
       $scope.hobbySelection = response.data.interests;
       $scope.languageSelection = response.data.languages;
@@ -46,6 +42,118 @@ app.controller("EditProfileController",
         $scope.changeView('/');
       }, 3000);
     });
+
+    var nationURL = BACKEND_URL + "countries";
+    $http.get(nationURL).success(function (data){
+      $scope.data.nations = data;
+  //    $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
+
+        var countryData = getCountryForCityName($scope.user.city);
+        $scope.countryResidence = countryData[0].id;
+        $scope.cityResidence = countryData[1];
+        $scope.changeCitiesOption($scope.countryResidence);
+    }).error(function(error){
+      $scope.data.error = error;
+    });
+
+    var hobbyURL = BACKEND_URL + "interests";
+    $http.get(hobbyURL).success(function (data){
+      $scope.data.hobbies = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    });
+
+    var languagesURL = BACKEND_URL + "languages";
+    $http.get(languagesURL).success(function (data){
+      $scope.data.languages = data;
+    }).error(function(error){
+      $scope.data.error = error;
+    });
+
+    var getCountryForCityName = function(cityName)
+    {
+      for(var i = 0; i < $scope.data.nations.length; i++)
+      {
+        var country = $scope.data.nations[i];
+        var cities = country.cities;
+
+        for(var j = 0; j < cities.length; j ++)
+        {
+          var current_city = cities[j];
+          if(current_city.name == cityName)
+          {
+            return [country, current_city];
+          }
+        }
+      }
+    }
+
+    var findCitiesByNationID = function(nationID){
+      console.log(nationID);
+      for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
+        if($scope.data.nations[i].id==nationID){
+          $scope.data.cities = $scope.data.nations[i].cities;
+          break;
+        }
+      }
+    }
+
+    $scope.changeCitiesOption = function(nationID)
+    {
+      findCitiesByNationID(nationID);
+    }
+
+    $scope.message = "Ready";
+    // TODO: Load from backend instead of this
+    //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
+    //                nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
+    //$scope.changeCitiesOption(0);
+
+    $scope.updateProfile = function(user)
+    {
+      // TODO: Update user details
+      // user.name, user.email, user.password, user.passwordConfirmation, user.nationResidence, user.willingToHost, user.agreed
+
+      // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed,
+
+      var updateURL = BACKEND_URL + "update";
+      $scope.message = user.name + user.email+user.agreed;
+      // Update city
+      var countryData = getCountryForCityName($scope.cityResidence.name);
+      $scope.user.city_id = countryData[1].id;
+      user.countries_want_to_go = $scope.countrySelection;
+      user.interests = $scope.hobbySelection;
+      user.languages = $scope.languageSelection;
+
+      console.log(user);
+
+      // Register user
+      $http({
+        method: 'POST',
+        url: updateURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        },
+        data: user
+      }).success(function(data){
+        console.log("success")
+        console.log(data);
+
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Updated your profile!";
+
+        $timeout(function() {
+          $scope.changeView('/edit');
+        }, 2000);
+      }).error(function(error)
+      {
+        // Show error message
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "There was an error submitting your form. Please try again later.";
+
+        console.log(error);
+      });
+    }
   });
 
   current_user.error(function(data)
@@ -55,118 +163,13 @@ app.controller("EditProfileController",
     $scope.alertClass = "alert-danger";
     $scope.alertMessage = "You are not logged in. Please log in and try again.";
 
+    console.log(data);
+
     // Redirect to profile after delay
     $timeout(function() {
-      $scope.changeView('/');
+     // $scope.changeView('/');
     }, 3000);
   });
-
-  var nationURL = BACKEND_URL + "countries";
-  $http.get(nationURL).success(function (data){
-    $scope.data.nations = data;
-    $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
-  }).error(function(error){
-    $scope.data.error = error;
-  });
-
-  var hobbyURL = BACKEND_URL + "interests";
-  $http.get(hobbyURL).success(function (data){
-    $scope.data.hobbies = data;
-  }).error(function(error){
-    $scope.data.error = error;
-  });
-
-  var languagesURL = BACKEND_URL + "languages";
-  $http.get(languagesURL).success(function (data){
-    $scope.data.languages = data;
-  }).error(function(error){
-    $scope.data.error = error;
-  });
-
-  var getCountryForCityName = function(cityName)
-  {
-    for(var i = 0; i < $scope.data.nations.length; i++)
-    {
-      var country = $scope.data.nations[i];
-      var cities = country.cities;
-
-      for(var j = 0; j < cities.length; j ++)
-      {
-        var current_city = cities[j];
-        if(current_city.name == cityName)
-        {
-          return [country, current_city];
-        }
-      }
-    }
-  }
-
-  var findCitiesByNationID = function(nationID){
-    console.log(nationID);
-    for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
-      if($scope.data.nations[i].id==nationID){
-        $scope.data.cities = $scope.data.nations[i].cities;
-        break;
-      }
-    }
-  }
-
-  $scope.changeCitiesOption = function(nationID)
-  {
-    findCitiesByNationID(nationID);
-  }
-
-  $scope.message = "Ready";
-  // TODO: Load from backend instead of this
-  //$scope.user = {name: "Pls", gender: "male", profilePic: "http://lorempixel.com/200/200/", email: "test@email.com", password: "", passwordConfirmation: "",
-  //                nationResidence: 2, city_id: 3, willingToHost: true, nationsToGo: [false, true], hobbies: [false, true, true, false]};
-  //$scope.changeCitiesOption(0);
-
-  $scope.updateProfile = function(user)
-  {
-    // TODO: Update user details
-    // user.name, user.email, user.password, user.passwordConfirmation, user.nationResidence, user.willingToHost, user.agreed
-
-    // newUser: name, email, password, nationResidence, city_id, gender, willingToHost, agreed,
-
-    var updateURL = BACKEND_URL + "update";
-    $scope.message = user.name + user.email+user.agreed;
-    // Update city
-    var countryData = getCountryForCityName($scope.cityResidence.name);
-    $scope.user.city_id = countryData[1].id;
-    user.countries_want_to_go = $scope.countrySelection;
-    user.interests = $scope.hobbySelection;
-    user.languages = $scope.languageSelection;
-
-    console.log(user);
-
-    // Register user
-    $http({
-      method: 'POST',
-      url: updateURL,
-      headers: {
-        'Authorization': $cookies.get("Travbook_auth_token")
-      },
-      data: user
-    }).success(function(data){
-      console.log("success")
-      console.log(data);
-
-      $scope.alertClass = "alert-success";
-      $scope.alertMessage = "Updated your profile!";
-
-      $timeout(function() {
-        $scope.changeView('/edit');
-      }, 2000);
-    }).error(function(error)
-    {
-      // Show error message
-      $scope.alertClass = "alert-danger";
-      $scope.alertMessage = "There was an error submitting your form. Please try again later.";
-
-      console.log(error);
-    });
-  }
 
   $scope.changeView = function(url)
   {

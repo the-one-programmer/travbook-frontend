@@ -156,11 +156,17 @@ input[type=checkbox]:checked
 	border: 1px solid #ccc;
 	border-radius: 4px;
 
-	color: #000 !important;
-	background-color: #FFF;
+	color: #FFF !important;
+	background-color: #DA4926;
 	font-size: 14px !important;
+	font-weight: normal;
 
 	opacity: 0.5;
+}
+
+.checkbox-label input[type=checkbox]
+{
+	display: none;
 }
 
 .checked
