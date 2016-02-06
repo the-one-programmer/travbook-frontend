@@ -53,6 +53,7 @@
 
         <br>
 
+        <div class="form-group">
         <label class="">Country of residence:
         <select name="userNationResidence" id="repeatSelect" class="" ng-model="countryResidence" ng-change="changeCitiesOption(countryResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
         </select>
@@ -76,8 +77,7 @@
         Uh please choose your city
         </span>
         </div>
-        <br>
-        <br>
+        </div>
 
         <div ng-init="user.gender">
         <label>Gender: 

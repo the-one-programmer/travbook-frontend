@@ -1,4 +1,4 @@
-app.factory('current_user', ['$http', function($http)
+app.factory('current_user', ['$http', '$cookies', function($http, $cookies)
 {
 	// Determines if current user is logged in
 	// Get user auth token to determine if he can edit
@@ -9,7 +9,7 @@ app.factory('current_user', ['$http', function($http)
 	  method: 'GET',
 	  url: currentUserURL,
 	  headers: {
-	    'Authorization': sessionStorage.getItem("auth_token")
+	    'Authorization': $cookies.get("Travbook_auth_token")//sessionStorage.getItem("auth_token")
 	  },
 	})
 	.success(function(response) {

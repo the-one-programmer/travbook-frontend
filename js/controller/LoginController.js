@@ -7,7 +7,7 @@ app.controller("LoginController",
   {
     // User is already logged in, redirect
     // TODO: Change redirect to news feed
-    $scope.changeView("/edit");
+    //$scope.changeView("/edit");
   });
 
   $scope.loginUser = function(userDetails) {
