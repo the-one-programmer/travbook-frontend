@@ -19,7 +19,7 @@ app.controller("ProfileController",
     {
       console.log(data);
       // Current user not logged in, redirect to login
-      $scope.changeView('/');
+      //$scope.changeView('/');
     });
 
     // Get data of the profile currently being viewed
@@ -47,6 +47,7 @@ app.controller("ProfileController",
     }, function errorCallback(response) {
       console.log(response);
       // TODO: Profile not found - show error
+      $scope.changeView('/');
     });
 
     if ($routeParams.id.to_i == $scope.data.current_user_id){
