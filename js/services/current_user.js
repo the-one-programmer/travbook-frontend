@@ -10,7 +10,7 @@ app.factory('current_user', ['$http', '$cookies', function($http, $cookies)
 	  url: currentUserURL,
 	  headers: {
 	    'Authorization': $cookies.get("Travbook_auth_token")//sessionStorage.getItem("auth_token")
-	  },
+	  }
 	})
 	.success(function(response) {
 	  return response.data;

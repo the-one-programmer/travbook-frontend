@@ -3,11 +3,20 @@ app.controller("LoginController",
 {
   $rootScope.showNav = false;
 
-  current_user.success(function(data)
-  {
-    // User is already logged in, redirect
-    // TODO: Change redirect to news feed
-    $scope.changeView("/edit");
+  userURL = BACKEND_URL + 'current_user';
+  $http({
+    method: 'GET',
+    url: userURL,
+    headers: {
+      'Authorization': $cookies.get("Travbook_auth_token")
+    },
+  }).then(function successCallback(response) {
+    console.log(response);
+
+    $scope.changeView('/edit');
+  }, function errorCallback(response) {
+    console.log(response);
+    // Error
   });
 
   $scope.loginUser = function(userDetails) {
@@ -17,7 +26,6 @@ app.controller("LoginController",
       sessionStorage.setItem("auth_token",data.auth_token);
       $cookies.put("Travbook_auth_token",data.auth_token);
 
-      alert($cookies.get("Travbook_auth_token"));
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Successfully logged you in!";
 

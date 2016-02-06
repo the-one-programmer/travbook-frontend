@@ -1,13 +1,30 @@
 app.controller("RegisterController",
-  function($scope, $rootScope, $http, $location, current_user)
+  function($scope, $rootScope, $http, $location, $cookies, current_user)
 {
   $rootScope.showNav = false;
 
-  current_user.success(function(data)
-  {
-    // User is already logged in, redirect
-    // TODO: Change redirect to news feed
-    $scope.changeView("/edit");
+  userURL = BACKEND_URL + 'current_user';
+  $http({
+    method: 'GET',
+    url: userURL,
+    headers: {
+      'Authorization': $cookies.get("Travbook_auth_token")
+    },
+  }).then(function successCallback(response) {
+    console.log(response);
+
+    if(response.data.id)
+    {
+      // User logged in
+      $scope.changeView('/edit');
+    }
+    else
+    {
+      // Error
+    }
+  }, function errorCallback(response) {
+    console.log(response);
+    // Error
   });
   
   $scope.registerUser = function(newUser)

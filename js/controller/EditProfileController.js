@@ -9,11 +9,20 @@ app.controller("EditProfileController",
   $rootScope.showNav = true;
   $rootScope.title = "Edit Profile";
 
-  current_user.success(function(data)
-  {
-    // Move load of data here
+  var currentUserURL = BACKEND_URL + 'current_user';
+
+$http({
+    method: 'GET',
+    url: currentUserURL,
+    headers: {
+      'Authorization': $cookies.get("Travbook_auth_token")//sessionStorage.getItem("auth_token")
+    }
+  })
+  .success(function(data) {
+        // Move load of data here
     // Current user ID - only if user is logged in
     $scope.data.current_user_id = data.id;
+
     console.log(data.id);
     // Get data of the profile currently being viewed
     profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
@@ -154,22 +163,22 @@ app.controller("EditProfileController",
         console.log(error);
       });
     }
-  });
-
-  current_user.error(function(data)
-  {
+  })
+  .error(function(response) {
     // Current user not logged in, redirect to login
     // Error
     $scope.alertClass = "alert-danger";
     $scope.alertMessage = "You are not logged in. Please log in and try again.";
 
-    console.log(data);
+    console.log(response);
+    alert('Pls');
 
     // Redirect to profile after delay
     $timeout(function() {
-     // $scope.changeView('/');
+     $scope.changeView('/');
     }, 3000);
   });
+
 
   $scope.changeView = function(url)
   {
