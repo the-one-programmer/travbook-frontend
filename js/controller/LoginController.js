@@ -3,6 +3,13 @@ app.controller("LoginController",
 {
   $rootScope.showNav = false;
 
+  current_user.success(function(data)
+  {
+    // User is already logged in, redirect
+    // TODO: Change redirect to news feed
+    $scope.changeView("/edit");
+  });
+
   $scope.loginUser = function(userDetails) {
     var loginURL = BACKEND_URL + "login"
     $http.post(loginURL,userDetails).success(function(data){
@@ -55,11 +62,3 @@ var compareTo = function() {
 };
 
 app.directive("compareTo", compareTo);
-
-$(function()
-{
-  $('input[type=text]').click(function(e) { 
-    alert("hi");
-    e.preventDefault();
-  });​
-});

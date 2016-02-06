@@ -1,7 +1,14 @@
 app.controller("RegisterController",
-  function($scope, $rootScope, $http, $location)
+  function($scope, $rootScope, $http, $location, current_user)
 {
   $rootScope.showNav = false;
+
+  current_user.success(function(data)
+  {
+    // User is already logged in, redirect
+    // TODO: Change redirect to news feed
+    $scope.changeView("/edit");
+  });
   
   $scope.registerUser = function(newUser)
   {
