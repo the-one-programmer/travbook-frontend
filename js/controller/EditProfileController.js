@@ -133,6 +133,7 @@ $http({
       user.countries_want_to_go = $scope.countrySelection;
       user.interests = $scope.hobbySelection;
       user.languages = $scope.languageSelection;
+      user.avatar = ""; // TODO: Remove when avatar function is done
 
       console.log(user);
 
