@@ -39,7 +39,7 @@ app.controller("LoginController",
 
       // Show error message
       $scope.alertClass = "alert-danger";
-      $scope.alertMessage = "There was an error logging you in. Please try again later.";
+      $scope.alertMessage = error.error;
     });
   }
 

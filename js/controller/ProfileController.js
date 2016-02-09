@@ -8,19 +8,20 @@ app.controller("ProfileController",
     $scope.currentTab = 0;
 
     $rootScope.showNav = true;
+    var currentUserURL = BACKEND_URL + 'current_user';
 
-    current_user.success(function(data)
-    {
-      // Current user ID - only if user is logged in
+  $http({
+      method: 'GET',
+      url: currentUserURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")//sessionStorage.getItem("auth_token")
+      }
+    })
+    .success(function(data) {
+
       $scope.data.current_user_id = data.id;
     });
 
-    current_user.error(function(data)
-    {
-      console.log(data);
-      // Current user not logged in, redirect to login
-      //$scope.changeView('/');
-    });
 
     // Get data of the profile currently being viewed
     profileURL = BACKEND_URL + 'show/' + $routeParams.id;
@@ -51,6 +52,7 @@ app.controller("ProfileController",
     });
 
     if ($routeParams.id.to_i == $scope.data.current_user_id){
+      console.log($scope.data.current_user_id)
       $scope.isEditable = true;
     }else{
       $scope.isEditable = false;
