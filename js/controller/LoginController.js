@@ -13,7 +13,7 @@ app.controller("LoginController",
   }).then(function successCallback(response) {
     console.log(response);
 
-    $scope.changeView('/edit');
+    $scope.changeView('/news');
   }, function errorCallback(response) {
     console.log(response);
     // Error
@@ -31,7 +31,7 @@ app.controller("LoginController",
 
       // Redirect to profile after delay
       $timeout(function() {
-        $scope.changeView('/edit');
+        $scope.changeView('/news');
       }, 1000);
     }).error(function(error){
       console.log("error")

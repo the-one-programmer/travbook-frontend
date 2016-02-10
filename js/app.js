@@ -12,6 +12,11 @@ app.config(function ($routeProvider)
     controller: "RegisterController",
     templateUrl: "views/register.html"
   })
+  .when('/news', {
+    controller: "NewsFeedController",
+    templateUrl: "views/news.html",
+    css: "css/news-stylesheet.css"
+  })
   .when('/profile/:id', {
     controller: "ProfileController",
     templateUrl: "views/profile.html",

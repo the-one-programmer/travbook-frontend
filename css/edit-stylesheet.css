@@ -99,14 +99,17 @@
 
 .travel-settings
 {
+	text-align: center;
 }
 
 .interests-settings
 {
+	text-align: center;
 }
 
 .languages-settings
 {
+	text-align: center;
 }
 
 .general-settings h3, .travel-settings h3, .interests-settings h3, .languages-settings h3

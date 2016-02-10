@@ -1,0 +1,9 @@
+<!--div ng-controller="LoginController" class="main-login-div"-->
+<div class="main-news-div" align="center">
+    <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+
+    <div class="news-item well" ng-repeat="news in news">
+    <h3>Title</h3>
+    <p>{{ news }}</p>
+    </div>    
+</div>

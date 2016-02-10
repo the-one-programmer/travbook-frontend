@@ -16,7 +16,7 @@ app.controller("RegisterController",
     if(response.data.id)
     {
       // User logged in
-      $scope.changeView('/edit');
+      $scope.changeView('/news');
     }
     else
     {
