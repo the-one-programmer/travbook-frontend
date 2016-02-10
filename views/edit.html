@@ -12,7 +12,7 @@
   <br>
 
   <div class="edit-profile-nav">
-    <ul class="nav nav-pills nav-stacked col-md-3">
+    <ul class="nav nav-pills nav-stacked col-md-4 col-sm-3">
     <li ng-class="{active:currentTab == 0}" ><a href ng-click="currentTab=0"><i class="fa fa-cogs"></i>&nbsp; General Settings</a></li>
     <li ng-class="{active:currentTab == 1}"><a href ng-click="currentTab=1"><i class="fa fa-plane"></i>&nbsp; Travel Preferences</a></li>
     <li ng-class="{active:currentTab == 2}"><a href ng-click="currentTab=2"><i class="fa fa-futbol-o"></i>&nbsp; Hobbies</a></li>
@@ -142,36 +142,50 @@
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
       </div>
 
-      <div class="well travel-settings" ng-show="currentTab == 1">
+      <div class="well travel-settings container-fluid" ng-show="currentTab == 1">
         <div>
         <h3>Nations to visit</h3>
         <br>
+
+        <div class="row">
+
         <div ng-repeat="nation in data.nations">
-        <label class="checkbox-label" ng-class="{ checked: wantsToGo(nation.id) }"><input type="checkbox" name="user.countries_want_to_go[]" ng-checked="wantsToGo(nation.id)" ng-click="toggleNationSelection(nation.id)">{{nation.name}}</label>
-    		</div>
+        <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: wantsToGo(nation.id) }"><input type="checkbox" name="user.countries_want_to_go[]" ng-checked="wantsToGo(nation.id)" ng-click="toggleNationSelection(nation.id)">{{nation.name}}</label>
+    	</div>
+
+        </div>
 
         <br>
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
         </div>
       </div>
 
-      <div class="well interests-settings" ng-show="currentTab == 2">
+      <div class="well interests-settings container-fluid" ng-show="currentTab == 2">
         <h3>Interests</h3>
         <br>
+
+        <div class="row">
         <div ng-repeat="hobby in data.hobbies">
-        <label class="checkbox-label" ng-class="{ checked: hasHobby(hobby.id) }"><input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="hasHobby(hobby.id)" ng-click="toggleHobbySelection(hobby.id)">{{hobby.name | capitalize}}</label>
+        <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: hasHobby(hobby.id) }"><input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="hasHobby(hobby.id)" ng-click="toggleHobbySelection(hobby.id)">{{hobby.name | capitalize}}</label>
+        </div>
         </div>
 
         <br>
         <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
       </div>
 
-        <div class="well languages-settings" ng-show="currentTab == 3">
+        <div class="well languages-settings container-fluid" ng-show="currentTab == 3">
             <h3>Languages</h3>
             <br>
+
+            <div class="row">
+
             <div ng-repeat="language in data.languages">
-            <label class="checkbox-label" ng-class="{ checked: hasLanguage(language.id) }"><input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="hasLanguage(language.id)" ng-click="toggleLanguageSelection(language.id)">{{language.name}}</label>
+            <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: hasLanguage(language.id) }"><input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="hasLanguage(language.id)" ng-click="toggleLanguageSelection(language.id)">{{language.name}}</label>
             </div>
+
+            </div>
+
             <br>
             <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
         </div>
