@@ -17,6 +17,16 @@ app.config(function ($routeProvider)
     templateUrl: "views/news.html",
     css: "css/news-stylesheet.css"
   })
+  .when('/search/', {
+    controller: "SearchController",
+    templateUrl: "views/search.html",
+    css: "css/search-stylesheet.css"
+  })
+  .when('/search/:query', {
+    controller: "SearchController",
+    templateUrl: "views/search.html",
+    css: "css/search-stylesheet.css"
+  })
   .when('/profile/:id', {
     controller: "ProfileController",
     templateUrl: "views/profile.html",

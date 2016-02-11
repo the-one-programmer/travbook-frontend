@@ -1,0 +1,26 @@
+<!--div ng-controller="LoginController" class="main-login-div"-->
+<div class="main-search-div" align="center">
+    <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+
+    <form ng-submit="search(newSearchQuery)">
+    <h2>{{ searchQuery ? "Search for something else?" : "Search for a user"}}</h2>
+		<div class="input-group search-input-div">
+		<input type="search" class="form-control" placeholder="Search for a user" ng-model="newSearchQuery">
+		<span class="input-group-btn">
+		<button class="btn btn-default" type="submit" ng-disabled="!newSearchQuery">Go!</button>
+		</span>
+		</div><!-- /input-group -->
+	</form>
+
+	<br>
+
+    <div ng-show="searchQuery">
+    <h2>Search results for {{ searchQuery }}</h2>
+    <br>
+
+    <div class="result-item well" ng-repeat="result in searchResults">
+    <h3>{{ result.name }}</h3>
+    <p>{{ result.gender }}</p>
+    </div>
+    </div>
+</div>
