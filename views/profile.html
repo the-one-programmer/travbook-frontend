@@ -2,6 +2,8 @@
 <div class="profile-div">
 
   	<div class="profile-nav">
+	  <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+
 	  	<div class="profile-nav-left">
 	    <img class="display-pic shadow" ng-src="{{ user.avatar }}">
 	    </div>
@@ -40,9 +42,13 @@
      </div>
      -->
 
-	 <h3>{{ user.name }} <a href ng-show="isEditable" ng-click="editProfile()" class="edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"></i></a></h3>
+	<h3>{{ user.name }} <a href ng-show="isEditable" ng-click="editProfile()" class="edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"></i></a></h3>
 
-  	<br>
+	<p class="followed-text">{{ isFollowed ? "is following you." : "is not following you." }}</p>
+
+	<a href class="btn btn-default" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
+
+  	<br><br>
 
   	<ul class="user-details">
 	<li><i ng-class="genderIcon"></i> <label>{{ user.gender | capitalize }}</label></li>

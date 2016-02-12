@@ -34,6 +34,9 @@ app.controller("ProfileController",
     }).then(function successCallback(response) {
       $scope.user = response.data;
 
+      $scope.isFollowing = $scope.isFollowing();
+      $scope.isFollowed = $scope.isFollowed();
+
       $rootScope.username = $scope.user.name;
       $scope.genderIcon = 'fa fa-mars';
 
@@ -42,7 +45,7 @@ app.controller("ProfileController",
         $scope.genderIcon = 'fa fa-venus';
       }
 
-    console.log($scope.user);
+      console.log($scope.user);
 
       $rootScope.title = "Profile for " + $scope.user.name;
     }, function errorCallback(response) {
@@ -95,6 +98,36 @@ app.controller("ProfileController",
       return $scope.user.languages.indexOf(language_id) > -1
     }
 
+    $scope.isFollowing = function()
+    {
+      for(i = 0; i < $scope.user.followers.length; i ++)
+      {
+        var follower = $scope.user.followers[i];
+
+        if(follower.follower_id.to_i == $scope.current_user_id.to_i)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    $scope.isFollowed = function()
+    {
+      for(i = 0; i < $scope.user.followeds.length; i ++)
+      {
+        var follower = $scope.user.followeds[i];
+
+        if(follower.followed_id.to_i == $scope.current_user_id.to_i)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
     $scope.editProfile = function()
     {
       // User is viewing his own profile page
@@ -107,6 +140,46 @@ app.controller("ProfileController",
       {
         // This should never happen as editing button is not displayed
       }
+    }
+
+    $scope.followUser = function()
+    {
+      var followUrl = BACKEND_URL + "follow";
+      var followMessage = "follow";
+
+      if($scope.isFollowing)
+      {
+        // If following, unfollow
+        followUrl = BACKEND_URL + "unfollow"
+        followMessage = "unfollow";
+      }
+      else
+      {
+        // Otherwise, follow
+      }
+
+      $http({
+      method: 'POST',
+      url: followUrl,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+        },
+      data: { "user_id": $routeParams.id }
+      }).then(function successCallback(response) {
+        console.log(response);
+
+        $scope.isFollowing = !$scope.isFollowing;
+
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Successfully " + followMessage + "ed!";
+      }, function errorCallback(response) {
+        console.log("error")
+        console.log(response);
+
+        // Show error message
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "Could not " + followMessage + " user. Please try again later.";
+      });
     }
 
     $scope.changeView = function(url)

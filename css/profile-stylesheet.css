@@ -51,6 +51,11 @@ body
 	height: 100%;
 }
 
+.followed-text
+{
+	font-size: 14px !important;
+}
+
 .user-details
 {
 	list-style: none;
