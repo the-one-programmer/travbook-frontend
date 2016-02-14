@@ -48,6 +48,12 @@
 
 	<a href class="btn btn-default" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
 
+	<div class="followers-detail">
+	<br>
+	<p class="followers-detail">{{ user.followers.length }}<br>followers</p>
+	<p class="followers-detail">{{ user.followeds.length }}<br>following</p>
+	</div>
+
   	<br><br>
 
   	<ul class="user-details">

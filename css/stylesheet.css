@@ -61,6 +61,12 @@ body
 	box-shadow:         0px 2px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
+#search-bar
+{
+	margin-top: 13px !important;
+	width: 30%;
+}
+
 .logged-in-text
 {
 	position: absolute;
