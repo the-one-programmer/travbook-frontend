@@ -23,8 +23,6 @@ $http({
     // Current user ID - only if user is logged in
     $scope.data.current_user_id = data.id;
 
-    // TODO: Get array of all users
-
     console.log(data.id);
     // Get data of the profile currently being viewed
     profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
@@ -47,10 +45,7 @@ $http({
       $scope.hobbySelection = response.data.interests;
       $scope.languageSelection = response.data.languages;
       console.log(response.data.countries_want_to_go);
-
-      // TODO: Load from backend
-      $scope.news = ["Blah blah blah 1", "Blah blah blah 2", "Blah blah blah 3", "Blah blah blah 4"];
-
+      
       var nationURL = BACKEND_URL + "countries";
       $http.get(nationURL).success(function (data){
         $scope.data.nations = data;

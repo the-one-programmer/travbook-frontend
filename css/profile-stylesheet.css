@@ -56,7 +56,7 @@ body
 	font-size: 14px !important;
 }
 
-.followers-detail p
+.followers-detail
 {
 	font-size: 14px !important;
 	display: inline-block;
@@ -66,6 +66,38 @@ body
 
 	background-color: #DDDDDC;
 	border-radius: 8px;
+
+	cursor: pointer;
+}
+
+.followers-detail:hover
+{
+	background-color: #DA4926;
+	color: #FFF;
+
+	transition: all 0.5s;
+}
+
+.followersactive
+{
+	background-color: #DA4926;
+	color: #FFF;
+
+	transition: all 0.5s;
+}
+
+.follower-info-div
+{
+	background-color: #DDDDDC !important;
+	padding: 10px 20px 10px 20px;
+	border-radius: 8px;
+
+	cursor: pointer;
+}
+
+.follower-info-div p
+{
+	font-size: 14px;
 }
 
 .user-details

@@ -5,7 +5,7 @@ app.controller("ProfileController",
     //$scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
-    $scope.currentTab = 0;
+    $scope.currentTab = 2; // Set default tab to journal tab
 
     $rootScope.showNav = true;
     var currentUserURL = BACKEND_URL + 'current_user';
@@ -184,7 +184,13 @@ app.controller("ProfileController",
 
     $scope.changeView = function(url)
     {
-        $location.path(url);
+      $location.path(url);
+    }
+
+    $scope.viewProfile = function(profile_id)
+    {
+      var profilePath = "/profile/" + profile_id.toString() + "/";
+      $location.path(profilePath);
     }
 });
 

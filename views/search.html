@@ -18,7 +18,7 @@
     <h2>Search results for {{ searchQuery }}</h2>
     <br>
 
-    <div class="result-item well" ng-repeat="result in searchResults">
+    <div class="result-item well" ng-repeat="result in searchResults" ng-click="changeView('/profile/{{ result.id }}')">
     <h3>{{ result.name }}</h3>
     <p>{{ result.gender }}</p>
     </div>

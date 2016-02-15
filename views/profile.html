@@ -12,10 +12,10 @@
 		    <h1>{{ user.name }}</h1>
 
 			<ul class="nav nav-pills">
-			  <li role="presentation" ng-class="{active:currentTab == 0}"><a href ng-click="currentTab=0">Journal</a></li>
-			  <li role="presentation" ng-class="{active:currentTab == 1}"><a href ng-click="currentTab=1">Photographs</a></li>
-			  <li role="presentation" ng-class="{active:currentTab == 2}"><a href ng-click="currentTab=2">Travels</a></li>
-			  <li role="presentation" ng-class="{active:currentTab == 3}"><a href ng-click="currentTab=3">Information</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 2}"><a href ng-click="currentTab=2">Journal</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 3}"><a href ng-click="currentTab=3">Photographs</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 4}"><a href ng-click="currentTab=4">Travels</a></li>
+			  <li role="presentation" ng-class="{active:currentTab == 5}"><a href ng-click="currentTab=5">Information</a></li>
 			</ul>
 
 			<br>
@@ -48,13 +48,13 @@
 
 	<a href class="btn btn-default" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
 
-	<div class="followers-detail">
+	<div class="followers-detail-div">
 	<br>
-	<p class="followers-detail">{{ user.followers.length }}<br>followers</p>
-	<p class="followers-detail">{{ user.followeds.length }}<br>following</p>
+	<p class="followers-detail" ng-class="{followersactive:currentTab == 0}" ng-click="currentTab=0">{{ user.followers.length }}<br>followers</p>
+	<p class="followers-detail" ng-class="{followersactive:currentTab == 1}" ng-click="currentTab=1">{{ user.followeds.length }}<br>following</p>
 	</div>
 
-  	<br><br>
+  	<br>
 
   	<ul class="user-details">
 	<li><i ng-class="genderIcon"></i> <label>{{ user.gender | capitalize }}</label></li>
@@ -75,6 +75,32 @@
 	<div class="profile-main">
 
 	<div class="info-div" ng-show="currentTab == 0">
+		<div class="well profile-section followers-div">
+		<h3 class="title"><i class="fa fa-bookmark"></i>&nbsp; {{ user.name }}'s Followers</h3>
+		<br>
+
+		<div class="follower-info-div" ng-repeat="follower in user.followers" ng-click="viewProfile(follower.follower_id)">
+		<h3>{{ follower.follower_name }}</h3>
+		<p>Some info here</p>
+		</div>
+
+		</div>
+	</div>
+
+	<div class="info-div" ng-show="currentTab == 1">
+		<div class="well profile-section followeds-div" ng-show="currentTab == 1">
+		<h3 class="title"><i class="fa fa-bookmark"></i>&nbsp; {{ user.name }} is following:</h3>
+		<br>
+
+		<div class="follower-info-div" ng-repeat="follower in user.followeds" ng-click="viewProfile(follower.followed_id)">
+		<h3>{{ follower.followed_name }}</h3>
+		<p>Some info here</p>
+		</div>
+
+		</div>
+	</div>
+
+	<div class="info-div" ng-show="currentTab == 2">
 		<div class="well profile-section journal-div">
 		<h3 class="title"><i class="fa fa-bookmark"></i>&nbsp; My Journal</h3>
 		<br>
@@ -86,7 +112,7 @@
 		</div>
 	</div>
 
-	<div class="info-div" ng-show="currentTab == 1">
+	<div class="info-div" ng-show="currentTab == 3">
 		<div class="well profile-section photograph-div">
 		<h3 class="title"><i class="fa fa-camera"></i>&nbsp; Photographs</h3>
 		<br>
@@ -94,7 +120,7 @@
 		</div>
 	</div>
 
-	<div class="info-div" ng-show="currentTab == 2">
+	<div class="info-div" ng-show="currentTab == 4">
 		<div class="well profile-section travels-div">
 		<h3 class="title"><i class="fa fa-map-marker"></i>&nbsp; Travels</h3>
 		<br>
@@ -102,7 +128,7 @@
 		</div>
 	</div>
 
-	<div class="info-div" ng-show="currentTab == 3">
+	<div class="info-div" ng-show="currentTab == 5">
 		<div class="well profile-section interests-div">
 		<h3 class="title"><i class="fa fa-info-circle"></i>&nbsp; Personal Interests</h3>
 		<br>
