@@ -42,11 +42,11 @@
      </div>
      -->
 
-	<h3>{{ user.name }} <a href ng-show="isEditable" ng-click="editProfile()" class="edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"></i></a></h3>
+	<h3>{{ user.name }} <a href ng-show="isOwnProfile" ng-click="editProfile()" class="edit-button" ng-disabled="!isEditable"><i class="fa fa-pencil"></i></a></h3>
 
 	<p class="followed-text">{{ isFollowed ? "is following you." : "is not following you." }}</p>
 
-	<a href class="btn btn-default" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
+	<a href class="btn btn-default" ng-hide="isOwnProfile" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
 
 	<div class="followers-detail-div">
 	<br>

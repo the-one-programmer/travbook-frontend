@@ -10,7 +10,7 @@ app.controller("ProfileController",
     $rootScope.showNav = true;
     var currentUserURL = BACKEND_URL + 'current_user';
 
-  $http({
+    $http({
       method: 'GET',
       url: currentUserURL,
       headers: {
@@ -20,67 +20,71 @@ app.controller("ProfileController",
     .success(function(data) {
 
       $scope.data.current_user_id = data.id;
-    });
 
-
-    // Get data of the profile currently being viewed
-    profileURL = BACKEND_URL + 'show/' + $routeParams.id;
-    $http({
-      method: 'GET',
-      url: profileURL,
-      headers: {
-        'Authorization': $cookies.get("Travbook_auth_token")
-      },
-    }).then(function successCallback(response) {
-      $scope.user = response.data;
-
-      $scope.isFollowing = $scope.isFollowing();
-      $scope.isFollowed = $scope.isFollowed();
-
-      $rootScope.username = $scope.user.name;
-      $scope.genderIcon = 'fa fa-mars';
-
-      if($scope.user.gender == "female")
-      {
-        $scope.genderIcon = 'fa fa-venus';
+      console.log($scope.data.current_user_id)
+      if ($routeParams.id == $scope.data.current_user_id){
+        $scope.isOwnProfile = true;
+      }else{
+        $scope.isOwnProfile = false;
       }
 
-      console.log($scope.user);
+      // Get data of the profile currently being viewed
+      profileURL = BACKEND_URL + 'show/' + $routeParams.id;
+      $http({
+        method: 'GET',
+        url: profileURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        },
+      }).then(function successCallback(response) {
+        $scope.user = response.data;
 
-      $rootScope.title = "Profile for " + $scope.user.name;
-    }, function errorCallback(response) {
-      console.log(response);
-      // TODO: Profile not found - show error
-      $scope.changeView('/');
-    });
+        $scope.isFollowing = $scope.isFollowing();
+        $scope.isFollowed = $scope.isFollowed();
 
-    if ($routeParams.id.to_i == $scope.data.current_user_id){
-      console.log($scope.data.current_user_id)
-      $scope.isEditable = true;
-    }else{
-      $scope.isEditable = false;
-    }
+        // TODO: Change to current_user's name
+        $rootScope.username = $scope.user.name;
 
-    var nationURL = BACKEND_URL + "countries";
-    $http.get(nationURL).success(function (data){
-      $scope.data.nations = data;
+        $scope.genderIcon = 'fa fa-mars';
 
-    }).error(function(error){
-      $scope.data.error = error;
-    });
+        if($scope.user.gender == "female")
+        {
+          $scope.genderIcon = 'fa fa-venus';
+        }
 
-    var hobbyURL = BACKEND_URL + "interests";
-    $http.get(hobbyURL).success(function (data){
-      $scope.data.hobbies = data;
-    }).error(function(error){
-      $scope.data.error = error;
-    });
+        console.log($scope.user);
 
-    var languagesURL = BACKEND_URL + "languages";
-    $http.get(languagesURL).success(function (data){
-      $scope.data.languages = data;
-    }).error(function(error){
-      $scope.data.error = error;
+        $rootScope.title = "Profile for " + $scope.user.name;
+      }, function errorCallback(response) {
+        console.log(response);
+        // TODO: Profile not found - show error
+        $scope.changeView('/');
+      });
+
+      var nationURL = BACKEND_URL + "countries";
+      $http.get(nationURL).success(function (data){
+        $scope.data.nations = data;
+
+      }).error(function(error){
+        $scope.data.error = error;
+      });
+
+      var hobbyURL = BACKEND_URL + "interests";
+      $http.get(hobbyURL).success(function (data){
+        $scope.data.hobbies = data;
+      }).error(function(error){
+        $scope.data.error = error;
+      });
+
+      var languagesURL = BACKEND_URL + "languages";
+      $http.get(languagesURL).success(function (data){
+        $scope.data.languages = data;
+      }).error(function(error){
+        $scope.data.error = error;
+      });
+    }).error(function(error)
+    {
+      console.log(error);
     });
 
     $scope.wantsToGo = function(nation_id)
@@ -100,11 +104,12 @@ app.controller("ProfileController",
 
     $scope.isFollowing = function()
     {
+      // Checks if the current user is following this profile
       for(i = 0; i < $scope.user.followers.length; i ++)
       {
         var follower = $scope.user.followers[i];
 
-        if(follower.follower_id.to_i == $scope.current_user_id.to_i)
+        if(follower.follower_id.to_i == $scope.data.current_user_id)
         {
           return true;
         }
@@ -119,7 +124,7 @@ app.controller("ProfileController",
       {
         var follower = $scope.user.followeds[i];
 
-        if(follower.followed_id.to_i == $scope.current_user_id.to_i)
+        if(follower.followed_id.to_i == $scope.data.current_user_id)
         {
           return true;
         }
