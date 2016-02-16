@@ -109,7 +109,7 @@ app.controller("ProfileController",
       {
         var follower = $scope.user.followers[i];
 
-        if(follower.follower_id.to_i == $scope.data.current_user_id)
+        if(follower.follower_id == $scope.data.current_user_id)
         {
           return true;
         }
@@ -124,7 +124,7 @@ app.controller("ProfileController",
       {
         var follower = $scope.user.followeds[i];
 
-        if(follower.followed_id.to_i == $scope.data.current_user_id)
+        if(follower.followed_id == $scope.data.current_user_id)
         {
           return true;
         }
