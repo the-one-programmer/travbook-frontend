@@ -39,7 +39,7 @@ app.controller("SearchController",
       data: { "query": $routeParams.query }
     }).then(function successCallback(response) {
       console.log(response);
-      $scope.searchResults = response.users;
+      $scope.searchResults = response.data.users;
     }, function errorCallback(response) {
       console.log(response);
       // Error
