@@ -41,6 +41,11 @@ body
 	margin-top: 30px !important;
 }
 
+.search-title
+{
+	color: #999;
+}
+
 .search-div
 {
 	background-color: #FFF;
@@ -54,9 +59,24 @@ body
 
 .result-item
 {
-	width: 60%;
+	width: 20%;
+	display: inline-block;
+	margin: 10px 10px 10px 10px;
+	border-radius: 6px;
+
+	background-color: #FFF !important;
 
 	text-align: left;
+	cursor: pointer;
+
+	transition: all 0.3s;
+}
+
+.result-item:hover
+{
+	background-color: #DDDDDC !important;
+
+	transition: all 0.3s;
 }
 
 .result-item p

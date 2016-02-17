@@ -27,6 +27,7 @@ app.controller("SearchController",
 
     // TODO: Load search results for query
     $scope.searchQuery = $routeParams.query;
+    //$rootScope.searchQuery = $routeParams.query;
 
     // Get data of the profile currently being viewed
     searchURL = BACKEND_URL + 'search/';
@@ -40,6 +41,9 @@ app.controller("SearchController",
     }).then(function successCallback(response) {
       console.log(response);
       $scope.searchResults = response.data.users;
+      $scope.searchResults.push({id: 1, name: "Test"});
+      $scope.searchResults.push({id: 3, name: "Test2"});
+      console.log($scope.searchResults);
     }, function errorCallback(response) {
       console.log(response);
       // Error
@@ -62,7 +66,12 @@ app.controller("SearchController",
 
   $scope.search = function(search_query)
   {
-    $scope.changeView("search/" + search_query)
+    $scope.changeView("search/" + search_query);
+  }
+
+  $scope.viewProfile = function(profile_id)
+  {
+    $scope.changeView("profile/" + profile_id);
   }
 
   $scope.changeView = function(url)
