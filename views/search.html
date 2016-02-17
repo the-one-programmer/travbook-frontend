@@ -16,17 +16,26 @@
     <br>
     -->
 
-    <div ng-show="searchQuery">
-    <h2 class="search-title">Search results for "{{ searchQuery }}"</h2>
-    <br>
+    <div ng-show="searchQuery" class="search-results-div">
+        <h2 class="search-title">Search results for "{{ searchQuery }}"</h2>
+        <br>
 
-    <p ng-hide="searchResults.length">No results found! Try another search term?</p>
+        <p ng-hide="searchResults.length">No results found! Try another search term?</p>
 
-    <div class="row">
-    <div class="result-item well" ng-repeat="result in searchResults" ng-click="viewProfile(result.id)">
-    <h3>{{ result.name }}</h3>
+        <div class="result-item well" ng-repeat="result in searchResults" ng-click="viewProfile(result.id)">
+        <!--div class="result-item well" ng-repeat="result in searchResults" ng-class="{ dim : (allDim && result.dim) }" ng-mouseover="result.dim = false; allDim = true" ng-mouseleave="result.dim = true; allDim = false" ng-click="viewProfile(result.id)"-->
+        <img src="http://lorempixel.com/100/100/"><h3 class="name">&nbsp; {{ result.name }}</h3>
+        </div>
     </div>
-    </div>
 
+    <div class="sponsored-main-div">
+        <h2>Sponsors</h2>
+        <div class="sponsored-div well">
+        <img src="http://lorempixel.com/250/250/">
+        <br><br>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est mi, finibus ac urna eu, auctor molestie nibh. Phasellus venenatis massa a mi facilisis, id elementum ex ultricies. Praesent sed enim at massa egestas euismod at sed quam.
+        </p>        
+        </div>
     </div>
 </div>

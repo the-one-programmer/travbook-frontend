@@ -65,6 +65,25 @@ body
 {
 	margin-top: 13px !important;
 	width: 30%;
+
+	font-family: 'Roboto', sans-serif;
+}
+
+#search-btn
+{
+	color: #FFF;
+	background-color: #F68F1E;
+
+	font-weight: bold;
+
+	transition: all 0.3s;
+}
+
+#search-btn:hover
+{
+	background-color: #DA4926;
+
+	transition: all 0.3s;
 }
 
 .logged-in-text

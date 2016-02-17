@@ -9,6 +9,8 @@ app.controller("SearchController",
   $rootScope.showNav = true;
   $rootScope.title = "Search";
 
+  $scope.allDim = false;
+
   var currentUserURL = BACKEND_URL + 'current_user';
 
   $http({
