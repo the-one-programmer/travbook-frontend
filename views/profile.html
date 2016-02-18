@@ -46,7 +46,7 @@
 
 	<p class="followed-text">{{ isFollowed ? "is following you." : "is not following you." }}</p>
 
-	<a href class="btn btn-default" ng-hide="isOwnProfile" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
+	<a href class="follow-btn btn btn-default" ng-hide="isOwnProfile" ng-click="followUser()">{{ isFollowing ? "Unfollow" : "Follow" }}</a>
 
 	<div class="followers-detail-div">
 	<br>

@@ -24,7 +24,9 @@
 
         <div class="result-item well" ng-repeat="result in searchResults" ng-click="viewProfile(result.id)">
         <!--div class="result-item well" ng-repeat="result in searchResults" ng-class="{ dim : (allDim && result.dim) }" ng-mouseover="result.dim = false; allDim = true" ng-mouseleave="result.dim = true; allDim = false" ng-click="viewProfile(result.id)"-->
-        <img src="http://lorempixel.com/100/100/"><h3 class="name">&nbsp; {{ result.name }}</h3>
+        <img src="http://lorempixel.com/100/100/">
+        <h3 class="name">&nbsp; {{ result.name }}</h3>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
     </div>
 

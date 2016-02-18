@@ -175,6 +175,10 @@ app.controller("ProfileController",
 
         $scope.isFollowing = !$scope.isFollowing;
 
+        // Reload user following list
+        // Maybe this can be replaced with AJAX
+        $scope.updateProfile();
+
         $scope.alertClass = "alert-success";
         $scope.alertMessage = "Successfully " + followMessage + "ed!";
       }, function errorCallback(response) {
@@ -196,6 +200,27 @@ app.controller("ProfileController",
     {
       var profilePath = "/profile/" + profile_id.toString() + "/";
       $location.path(profilePath);
+    }
+
+    $scope.updateProfile = function()
+    {
+        profileURL = BACKEND_URL + 'show/' + $routeParams.id;
+        $http({
+          method: 'GET',
+          url: profileURL,
+          headers: {
+            'Authorization': $cookies.get("Travbook_auth_token")
+          },
+        }).then(function successCallback(response) {
+          $scope.user = response.data;
+          //$scope.user.followers = response.data.followers;
+          //$scope.user.followeds = response.data.followeds;
+
+          $scope.isFollowing = $scope.isFollowing();
+          $scope.isFollowed = $scope.isFollowed();
+        }, function errorCallback(response) {
+          console.log(response);
+        });
     }
 });
 

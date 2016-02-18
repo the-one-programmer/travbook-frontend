@@ -43,8 +43,8 @@ app.controller("SearchController",
     }).then(function successCallback(response) {
       console.log(response);
       $scope.searchResults = response.data.users;
-      $scope.searchResults.push({id: 1, name: "Test"});
-      $scope.searchResults.push({id: 3, name: "Test2"});
+      //$scope.searchResults.push({id: 1, name: "Test"});
+      //$scope.searchResults.push({id: 3, name: "Test2"});
       console.log($scope.searchResults);
     }, function errorCallback(response) {
       console.log(response);

@@ -51,6 +51,24 @@ body
 	height: 100%;
 }
 
+.follow-btn
+{
+	background-color: #DA4926;
+	color: #FFF;
+	border-radius: 0px;
+	border: none;
+
+	transition: all 0.5s;
+}
+
+.follow-btn:hover
+{
+	background-color: #F68F1E;
+	color: #FFF;
+
+	transition: all 0.5s;
+}
+
 .followed-text
 {
 	font-size: 14px !important;
