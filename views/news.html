@@ -6,4 +6,16 @@
     <h3>Title</h3>
     <p>{{ news }}</p>
     </div>    
+
+</div>
+
+<div class="news-sidebar">
+	<h3 class="title">Recommended friends:</h3>
+	<div class="suggestion-div well" ng-repeat="friend in recommendations" ng-click="viewProfile(friend.id)">
+        <img src="http://lorempixel.com/100/100/">
+        <div class="info">
+	        <h3 class="name">&nbsp; {{ friend.name }}</h3>
+	        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+	</div>
 </div>

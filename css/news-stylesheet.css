@@ -32,18 +32,19 @@ body
 	transform: translate(-50%, 0%);
 	*/
 
-	width: 100%;
-	margin: 0 auto;
+	width: 60%;
+	float: left;
 
 	overflow: hidden;
 
 	height: 100%;
-	margin-top: 30px !important;
+	margin: 30px 0 0 0;
 }
 
 .news-item
 {
-	width: 60%;
+	width: 80%;
+	background-color: #FFF !important;
 
 	text-align: left;
 }
@@ -51,4 +52,78 @@ body
 .news-item p
 {
 	font-size: 14px;
+}
+
+/* Sidebar */
+
+.news-sidebar
+{
+	position: relative;
+	width: 30%;
+	height: 100%;
+	margin: 30px 0 0 0;
+
+	float: right;
+
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+
+	text-align: left;
+}
+
+.news-sidebar .title
+{
+	color: #999;
+}
+
+.suggestion-div
+{
+	width: 80%;
+
+	background-color: #FFF !important;
+	border-radius: 0px;
+	text-align: center;
+
+	cursor: pointer;
+
+	transition: all 0.3s;
+}
+
+.suggestion-div:hover
+{
+	background-color: #EEE !important;
+
+	transition: all 0.3s;
+}
+
+.suggestion-div img
+{
+	width: 100px;
+	height: 100px;
+	background-color: #000;
+
+	border: 3px solid rgba(0, 0, 0, 0.7);
+	float: left;
+}
+
+.suggestion-div .info
+{
+	display: inline-block;
+	width: 60%;
+
+	text-align: left;
+
+	margin: -20px 0 -20px 0;
+}
+
+.suggestion-div .info .name
+{
+	font-size: 20px;
+	margin-left: -10px;
+}
+
+.suggestion-div .info .description
+{
+	font-size: 16px;
+	color: #777;
 }

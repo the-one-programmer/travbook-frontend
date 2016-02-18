@@ -11,7 +11,7 @@ app.controller("NewsFeedController",
 
   var currentUserURL = BACKEND_URL + 'current_user';
 
-$http({
+  $http({
     method: 'GET',
     url: currentUserURL,
     headers: {
@@ -24,63 +24,26 @@ $http({
     $scope.data.current_user_id = data.id;
 
     console.log(data.id);
-    // Get data of the profile currently being viewed
-    profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
+
+    var recommendationURL = BACKEND_URL + 'recommend';
+
     $http({
-      method: 'GET',
-      url: profileURL,
-      headers: {
-        'Authorization': $cookies.get("Travbook_auth_token")
-      },
-    }).then(function successCallback(response) {
-      $scope.user = response.data;
-      $rootScope.username = $scope.user.name;
-
-      $scope.countrySelection = response.data.countries_want_to_go;
-      $scope.hobbySelection = response.data.interests;
-      $scope.languageSelection = response.data.languages;
-      console.log(response.data.countries_want_to_go);
-
-      // TODO: Load from backend
-      $scope.news = ["Blah blah blah 1", "Blah blah blah 2", "Blah blah blah 3", "Blah blah blah 4"];
-
-      var nationURL = BACKEND_URL + "countries";
-      $http.get(nationURL).success(function (data){
-        $scope.data.nations = data;
-      //    $scope.data.cities = $scope.data.nations[$scope.user.nationResidence - 1].cities;
-
-          var countryData = getCountryForCityName($scope.user.city);
-          $scope.countryResidence = countryData[0].id;
-          $scope.cityResidence = countryData[1];
-          $scope.changeCitiesOption($scope.countryResidence);
-      }).error(function(error){
-        $scope.data.error = error;
-      });
-
-      var hobbyURL = BACKEND_URL + "interests";
-      $http.get(hobbyURL).success(function (data){
-        $scope.data.hobbies = data;
-      }).error(function(error){
-        $scope.data.error = error;
-      });
-
-      var languagesURL = BACKEND_URL + "languages";
-      $http.get(languagesURL).success(function (data){
-        $scope.data.languages = data;
-      }).error(function(error){
-        $scope.data.error = error;
-      });
-    }, function errorCallback(response) {
+    method: 'GET',
+    url: recommendationURL,
+    headers: {
+      'Authorization': $cookies.get("Travbook_auth_token")//sessionStorage.getItem("auth_token")
+      }
+    })
+    .success(function(data) {
+      console.log(data);
+      $scope.recommendations = data.users;
+    })
+    .error(function(response) {
       console.log(response);
-      // Error
-      $scope.alertClass = "alert-danger";
-      $scope.alertMessage = "There was an error. Please try again.";
-
-      // Redirect to profile after delay
-      $timeout(function() {
-        $scope.changeView('/');
-      }, 3000);
     });
+
+    // TODO: Load from backend
+    $scope.news = ["Blah blah blah 1", "Blah blah blah 2", "Blah blah blah 3", "Blah blah blah 4"];
 
     var getCountryForCityName = function(cityName)
     {
@@ -132,6 +95,11 @@ $http({
   $scope.changeView = function(url)
   {
     $location.path(url);
+  }
+
+  $scope.viewProfile = function(profile_id)
+  {
+    $scope.changeView("profile/" + profile_id);
   }
 
   $scope.wantsToGo = function(nation_id)
