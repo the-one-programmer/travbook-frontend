@@ -20,7 +20,7 @@ app.controller("ProfileController",
     .success(function(data) {
 
       $scope.data.current_user_id = data.id;
-
+      $rootScope.username = data.name;
       console.log($scope.data.current_user_id)
       if ($routeParams.id == $scope.data.current_user_id){
         $scope.isOwnProfile = true;
@@ -42,8 +42,7 @@ app.controller("ProfileController",
         $scope.isFollowing = $scope.isFollowing();
         $scope.isFollowed = $scope.isFollowed();
 
-        // TODO: Change to current_user's name
-        $rootScope.username = $scope.user.name;
+
 
         $scope.genderIcon = 'fa fa-mars';
 
