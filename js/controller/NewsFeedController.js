@@ -22,6 +22,7 @@ app.controller("NewsFeedController",
         // Move load of data here
     // Current user ID - only if user is logged in
     $scope.data.current_user_id = data.id;
+    $rootScope.username = data.name;
 
     console.log(data.id);
 
