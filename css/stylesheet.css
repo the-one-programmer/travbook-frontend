@@ -76,6 +76,7 @@ body
 #search-bar
 {
 	border-radius: 4px;
+	opacity: 0.8;
 }
 
 #search-btn
