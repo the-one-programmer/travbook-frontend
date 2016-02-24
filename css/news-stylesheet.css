@@ -49,6 +49,25 @@ body
 	text-align: left;
 }
 
+.news-item .controls
+{
+	list-style: none;
+	width: 100%;
+}
+
+.news-item .controls li
+{
+	background-color: #DDDDDC;
+
+	display: inline-block;
+
+	border-radius: 8px;
+	padding: 5px 15px 5px 15px;
+	margin: 0 10px 0 10px;
+
+	cursor: pointer;
+}
+
 .news-item p
 {
 	font-size: 14px;

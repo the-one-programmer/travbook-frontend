@@ -44,7 +44,8 @@ app.controller("NewsFeedController",
     });
 
     // TODO: Load from backend
-    $scope.news = ["Blah blah blah 1", "Blah blah blah 2", "Blah blah blah 3", "Blah blah blah 4"];
+    $scope.news = [{ title: "Fake status 1", content: "Blah blah blah"},
+                  { title: "Fake status 2", content: "Blah blah blah"},];
 
     var getCountryForCityName = function(cityName)
     {

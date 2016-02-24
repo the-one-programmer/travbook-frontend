@@ -79,3 +79,13 @@ app.directive('head', ['$rootScope','$compile',
         };
     }
 ]);
+
+app.directive('newsFeedItem', function() { 
+  return { 
+    restrict: 'E', 
+    scope: { 
+      item: '=' 
+    }, 
+    templateUrl: 'js/directives/newsFeedItem.html' 
+  }; 
+});
