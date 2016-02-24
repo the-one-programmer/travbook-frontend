@@ -24,6 +24,11 @@ body
 	transform: translate(-50%, -50%);
 }
 
+.email-div
+{
+	width: 80%;
+}
+
 .coming-soon-div p
 {
 	font-size: 14px;
