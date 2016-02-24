@@ -5,6 +5,10 @@ app.config(function ($routeProvider)
 {
   $routeProvider
   .when('/', {
+    controller: "ComingSoonController",
+    templateUrl: "views/comingsoon.html"
+  })
+  .when('/login', {
     controller: "LoginController",
     templateUrl: "views/login.html"
   })

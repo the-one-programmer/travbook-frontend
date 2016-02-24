@@ -1,6 +1,6 @@
 html
 {
-	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/background.jpg") no-repeat center center fixed;
+	background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../images/background.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -9,6 +9,31 @@ html
 
 body
 {
+}
+
+.main-coming-soon-div
+{
+	font-family: 'Roboto', sans-serif;
+}
+
+.coming-soon-div
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.coming-soon-div p
+{
+	font-size: 14px;
+	color: #999;
+}
+
+.coming-soon-text
+{
+	font-size: 36px;
+	color: #FFF;
 }
 
 .forget-password-div
