@@ -26,6 +26,8 @@ app.controller("NewsFeedController",
 
     console.log(data.id);
 
+    $scope.newStatus = "";
+
     var recommendationURL = BACKEND_URL + 'recommend';
 
     $http({
@@ -97,6 +99,12 @@ app.controller("NewsFeedController",
   $scope.changeView = function(url)
   {
     $location.path(url);
+  }
+
+  $scope.postStatus = function(status)
+  {
+    // TODO: Post status to URL
+    alert(status);
   }
 
   $scope.viewProfile = function(profile_id)

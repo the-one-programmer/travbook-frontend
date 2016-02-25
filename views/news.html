@@ -2,6 +2,15 @@
 <div class="main-news-div" align="center">
     <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
 
+    <div class="status-div well">
+    <form name="status-form" novalidate ng-submit="postStatus(newStatus)" id="status-form">
+        <input id="status-input" name="status" type="text" class="form-control" placeholder="Insignificant status here" ng-model="newStatus">
+        <button type="submit" class="btn btn-orange btn-submit" ng-disabled="loginForm.$invalid">Post</button>
+    </form>
+    </div>
+
+    <br>
+
     <news-feed-item item=news ng-repeat="news in news">
     </news-feed-item>
 
