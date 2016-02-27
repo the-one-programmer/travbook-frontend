@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="TravBook">
+<html ng-class="htmlClass" lang="en" ng-app="TravBook">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,25 +9,16 @@
     <meta name="description" content="Google Description">
     <title ng-bind="title"></title>
 
-    <link href="css/stylesheet.css" rel="stylesheet">
+    <link href="css/theme/vendor/all.css" rel="stylesheet">
+    <link href="css/theme/app/app.css" rel="stylesheet">
 
       <!-- Favicon -->
   	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
   	<link rel="icon" type="image/ico" href="favicon.ico" />
 
-      <!-- Bootstrap -->
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-
-      <!-- Font Awesome -->
-  	<link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,700italic,300italic' rel='stylesheet' type='text/css'>
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.4.0/angular-route.js"></script>
     <script src="https://code.angularjs.org/1.4.0/angular-cookies.js"></script>
-    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/controller/MainController.js"></script>
@@ -44,38 +35,118 @@
 
   </head>
 
-  <body ng-controller="MainController">
-    <nav class="navbar navbar-default navbar-fixed-top" ng-show="showNav">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href ng-click="changeView('/news')">
-        <img alt="Brand" src="./images/logo128.png" class="logo">
-      </a>
-    </div>
-    <form ng-submit="search()">
-    <div class="input-group search-input-div">
-    <input type="search" id="search-bar" class="form-control" placeholder="Search for a user" ng-model="searchQuery">
-<!--     <span class="input-group-btn">
-    <button class="btn btn-default" id="search-btn" type="submit" ng-disabled="!searchQuery">Search</button>
-    </span>
- -->    </div><!-- /input-group -->
-    </form>
-    <p class="navbar-text logged-in-text">Signed in as <a href="#/edit" class="navbar-link" ng-bind="username"></a> <a href ng-click="logout()"><i class="fa fa-sign-out"></i></a></p>
-    </nav>
+  <body ng-controller="MainController" ng-class="bodyClass">
+  <!--body ng-controller="MainController" class="login"-->
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-main navbar-primary navbar-fixed-top" role="navigation" ng-show="showNav">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-ellipsis-v"></i></a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs"><i class="fa fa-comments"></i></a>
+          <a class="navbar-brand" href="index.html">ThemeKit</a>
+        </div>
 
-    <div ng-view class="jumbotron">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="dropdown-header">Public User Pages</li>
+                <li><a href="index.html">Timeline</a></li>
+                <li><a href="user-public-profile.html">About</a></li>
+                <li><a href="user-public-users.html">Friends</a></li>
+                <li class="dropdown-header">Private User Pages</li>
+                <li><a href="user-private-messages.html">Messages</a></li>
+                <li class="active"><a href="user-private-profile.html">Profile</a></li>
+                <li><a href="user-private-timeline.html">Timeline</a></li>
+                <li><a href="user-private-users.html">Friends</a></li>
+              </ul>
+            </li>
+            
+            <li><form ng-submit="search()"><div class="input-group search-input-div"><input type="search" id="search-bar" class="form-control" placeholder="Search for a user" ng-model="searchQuery"></div></form></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden-xs">
+              <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1">
+                <i class="fa fa-comments"></i>
+              </a>
+            </li>
+            <!-- User -->
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle user" data-toggle="dropdown">
+                <img src="images/people/110/guy-5.jpg" alt="Bill" class="img-circle" width="40" />{{ username }} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li class="active"><a href="#/edit">Profile</a></li>
+                <li><a href="user-private-messages.html">Messages</a></li>
+                <li><a href ng-click="logout()">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+
+      </div>
     </div>
 
+    <div ng-view>
+    </div>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
   </body>
 
-  <footer align="center">
+  <!-- Footer -->
+  <footer class="footer">
+    <strong>TravBook</strong> &copy; Copyright 2016
   </footer>
+
+  <!-- // Footer -->
+  <!-- Inline Script for colors and config objects; used by various external scripts; -->
+  <script>
+    var colors = {
+      "danger-color": "#e74c3c",
+      "success-color": "#81b53e",
+      "warning-color": "#f0ad4e",
+      "inverse-color": "#2c3e50",
+      "info-color": "#2d7cb5",
+      "default-color": "#6e7882",
+      "default-light-color": "#cfd9db",
+      "purple-color": "#9D8AC7",
+      "mustard-color": "#d4d171",
+      "lightred-color": "#e15258",
+      "body-bg": "#f6f6f6"
+    };
+    var config = {
+      theme: "social-2",
+      skins: {
+        "default": {
+          "primary-color": "#16ae9f"
+        },
+        "orange": {
+          "primary-color": "#e74c3c"
+        },
+        "blue": {
+          "primary-color": "#4687ce"
+        },
+        "purple": {
+          "primary-color": "#af86b9"
+        },
+        "brown": {
+          "primary-color": "#c3a961"
+        },
+        "default-nav-inverse": {
+          "color-block": "#242424"
+        }
+      }
+    };
+  </script>
+
+  <script src="js/vendor/all.js"></script>
+  <script src="js/app/app.js"></script>
 </html>

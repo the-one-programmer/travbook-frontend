@@ -2,6 +2,8 @@ app.controller("LoginController",
   function($scope, $rootScope, $http, $location, $timeout, current_user, $cookies)
 {
   $rootScope.showNav = false;
+  $rootScope.bodyClass = "login";
+  $rootScope.htmlClass = "ls-bottom-footer";
 
   userURL = BACKEND_URL + 'current_user';
   $http({

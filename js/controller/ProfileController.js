@@ -8,6 +8,9 @@ app.controller("ProfileController",
     $scope.currentTab = 2; // Set default tab to journal tab
 
     $rootScope.showNav = true;
+    $rootScope.bodyClass = "st-layout ls-top-navbar show-sidebar sidebar-l2";
+    $rootScope.htmlClass = "ls-bottom-footer";
+
     var currentUserURL = BACKEND_URL + 'current_user';
 
     $http({
