@@ -1,7 +1,30 @@
-<div class="news-item well">
-<h3>{{ item.title }}</h3>
-<p>{{ item.content }}</p>
-
-<ul class="controls">
-<li>Like</li><li>Comment</li><li>Hide</li></ul>
+<li class="media media-clearfix-xs">
+<div class="media-left">
+  <div class="user-wrapper">
+    <img src="images/theme/people/110/woman-5.jpg" alt="people" class="img-circle" width="80" />
+    <div class="date">3 MAY</div>
+  </div>
 </div>
+<div class="media-body">
+  <div class="media-body-wrapper">
+    <div class="panel panel-default">
+
+      <div class="panel-body">
+        <p>{{ item.content }}</p>
+      </div>
+      <div class="view-all-comments">
+        <a href="#">
+          <i class="fa fa-comments-o"></i> View all
+        </a>
+        <span>10 comments</span>
+
+      </div>
+      
+      <!-- TODO: Loop through comments list, output all comments -->
+      <ul class="comments">
+      <news-feed-comment comment="{ content:'blah', author: 'Ma Wutang'}"></news-feed-comment>
+      </ul>
+    </div>
+  </div>
+</div>
+</li>

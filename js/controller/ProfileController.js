@@ -5,11 +5,11 @@ app.controller("ProfileController",
     //$scope.profilePic="http://lorempixel.com/200/200/";
 
     $scope.data = {};
-    $scope.currentTab = 2; // Set default tab to journal tab
+    $scope.currentTab = 0; // Set default tab to photos tab
 
     $rootScope.showNav = true;
-    $rootScope.bodyClass = "st-layout ls-top-navbar show-sidebar sidebar-l2";
-    $rootScope.htmlClass = "ls-bottom-footer";
+    $rootScope.bodyClass = "";
+    $rootScope.htmlClass = "st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l2";
 
     var currentUserURL = BACKEND_URL + 'current_user';
 

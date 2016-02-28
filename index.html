@@ -10,7 +10,8 @@
     <title ng-bind="title"></title>
 
     <link href="css/theme/vendor/all.css" rel="stylesheet">
-    <link href="css/theme/app/app.css" rel="stylesheet">
+    <!-- <link href="css/theme/app/app.css" rel="stylesheet"> -->
+    <link href="css/theme/skin-orange.css" rel="stylesheet">
 
       <!-- Favicon -->
   	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
@@ -49,7 +50,7 @@
             <span class="icon-bar"></span>
           </button>
           <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs"><i class="fa fa-comments"></i></a>
-          <a class="navbar-brand" href="index.html">ThemeKit</a>
+          <a class="navbar-brand" href ng-click="changeView('/news')">TravBook</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,7 +71,10 @@
               </ul>
             </li>
             
-            <li><form ng-submit="search()"><div class="input-group search-input-div"><input type="search" id="search-bar" class="form-control" placeholder="Search for a user" ng-model="searchQuery"></div></form></li>
+            <li><a href>
+            <form ng-submit="search()"><div class="input-group search-input-div"><input type="search" id="search-bar" class="form-control" placeholder="Search for a user" ng-model="searchQuery"></div></form>
+            </a>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="hidden-xs">

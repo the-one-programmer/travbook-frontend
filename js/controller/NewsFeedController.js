@@ -8,6 +8,8 @@ app.controller("NewsFeedController",
 
   $rootScope.showNav = true;
   $rootScope.title = "TravBook";
+  $rootScope.htmlClass = "st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l2";
+  $rootScope.bodyClass = "";
 
   var currentUserURL = BACKEND_URL + 'current_user';
 
