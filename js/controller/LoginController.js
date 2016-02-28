@@ -4,7 +4,7 @@ app.controller("LoginController",
   $rootScope.showNav = false;
   $rootScope.bodyClass = "login";
   $rootScope.htmlClass = "ls-bottom-footer";
-
+  
   userURL = BACKEND_URL + 'current_user';
   $http({
     method: 'GET',
@@ -26,7 +26,9 @@ app.controller("LoginController",
     $http.post(loginURL,userDetails).success(function(data){
       console.log(data);
       sessionStorage.setItem("auth_token",data.auth_token);
-      $cookies.put("Travbook_auth_token",data.auth_token);
+      var expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() + 3);
+      $cookies.put("Travbook_auth_token",data.auth_token,{'expires': expireDate});
 
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Successfully logged you in!";
