@@ -5,15 +5,15 @@
         <div class="sidebar-block">
           <div class="profile">
             <img src="images/theme/people/110/guy-5.jpg" alt="people" class="img-circle" />
-            <h4>Bill S.</h4>
+            <h4>{{ username }}</h4>
           </div>
         </div>
         <h4 class="category">Account</h4>
         <ul class="sidebar-menu">
-          <li><a href="user-private-profile.html"><i class="icon-user-1"></i> <span>Edit Profile</span></a></li>
+          <li><a href="#/edit"><i class="icon-user-1"></i> <span>Edit Profile</span></a></li>
           <li><a href="user-private-users.html"><i class="fa fa-group"></i> <span>Manage Friends</span></a></li>
           <li><a href="user-private-messages.html"><i class="icon-comment-fill-1"></i> <span>Messages</span></a></li>
-          <li><a href="login.html"><i class="icon-unlock-fill"></i> <span>Logout</span></a></li>
+          <li><a href ng-click="logout()"><i class="icon-unlock-fill"></i> <span>Logout</span></a></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,5 @@
 <!--div ng-controller="RegisterController"-->
-<div>
-  <div class="register-main-div">
+<div class="st-container" >
     <div class="header">
     <img src="./images/logo256.png" class="logo">
     <h3 id="tagline">Your Adventure Begins Here</h3>
@@ -8,36 +7,63 @@
 
     <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
     
-    <div class="well register-div">
+    <div class="page-section">
+    <div class="row">
+    <div class="col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
 
-    <div class="left-form">
-    <form name="registerForm" novalidate ng-submit="registerUser(newUser)" id="register-form">
-      <input name="userName" type="text" class="form-control " required ng-model="newUser.name" placeholder="Name">
-      <div class="alert alert-danger error " ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
-          <span ng-show="registerForm.userName.$error.required">
-            Uh please enter something
-          </span>
+    <form name="registerForm" novalidate ng-submit="registerUser(newUser)">
+
+    <h4 class="page-section-heading">Basic Details</h4>
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+          <div class="form-group form-control-default required">
+            <label for="exampleInputFirstName">Name</label>
+            <input name="userName" type="text" class="form-control" required ng-model="newUser.name" id="exampleInputFirstName" placeholder="Your first name">
+          </div>
+
+          <div class="alert alert-danger error " ng-show="registerForm.userName.$invalid && registerForm.userName.$dirty">
+              <span ng-show="registerForm.userName.$error.required">
+                Uh please enter something
+              </span>
+          </div>
+
+          <div class="form-group form-control-default required">
+            <label for="exampleInputEmail1">Email address</label>
+            <input name="userEmail" type="email" class="form-control" required ng-model="newUser.email" id="exampleInputEmail1" placeholder="Enter email">
+          </div>
+
+          <div class="alert alert-danger error " ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
+              <span ng-show="registerForm.userEmail.$error.email">
+                Please enter a valid email address
+              </span>
+              <span ng-show="registerForm.userEmail.$error.required">
+                Uh please enter something
+              </span>
+          </div>
+
+
+          <div class="row">
+          <div class="col-md-6">
+          <div class="form-group form-control-default required">
+            <label for="exampleInputPassword1">Password</label>
+            <input name="userPassword" type="password" class="form-control" required ng-model="newUser.password" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="form-group form-control-default required">
+            <label for="exampleInputPassword1">Confirm password</label>
+            <input name="userPasswordConfirmation" type="password" class="form-control" required ng-model="newUser.password_confirmation" compare-to="newUser.password" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          </div>
+          </div>
+
+          <div class="alert alert-danger error " ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
+              <span ng-show="registerForm.userPasswordConfirmation.$error">
+                Passwords don't match
+              </span>
+          </div>
       </div>
-
-      <input name="userEmail" type="email" class="form-control " required ng-model="newUser.email" placeholder="Email">
-      <div class="error" ng-show="registerForm.userEmail.$invalid && registerForm.userEmail.$dirty">
-          <span ng-show="registerForm.userEmail.$error.email">
-            Please enter a valid email address
-          </span>
-          <span ng-show="registerForm.userEmail.$error.required">
-            Uh please enter something
-          </span>
-      </div>
-
-      <input name="userPassword" type="password" class="form-control " required ng-model="newUser.password" placeholder="Password">
-      <input name="userPasswordConfirmation" type="password" class="form-control " required ng-model="newUser.password_confirmation" compare-to="newUser.password" placeholder="Re-enter Password">
-      <div class="error " ng-show="registerForm.userPasswordConfirmation.$invalid && registerForm.userPasswordConfirmation.$dirty">
-          <span ng-show="registerForm.userPasswordConfirmation.$error">
-            Passwords don't match
-          </span>
-      </div>
-
-      <br>
 
       <label class="">Country of residence:
       <select name="userNationResidence" id="repeatSelect" class="" ng-model="newUser.nationResidence" ng-change="changeCitiesOption(newUser.nationResidence)" required>
@@ -81,8 +107,6 @@
 
       </div>
 
-      <div class="right-form">
-
       <label>Terms and Conditions</label>
       <textarea readonly id="terms-text" class="" name="terms-text" cols="40" rows="12">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quam nibh, pellentesque non pellentesque eget, consectetur sed mauris. Nulla convallis aliquet rhoncus. Phasellus dictum id lacus quis pellentesque. Aliquam vehicula libero ac turpis scelerisque lacinia. Morbi sit amet est in nunc elementum ullamcorper. Fusce efficitur nulla nulla, ac volutpat justo pharetra a. Nunc porta elit id eros rutrum laoreet. Nulla at imperdiet risus. Phasellus id est justo. Nulla et orci sit amet tortor pulvinar luctus eget vel ex. Fusce quis dolor ullamcorper, bibendum dui non, gravida lectus. Ut sagittis molestie fringilla. Cras venenatis sem at interdum rhoncus. Nullam malesuada metus sed lorem dignissim imperdiet.
 
@@ -98,17 +122,17 @@
       <br><br>
       
       <label class="checkbox-label" ng-class="{ checked: newUser.agreed }"><input name="agreed" type="checkbox" ng-model="newUser.agreed" required>&nbsp;&nbsp;I Agree</label>
+    </div>
+    <button class="btn btn-orange" type="submit" ng-disabled="registerForm.$invalid">Let's Ride</button>
 
-      <br><br>
-
-      <button class="btn btn-orange" type="submit" ng-disabled="registerForm.$invalid || !newUser.agreed">Let's Ride</button>
-      </div>
     </form>
+
+    </div>
+    </div>
     </div>
 
       <!--
       message:{{message}}
       valid:{{registerForm.$valid}}
       -->
-    </div>
   </div>
