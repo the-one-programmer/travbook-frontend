@@ -29,7 +29,8 @@
 
         <div class="avatar-div" align="center">
         <img ng-src="user.avatar">
-        <input type="file" name="pic" accept="image/*" ng-model="user.avatar">
+        <input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="image_id"
+               data-form-data="" ></input>
         </div>
 
         <br>
@@ -88,7 +89,7 @@
         </div>
 
         <div ng-init="user.gender">
-        <label>Gender: 
+        <label>Gender:
         <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
         <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
         </label>

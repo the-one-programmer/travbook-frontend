@@ -1,6 +1,12 @@
-var app = angular.module("TravBook", ["ngRoute","ngCookies"]);
+var app = angular.module("TravBook", ["ngRoute",
+                                      "ngCookies",
+                                      'cloudinary']);
 var BACKEND_URL ="http://localhost:3000/api/";
-
+app.config(['cloudinaryProvider', function (cloudinaryProvider) {
+  cloudinaryProvider
+      .set("cloud_name", "dggzgjj9n")
+      .set("upload_preset", "hif1mwkq");
+}]);
 app.config(function ($routeProvider)
 {
   $routeProvider
@@ -80,22 +86,22 @@ app.directive('head', ['$rootScope','$compile',
     }
 ]);
 
-app.directive('newsFeedItem', function() { 
-  return { 
-    restrict: 'E', 
-    scope: { 
-      item: '=' 
-    }, 
-    templateUrl: 'js/directives/newsFeedItem.html' 
-  }; 
+app.directive('newsFeedItem', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      item: '='
+    },
+    templateUrl: 'js/directives/newsFeedItem.html'
+  };
 });
 
-app.directive('newsFeedComment', function() { 
-  return { 
-    restrict: 'E', 
-    scope: { 
-      comment: '=' 
-    }, 
-    templateUrl: 'js/directives/newsFeedComment.html' 
-  }; 
+app.directive('newsFeedComment', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      comment: '='
+    },
+    templateUrl: 'js/directives/newsFeedComment.html'
+  };
 });

@@ -1,5 +1,5 @@
 app.controller("EditProfileController",
-  function($scope, $rootScope, $http, $location, $timeout, current_user,$cookies) {
+  function($scope, $rootScope, $http, $location, $timeout, current_user,$cookies,cloudinary) {
 
   $scope.profilePic="http://lorempixel.com/200/200/";
 
