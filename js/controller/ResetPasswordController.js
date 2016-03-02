@@ -1,5 +1,7 @@
 app.controller("ResetPasswordController",
   function($rootScope, $scope, $location, $http) {
+    $rootScope.bodyClass = "login";
+    $rootScope.htmlClass = "ls-bottom-footer";
 
     $rootScope.showNav = true;
     updateURL = BACKEND_URL + 'update';

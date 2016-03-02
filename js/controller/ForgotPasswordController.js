@@ -1,7 +1,9 @@
 app.controller("ForgotPasswordController",
   function($scope, $rootScope, $http, $location, $timeout, current_user)
 {
-  console.log("hi")
+  $rootScope.bodyClass = "login";
+  $rootScope.htmlClass = "ls-bottom-footer";
+  
   $scope.sendEmail = function(userDetails) {
     var resetURL = BACKEND_URL + "request_reset_password";
     $http.post(resetURL,userDetails).success(function(data){
