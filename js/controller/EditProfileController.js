@@ -8,6 +8,8 @@ app.controller("EditProfileController",
 
   $rootScope.showNav = true;
   $rootScope.title = "Edit Profile";
+  $rootScope.htmlClass = "st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l1";
+  $rootScope.bodyClass = "";
 
   var currentUserURL = BACKEND_URL + 'current_user';
 

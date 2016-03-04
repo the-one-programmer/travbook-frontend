@@ -1,196 +1,210 @@
-<!--div ng-controller="EditProfileController" class="main-edit-div"-->
-<div class="main-edit-div">
-  <br>
-  <br>
+    <!-- content push wrapper -->
+    <div class="st-pusher" id="content">
 
-  <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+      <!-- sidebar effects INSIDE of st-pusher: -->
+      <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
 
-  <div class="header">
-  <h1>Edit Profile</h>
-  </div>
+      <!-- this is the wrapper for the content -->
+      <div class="st-content">
 
-  <br>
+        <!-- extra div for emulating position:fixed of the menu -->
+        <div class="st-content-inner">
 
-  <div class="edit-profile-nav">
-    <ul class="nav nav-pills nav-stacked col-md-4 col-sm-3">
-    <li ng-class="{active:currentTab == 0}" ><a href ng-click="currentTab=0"><i class="fa fa-cogs"></i>&nbsp; General Settings</a></li>
-    <li ng-class="{active:currentTab == 1}"><a href ng-click="currentTab=1"><i class="fa fa-plane"></i>&nbsp; Travel Preferences</a></li>
-    <li ng-class="{active:currentTab == 2}"><a href ng-click="currentTab=2"><i class="fa fa-futbol-o"></i>&nbsp; Hobbies</a></li>
-    <li ng-class="{active:currentTab == 3}"><a href ng-click="currentTab=3"><i class="fa fa-language"></i>&nbsp; Languages</a></li>
-    </ul>
-  </div>
+          <div class="container-fluid">
+            <div class="page-section">
+              <div class="row">
+                <div class="col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2">
 
-  <div class="edit-profile-div col-md-7">
-    <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
+                  <h1 class="page-section-heading">Edit Profile</h1>
+                  <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
 
-      <div class="well general-settings" ng-show="currentTab == 0">
-        <h3>General Settings</h3>
-        <br>
+                  <!-- Tabbable Widget -->
+                  <div class="tabbable">
 
-        <div class="avatar-div" align="center">
-        <img ng-src="user.avatar">
-        <input type="file" name="pic" accept="image/*" ng-model="user.avatar">
-        </div>
+                    <form name="editForm" novalidate ng-submit="updateProfile(user)" id="edit-form">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs">
+                      <li ng-class="{ active: currentTab == 0 }"><a href ng-click="currentTab = 0"><i class="fa fa-fw fa-user"></i> Profile</a></li>
+                      <li ng-class="{ active: currentTab == 1 }"><a href ng-click="currentTab = 1"><i class="fa fa-fw fa-home"></i> Hosting Details</a></li>
+                      <li ng-class="{ active: currentTab == 2 }"><a href ng-click="currentTab = 2"><i class="fa fa-fw fa-globe"></i> Countries</a></li>
+                      <li ng-class="{ active: currentTab == 3 }"><a href ng-click="currentTab = 3"><i class="fa fa-fw fa-futbol-o"></i> Hobbies</a></li>
+                      <li ng-class="{ active: currentTab == 4 }"><a href ng-click="currentTab = 4"><i class="fa fa-fw fa-language"></i> Languages</a></li>
+                    </ul>
+                    <!-- // END Tabs -->
 
-        <br>
+                    <!-- Panes -->
+                    <div class="tab-content">
+                      <div id="home" ng-show="currentTab == 0" align="center">
+                        <div class="form-group">
+                        <img ng-src="user.avatar">
+                        <input class="" type="file" name="pic" accept="image/*" ng-model="user.avatar">
+                        </div>
 
-        <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
-        <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
-        <span ng-show="editForm.userName.$error.required">
-        Uh please enter something
-        </span>
-        </div>
+                        <br>
 
-        <input name="userEmail" type="email" class="form-control " required ng-model="user.email" placeholder="Email">
-        <div class="error " ng-show="editForm.userEmail.$invalid && editForm.userEmail.$dirty">
-        <span ng-show="editForm.userEmail.$error.email">
-        Please enter a valid email address
-        </span>
-        <span ng-show="editForm.userEmail.$error.required">
-        Uh please enter something
-        </span>
-        </div>
+                        <input name="userName" type="text" class="form-control " required ng-model="user.name" placeholder="Name">
+                        <div class="error " ng-show="editForm.userName.$invalid && editForm.userName.$dirty">
+                        <span ng-show="editForm.userName.$error.required">
+                        Uh please enter something
+                        </span>
+                        </div>
 
-        <input name="userPassword" type="password" class="form-control " ng-model="user.password" placeholder="Password">
-        <input name="userPasswordConfirmation" type="password" class="form-control " ng-model="user.password_confirmation" compare-to="user.password" placeholder="Re-enter Password">
-        <div class="error " ng-show="editForm.userPasswordConfirmation.$invalid && editForm.userPasswordConfirmation.$dirty">
-        <span ng-show="editForm.userPasswordConfirmation.$error">
-        Passwords don't match
-        </span>
-        </div>
+                        <input name="userEmail" type="email" class="form-control " required ng-model="user.email" placeholder="Email">
+                        <div class="error " ng-show="editForm.userEmail.$invalid && editForm.userEmail.$dirty">
+                        <span ng-show="editForm.userEmail.$error.email">
+                        Please enter a valid email address
+                        </span>
+                        <span ng-show="editForm.userEmail.$error.required">
+                        Uh please enter something
+                        </span>
+                        </div>
 
-        <br>
+                        <input name="userPassword" type="password" class="form-control " ng-model="user.password" placeholder="Password">
+                        <input name="userPasswordConfirmation" type="password" class="form-control " ng-model="user.password_confirmation" compare-to="user.password" placeholder="Re-enter Password">
+                        <div class="error " ng-show="editForm.userPasswordConfirmation.$invalid && editForm.userPasswordConfirmation.$dirty">
+                        <span ng-show="editForm.userPasswordConfirmation.$error">
+                        Passwords don't match
+                        </span>
+                        </div>
 
-        <div class="form-group">
-        <label class="">Country of residence:
-        <select name="userNationResidence" id="repeatSelect" class="" ng-model="countryResidence" ng-change="changeCitiesOption(countryResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
-        </select>
-        </label>
+                        <div class="form-group">
+                        <label class="page-section-heading">Gender</label>
+                        <div class="gender-input" ng-init="user.gender='male'">
+                          <div class="radio radio-info radio-inline">
+                            <input type="radio" id="inlineRadio1" name="radioInline" value="male" ng-model="user.gender">
+                            <label for="inlineRadio1">Male</label>
+                          </div>
+                          <div class="radio radio-inline">
+                            <input type="radio" id="inlineRadio2" name="radioInline" value="female" ng-model="user.gender">
+                            <label for="inlineRadio2">Female</label>
+                          </div>
+                        </div>
+                        </div>
 
-        <div class="error " ng-show="editForm.userNationResidence.$invalid">
-        <span ng-show="editForm.userNationResidence.$error.required">
-        Uh please choose your country
-        </span>
-        </div>
+                        <div class="form-group">
+                        <label class="">Country of residence:
+                        <select name="userNationResidence" id="repeatSelect" class="" ng-model="countryResidence" ng-change="changeCitiesOption(countryResidence)" ng-options="nation.id as nation.name for nation in data.nations" required>
+                        </select>
+                        </label>
 
-        <br>
+                        <div class="error " ng-show="editForm.userNationResidence.$invalid">
+                        <span ng-show="editForm.userNationResidence.$error.required">
+                        Uh please choose your country
+                        </span>
+                        </div>
 
-        <label>City:
-        <select name="userCityResidence" id="repeatSelect" class="" ng-model="cityResidence" ng-options="city as city.name for city in data.cities" required>
-        </select>
-        </label>
+                        <br>
 
-        <div class="error " ng-show="editForm.userCityResidence.$invalid">
-        <span ng-show="editForm.userCityResidence.$error.required">
-        Uh please choose your city
-        </span>
-        </div>
-        </div>
+                        <label>City:
+                        <select name="userCityResidence" id="repeatSelect" class="" ng-model="cityResidence" ng-options="city as city.name for city in data.cities" required>
+                        </select>
+                        </label>
 
-        <div ng-init="user.gender">
-        <label>Gender: 
-        <input type="radio" name="answer" value="male" ng-model="user.gender"/>Male
-        <input type="radio" name="answer" value="female" ng-model="user.gender"/>Female
-        </label>
-        </div>
+                        <div class="error " ng-show="editForm.userCityResidence.$invalid">
+                        <span ng-show="editForm.userCityResidence.$error.required">
+                        Uh please choose your city
+                        </span>
+                        </div>
 
-        <br>
-        <div class="host-div">
-        <label class="host-label"><input name="willing_to_host" type="checkbox" ng-model="user.willing_to_host">I'm willing to host</label>
+                        </div>
 
-            <br>
+                        <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+                      </div>
+                      <div id="messages" ng-show="currentTab == 1" align="center">
+                        <div class="checkbox checkbox-primary">
+                        <input id="host-checkbox" name="willing_to_host" type="checkbox" ng-model="user.willing_to_host">
+                        <label for="host-checkbox">I'm willing to host</label>
+                        </div>
+                        <br><br>
 
-            <div class="host-details-div" ng-show="user.willing_to_host">
+                        <div ng-show="user.willing_to_host" align="left">
 
-            <div class="host-section-div">
-            <label>
-            <input name="accomodation" type="checkbox" ng-model="user.can_accomendation">I can provide accomodation
-            </label>
-            <input name="accomodationDetail" ng-show="user.can_accomendation" type="text" class="form-control " ng-model="user.accomendation_detail" placeholder="Accomodation details">
-            <br>
+                        <div class="checkbox checkbox-primary">
+                        <input id="accomodation-checkbox" name="accomodation-checkbox" type="checkbox" ng-model="user.can_accomendation">
+                        <label for="accomodation-checkbox">I can provide accomodation</label>
+                        <input name="accomodationDetail" ng-show="user.can_accomendation" type="text" class="form-control " ng-model="user.accomendation_detail" placeholder="Accomodation details">
+                        </div>
+
+                        <br>
+                        
+                        <div class="checkbox checkbox-primary">
+                        <input id="transport-checkbox" name="transport-checkbox" type="checkbox" ng-model="user.can_transport">
+                        <label for="transport-checkbox">I can provide transport</label>
+                        <input name="transportDetail" ng-show="user.can_transport" type="text" class="form-control " ng-model="user.transport_detail" placeholder="Transport details">
+                        </div>
+
+                        <br>
+
+                        <div class="checkbox checkbox-primary">
+                        <input id="tourguide-checkbox" name="tourguide-checkbox" type="checkbox" ng-model="user.can_tourguide">
+                        <label for="tourguide-checkbox">I can provide tour guide services</label>
+                        <input name="tourGuideDetail" ng-show="user.can_tourguide" type="text" class="form-control " ng-model="user.tourguide_detail" placeholder="Tour guide service details">
+                        </div>
+
+                        <br>
+
+                        <div class="checkbox checkbox-primary">
+                        <input id="pickup-checkbox" name="pickup-checkbox" type="checkbox" ng-model="user.can_pickup">
+                        <label for="pickup-checkbox">I can pick up</label>
+                        <input name="pickUpDetail" ng-show="user.can_pickup" type="text" class="form-control " ng-model="user.pickup_detail" placeholder="Pick up details">
+                        </div>
+
+                        </div>
+
+                        <br>
+                        <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+                      </div>
+                      <div id="settings" ng-show="currentTab == 2" align="center">
+                        <div class="row">
+
+                        <div class="checkbox checkbox-primary" ng-repeat="nation in data.nations" ng-click="toggleNationSelection(nation.id)" style="display: inline-block; margin: 0 10px 0 10px;">
+                        <input id="nation-checkbox" name="{{ nation.name }}" type="checkbox" ng-checked="wantsToGo(nation.id)">
+                        <label for="{{ nation.name }}">{{ nation.name }}</label>
+                        </div>
+                        </div>
+                        
+                        <br>
+                        <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+                      </div>
+                      <div id="settings" ng-show="currentTab == 3" align="center">
+                        <div class="row">
+
+                        <div class="checkbox checkbox-primary" ng-repeat="hobby in data.hobbies" ng-click="toggleHobbySelection(hobby.id)" style="display: inline-block; margin: 0 10px 0 10px;">
+                        <input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="hasHobby(hobby.id)" ng-click="toggleHobbySelection(hobby.id)">
+                        <label for="{{ hobby.name }}">{{ hobby.name | capitalize }}</label>
+                        </div>
+                       <br><br>
+
+                       <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+                      </div>
+                      </div>
+                      <div id="settings" ng-show="currentTab == 4" align="center">
+                        <div class="row">
+                          <div class="checkbox checkbox-primary" ng-repeat="language in data.languages" ng-click="toggleLanguageSelection(language.id)" style="display: inline-block; margin: 0 10px 0 10px;">
+                          <input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="hasLanguage(language.id)" ng-click="toggleLanguageSelection(language.id)">
+                          <label for="{{ language.name }}">{{ language.name | capitalize }}</label>
+                          </div>
+                        <br><br>
+                        <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
+                      </div>
+
+                    </div>
+                    <!-- // END Panes -->
+
+                    </form>
+                  </div>
+                  <!-- // END Tabbable Widget -->
+                </div>
+              </div>
             </div>
 
-            <div class="host-section-div">
-            <label>
-            <input name="accomodation" type="checkbox" ng-model="user.can_transport">I can transport
-            </label>
-            <input name="transportDetail" ng-show="user.can_transport" type="text" class="form-control " ng-model="user.transport_detail" placeholder="Transport details">
-            <br>
-            </div>
-
-            <div class="host-section-div">
-            <label>
-            <input name="accomodation" type="checkbox" ng-model="user.can_tourguide">I can provide tour guide services
-            </label>
-            <input name="tourGuideDetail" ng-show="user.can_tourguide" type="text" class="form-control " ng-model="user.tourguide_detail" placeholder="Tour guide service details">
-            <br>
-            </div>
-
-            <div class="host-section-div">
-            <label>
-            <input name="accomodation" type="checkbox" ng-model="user.can_pickup">I can pick up
-            </label>
-            <input name="pickUpDetail" ng-show="user.can_pickup" type="text" class="form-control " ng-model="user.pickup_detail" placeholder="Pick up details">
-            </div>
-
-            </div>
+          </div>
 
         </div>
+        <!-- /st-content-inner -->
 
-        <br>
-
-        <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
       </div>
+      <!-- /st-content -->
 
-      <div class="well travel-settings container-fluid" ng-show="currentTab == 1">
-        <div>
-        <h3>Nations to visit</h3>
-        <br>
-
-        <div class="row">
-
-        <div ng-repeat="nation in data.nations">
-        <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: wantsToGo(nation.id) }"><input type="checkbox" name="user.countries_want_to_go[]" ng-checked="wantsToGo(nation.id)" ng-click="toggleNationSelection(nation.id)">{{nation.name}}</label>
-    	</div>
-
-        </div>
-
-        <br>
-        <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
-        </div>
-      </div>
-
-      <div class="well interests-settings container-fluid" ng-show="currentTab == 2">
-        <h3>Interests</h3>
-        <br>
-
-        <div class="row">
-        <div ng-repeat="hobby in data.hobbies">
-        <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: hasHobby(hobby.id) }"><input type="checkbox" ng-model="user.hobbies[hobby.id - 1]" ng-checked="hasHobby(hobby.id)" ng-click="toggleHobbySelection(hobby.id)">{{hobby.name | capitalize}}</label>
-        </div>
-        </div>
-
-        <br>
-        <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
-      </div>
-
-        <div class="well languages-settings container-fluid" ng-show="currentTab == 3">
-            <h3>Languages</h3>
-            <br>
-
-            <div class="row">
-
-            <div ng-repeat="language in data.languages">
-            <label class="checkbox-label grid-label col-md-4" ng-class="{ checked: hasLanguage(language.id) }"><input type="checkbox" ng-model="user.languages[language.id - 1]" ng-checked="hasLanguage(language.id)" ng-click="toggleLanguageSelection(language.id)">{{language.name}}</label>
-            </div>
-
-            </div>
-
-            <br>
-            <button class="btn btn-orange" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
-        </div>
-
-      </div>
-    </form>
-</div>
-</div>
+    </div>
+    <!-- /st-pusher -->
