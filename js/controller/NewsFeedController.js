@@ -47,9 +47,23 @@ app.controller("NewsFeedController",
       console.log(response);
     });
 
-    // TODO: Load from backend
-    $scope.news = [{ title: "Fake status 1", content: "Blah blah blah"},
-                  { title: "Fake status 2", content: "Blah blah blah"},];
+    var postsURL = BACKEND_URL + 'list_post/' + $scope.data.current_user_id.toString();
+    $http({
+      method: 'POST',
+      url: postsURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      },
+      //data: { "page": 0 }
+    }).then(function successCallback(response) {
+      $scope.news = response.data;
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+
+    //$scope.news = [{ title: "Fake status 1", content: "Blah blah blah"},
+    //              { title: "Fake status 2", content: "Blah blah blah"},];
 
     var getCountryForCityName = function(cityName)
     {
@@ -126,6 +140,29 @@ app.controller("NewsFeedController",
       alert(status)
       $scope.alertClass = "alert-danger";
       $scope.alertMessage = "Could not post a new status. Please try again later.";
+      console.log(response);
+    });
+  }
+
+  $scope.likePost = function(post)
+  {
+    likeURL = BACKEND_URL + 'like_post/' + post.id.toString();
+    $http({
+      method: 'POST',
+      url: likeURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      }
+    }).then(function successCallback(response) {
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Successfully liked!";
+
+      $scope.loadPosts();
+      
+      console.log(response);
+    }, function errorCallback(response) {
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "Could not like post. Please try again later.";
       console.log(response);
     });
   }

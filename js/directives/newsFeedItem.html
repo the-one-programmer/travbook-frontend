@@ -1,8 +1,10 @@
+<ul class="timeline-list">
 <li class="media media-clearfix-xs">
 <div class="media-left">
   <div class="user-wrapper">
-    <img src="images/theme/people/110/woman-5.jpg" alt="people" class="img-circle" width="80" />
-    <div class="date">3 MAY</div>
+    <img src="images/theme/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />
+    <div><a href ng-click="viewProfile(item.author_id)">{{ item.author }}</a></div>
+    <div class="date">19 OCT</div>
   </div>
 </div>
 <div class="media-body">
@@ -12,11 +14,14 @@
       <div class="panel-body">
         <p>{{ item.content }}</p>
       </div>
+      <div>
+      </div>
+
       <div class="view-all-comments">
+        <a href class="text-muted" ng-click="likePost(post)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
         <a href="#">
-          <i class="fa fa-comments-o"></i> View all
+          <i class="fa fa-comments-o"></i> 10 comments
         </a>
-        <span>10 comments</span>
 
       </div>
       
@@ -28,3 +33,4 @@
   </div>
 </div>
 </li>
+</ul>
