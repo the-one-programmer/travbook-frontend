@@ -355,7 +355,7 @@
 
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-3" style="margin-bottom: 30px">
                 <ul class="nav timeline-months">
                   <li class="active"><a href="#october"><i class="fa fa-calendar fa-fw"></i>October</a></li>
                   <li><a href="#september"><i class="fa fa-calendar fa-fw"></i>September</a></li>
@@ -364,6 +364,26 @@
                   <li><a href="#june"><i class="fa fa-calendar fa-fw"></i>June</a></li>
                   <li><a href="#may"><i class="fa fa-calendar fa-fw"></i>May</a></li>
                 </ul>
+              </div>
+
+              <div class="col-md-3">
+              <h4>Recommended TravBuds</h4>
+              </div>
+              <div class="col-md-3" ng-repeat="recommendation in recommendations">
+
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <a href ng-click="viewProfile(recommendation.id)" class="h5 margin-none">{{ recommendation.name }}</a>
+                      <div class="text-muted">
+                      Blah blah blah
+                      </div>
+                      <br>
+                      <a href ng-click="repostPost(post)" class="btn btn-primary btn-xs"><i class="fa fa-user"></i> View profile</a>
+                    </div>
+                    <!-- <a href="#">
+                      <img src="images/theme/place1-full.jpg" alt="image" class="img-responsive" />
+                    </a> -->
+                  </div>
               </div>
             </div>
 
