@@ -5,7 +5,8 @@
         <div class="sidebar-block">
           <div class="profile">
             <img src="images/theme/people/110/guy-6.jpg" alt="people" class="img-circle" />
-            <h4>{{ user.name }}</h4>
+            <h4>{{ user.name }} </h4> 
+            <a href ng-show="isOwnProfile" ng-click="editProfile()" ng-disabled="!isOwnProfile" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit Profile</a>
           </div>
         </div>
         <div class="category">About</div>
@@ -405,15 +406,7 @@
             </div>
 
           </nav>
-          <div class="cover overlay cover-image-full height-300-lg">
-
-            <img src="images/theme/profile-cover.jpg" alt="cover" />
-            <div class="overlay overlay-full">
-              <div class="v-top">
-                <a href ng-show="isOwnProfile" ng-click="editProfile()" ng-disabled="!isOwnProfile" class="btn btn-cover"><i class="fa fa-pencil"></i></a>
-              </div>
-            </div>
-          </div>
+          <br>
 
           <div class="container-fluid">
 
