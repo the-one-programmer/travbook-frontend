@@ -8,6 +8,8 @@ app.controller("SearchController",
 
   $rootScope.showNav = true;
   $rootScope.title = "Search";
+  $rootScope.htmlClass = "st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l2";
+  $rootScope.bodyClass = "";
 
   $scope.allDim = false;
 
@@ -24,6 +26,7 @@ app.controller("SearchController",
         // Move load of data here
     // Current user ID - only if user is logged in
     $scope.data.current_user_id = data.id;
+    $rootScope.username = data.name;
 
     console.log(data.id);
 
