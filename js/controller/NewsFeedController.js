@@ -105,8 +105,29 @@ app.controller("NewsFeedController",
 
   $scope.postStatus = function(status)
   {
-    // TODO: Post status to URL
-    alert(status);
+    // TODO: Show alert on success/failure
+    postsURL = BACKEND_URL + 'new_post/';
+    $http({
+      method: 'POST',
+      url: postsURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      },
+      data: { "content": status }
+    }).then(function successCallback(response) {
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Successfully posted!";
+
+      // Reset new status
+      $scope.newStatus = "";
+
+      console.log(response);
+    }, function errorCallback(response) {
+      alert(status)
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "Could not post a new status. Please try again later.";
+      console.log(response);
+    });
   }
 
   $scope.viewProfile = function(profile_id)

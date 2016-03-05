@@ -304,6 +304,9 @@
 
           <div class="container-fluid">
 
+            <br>
+            <div ng-show="alertMessage" class="{{ alertClass }} alert" role="alert">{{ alertMessage }}</div>
+
             <div class="row">
               <div class="col-md-9">
                 <ul class="timeline-list">
@@ -311,7 +314,7 @@
                     <div class="media-left">
                       <div class="user-wrapper">
                         <img src="images/theme/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />
-                        <div><a href="#">Adrian D.</a></div>
+                        <div><a href ng-click="viewProfile(data.current_user_id)">{{ username }}</a></div>
                         <div class="date">19 OCT</div>
                       </div>
                     </div>

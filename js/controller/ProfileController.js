@@ -45,8 +45,6 @@ app.controller("ProfileController",
         $scope.isFollowing = $scope.isFollowing();
         $scope.isFollowed = $scope.isFollowed();
 
-
-
         $scope.genderIcon = 'fa fa-mars';
 
         if($scope.user.gender == "female")
@@ -57,6 +55,8 @@ app.controller("ProfileController",
         console.log($scope.user);
 
         $rootScope.title = "Profile for " + $scope.user.name;
+
+        $scope.loadPosts();
       }, function errorCallback(response) {
         console.log(response);
         // TODO: Profile not found - show error
@@ -88,6 +88,110 @@ app.controller("ProfileController",
     {
       console.log(error);
     });
+
+    $scope.loadPosts = function()
+    {
+        postsURL = BACKEND_URL + 'list_post/' + $scope.user.id;
+        $http({
+          method: 'POST',
+          url: postsURL,
+          headers: {
+            'Authorization': $cookies.get("Travbook_auth_token")
+          },
+        }).then(function successCallback(response) {
+          $scope.posts = response.data;
+          console.log(response);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+    }
+
+    $scope.showPost = function(post)
+    {
+        postURL = BACKEND_URL + 'show_post/' + post.id;
+        $http({
+          method: 'GET',
+          url: postURL,
+          headers: {
+            'Authorization': $cookies.get("Travbook_auth_token")
+          },
+        }).then(function successCallback(response) {
+          // TODO: Display post
+          alert(post.content);
+          console.log(response);
+        }, function errorCallback(response) {
+          console.log(response);
+        });
+    }
+
+    $scope.repostPost = function(post)
+    {
+      repostURL = BACKEND_URL + 'repost/' + post.id.toString();
+      $http({
+        method: 'POST',
+        url: repostURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        }
+      }).then(function successCallback(response) {
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Successfully reposted!";
+
+        $scope.loadPosts();
+
+        console.log(response);
+      }, function errorCallback(response) {
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "Could not repost post. Please try again later.";
+        console.log(response);
+      });
+    }
+
+    $scope.likePost = function(post)
+    {
+      likeURL = BACKEND_URL + 'like_post/' + post.id.toString();
+      $http({
+        method: 'POST',
+        url: likeURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        }
+      }).then(function successCallback(response) {
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Successfully liked!";
+
+        $scope.loadPosts();
+        
+        console.log(response);
+      }, function errorCallback(response) {
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "Could not like post. Please try again later.";
+        console.log(response);
+      });
+    }
+
+    $scope.deletePost = function(post)
+    {
+      // TODO: Show alert on success/failure
+      deletePostURL = BACKEND_URL + 'delete_post/' + post.id.toString();
+      $http({
+        method: 'POST',
+        url: deletePostURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        }
+      }).then(function successCallback(response) {
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Successfully deleted post!";
+
+        $scope.loadPosts();
+        console.log(response);
+      }, function errorCallback(response) {
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "Could not delete post. Please try again later.";
+        console.log(response);
+      });
+    }
 
     $scope.wantsToGo = function(nation_id)
     {
