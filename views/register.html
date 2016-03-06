@@ -181,9 +181,43 @@
 
                   <div class="form-group" align="center">
                   <div>
-                  Images here
+                  <!-- Images here -->
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                      <li ng-click="hostingIndex = 0" ng-class="{ active: hostingIndex == 0 }"></li>
+                      <li ng-click="hostingIndex = 1" ng-class="{ active: hostingIndex == 1 }"></li>
+                      <li ng-click="hostingIndex = 2" ng-class="{ active: hostingIndex == 2 }"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                      <div class="item" ng-class="{ active: hostingIndex == 0 }">
+                        <img src="images/hosting/placeholder1.jpg" alt="Hosting">
+                      </div>
+
+                      <div class="item" ng-class="{ active: hostingIndex == 1 }">
+                        <img src="images/hosting/placeholder2.jpg" alt="Hosting">
+                      </div>
+
+                      <div class="item" ng-class="{ active: hostingIndex == 2 }">
+                        <img src="images/hosting/placeholder3.jpg" alt="Hosting">
+                      </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href ng-click="hostingIndex = hostingIndex - 1" ng-show="hostingIndex > 0">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href ng-click="hostingIndex = hostingIndex + 1" ng-show="hostingIndex < 2">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
                   </div>
 
+                  <br>
                   <div class="checkbox">
                     <input id="checkbox1" name="WillingToHost" type="checkbox" ng-model="newUser.willingToHost">
                     <label for="checkbox1">I am willing to host</label>

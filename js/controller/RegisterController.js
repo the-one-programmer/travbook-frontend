@@ -4,6 +4,7 @@ app.controller("RegisterController",
   $rootScope.showNav = false;
   $rootScope.htmlClass = "st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l1";
   $scope.formIndex = 0;
+  $scope.hostingIndex = 0;
 
   userURL = BACKEND_URL + 'current_user';
   $http({
