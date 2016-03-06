@@ -84,7 +84,8 @@ app.directive('newsFeedItem', function() {
   return { 
     restrict: 'E', 
     scope: { 
-      item: '=' 
+      item: '=',
+      viewProfile: '&'
     }, 
     templateUrl: 'js/directives/newsFeedItem.html' 
   }; 
@@ -94,7 +95,8 @@ app.directive('newsFeedComment', function() {
   return { 
     restrict: 'E', 
     scope: { 
-      comment: '=' 
+      comment: '=' ,
+      viewProfile: '&'
     }, 
     templateUrl: 'js/directives/newsFeedComment.html' 
   }; 

@@ -14,7 +14,7 @@
         <li><a href="#">Delete</a></li>
       </ul>
     </div>
-    <a href="" class="comment-author pull-left">{{ comment.author }}</a>
+    <a href ng-click="$parent.viewProfile(comment.author_id)" class="comment-author pull-left"> {{ comment.author_name }}</a>
     <span>{{ comment.content }}</span>
     <div class="comment-date">21st September</div>
   </div>

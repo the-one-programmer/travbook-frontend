@@ -29,6 +29,7 @@ app.controller("NewsFeedController",
     console.log(data.id);
 
     $scope.newStatus = "";
+    $scope.newReply = "";
 
     var recommendationURL = BACKEND_URL + 'recommend';
 
@@ -47,20 +48,7 @@ app.controller("NewsFeedController",
       console.log(response);
     });
 
-    var postsURL = BACKEND_URL + 'list_post/' + $scope.data.current_user_id.toString();
-    $http({
-      method: 'POST',
-      url: postsURL,
-      headers: {
-        'Authorization': $cookies.get("Travbook_auth_token")
-      },
-      //data: { "page": 0 }
-    }).then(function successCallback(response) {
-      $scope.news = response.data;
-      console.log(response);
-    }, function errorCallback(response) {
-      console.log(response);
-    });
+    $scope.loadPosts();
 
     //$scope.news = [{ title: "Fake status 1", content: "Blah blah blah"},
     //              { title: "Fake status 2", content: "Blah blah blah"},];
@@ -117,9 +105,26 @@ app.controller("NewsFeedController",
     $location.path(url);
   }
 
+  $scope.loadPosts = function()
+  {
+    var postsURL = BACKEND_URL + 'list_post/' + $scope.data.current_user_id.toString();
+    $http({
+      method: 'POST',
+      url: postsURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      },
+      //data: { "page": 0 }
+    }).then(function successCallback(response) {
+      $scope.news = response.data;
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+  }
+
   $scope.postStatus = function(status)
   {
-    // TODO: Show alert on success/failure
     postsURL = BACKEND_URL + 'new_post/';
     $http({
       method: 'POST',
@@ -134,10 +139,37 @@ app.controller("NewsFeedController",
 
       // Reset new status
       $scope.newStatus = "";
+      $scope.loadPosts();
 
       console.log(response);
     }, function errorCallback(response) {
-      alert(status)
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "Could not post a new status. Please try again later.";
+      console.log(response);
+    });
+  }
+
+  $scope.postReply = function(reply, post_id)
+  {
+    replyURL = BACKEND_URL + 'reply/' + post_id.toString();
+    $http({
+      method: 'POST',
+      url: replyURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      },
+      data: { "content": reply, "reply_to": $scope.data.current_user_id }
+    }).then(function successCallback(response) {
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Successfully posted comment!";
+
+      // Reset new status
+      $scope.newComment = "";
+
+      $scope.loadPosts();
+
+      console.log(response);
+    }, function errorCallback(response) {
       $scope.alertClass = "alert-danger";
       $scope.alertMessage = "Could not post a new status. Please try again later.";
       console.log(response);

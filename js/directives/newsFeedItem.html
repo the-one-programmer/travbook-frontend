@@ -20,15 +20,43 @@
       <div class="view-all-comments">
         <a href class="text-muted" ng-click="likePost(post)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
         <a href="#">
-          <i class="fa fa-comments-o"></i> 10 comments
+          <i class="fa fa-comments-o"></i> {{ item.replies.length }} comments
         </a>
 
       </div>
       
       <!-- TODO: Loop through comments list, output all comments -->
       <ul class="comments">
-      <news-feed-comment comment="{ content:'blah', author: 'Ma Wutang'}"></news-feed-comment>
+      <news-feed-comment comment=reply view-profile="viewProfile()" ng-repeat="reply in item.replies"></news-feed-comment>
+
+      <li class="media">
+        <div class="media-left">
+          <a href="">
+            <img src="images/theme/people/50/guy-5.jpg" class="media-object">
+          </a>
+        </div>
+        <div class="media-body">
+          <div class="pull-right dropdown" data-show-hover="li">
+            <a href data-toggle="dropdown" class="toggle-button">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Edit</a></li>
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+          <a href ng-click="$parent.viewProfile($parent.data.current_user_id)" class="comment-author pull-left">{{ $parent.username }}</a>
+          <span>
+            <form name="status-form" novalidate ng-submit="$parent.postReply($parent.newReply, item.id)" id="status-form">
+                <input type="text" name="status" class="form-control share-text" rows="3" placeholder="Share your comment..." ng-model="$parent.newReply">
+                <button type="submit" class="btn btn-primary btn-xs pull-right" ng-disabled="!$parent.newReply">Post!</button>
+            </form>
+          </span>
+        </div>
+      </li>
+
       </ul>
+
     </div>
   </div>
 </div>
