@@ -590,9 +590,11 @@
                   <div class="col-md-4" ng-repeat="post in posts">
                     <div class="panel panel-default">
                       <div class="panel-body">
-                        <a href="#" class="h5 margin-none">Post title here</a>
+                        <a href ng-click="" class="btn btn-primary btn-xs" ng-show="post.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp;
+                        <a href="#" class="h5 margin-none">Post title</a>
                         <div class="text-muted">
-                          <small><i class="fa fa-calendar"></i> Post date here</small>
+                          <small ng-show="post.type == 'repost'">Reposted from <a href ng-click="viewProfile(post.author_id)">{{ post.author }}</a><br></small>
+                          <small><i class="fa fa-calendar"></i> Post date</small>
                         </div>
                       </div>
                       <!-- <a href="#">
@@ -605,7 +607,7 @@
                             <a href ng-click="showPost(post)" class="btn btn-default btn-xs">show more</a>
                           </div>
 
-                         <div class="pull-right" style="margin: 0 3px 0 3px">
+                         <div class="pull-right" style="margin: 0 3px 0 3px" ng-show="post.type != 'repost'">
                             <a href ng-click="repostPost(post)" class="btn btn-primary btn-xs"><i class="fa fa-retweet"></i></a>
                           </div>
                          <div class="pull-right" ng-show="isOwnProfile" style="margin: 0 3px 0 3px">

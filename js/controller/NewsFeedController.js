@@ -199,6 +199,69 @@ app.controller("NewsFeedController",
     });
   }
 
+  $scope.postLiked = function(post)
+  {
+    return post.likers.indexOf($scope.data.current_user_id) > -1;
+  }
+
+  $scope.postLikedStyle = function(post)
+  {
+    if($scope.postLiked(post))
+    {
+      return {"color": "blue"};
+    }
+    else
+    {
+      return {};
+    }
+  }
+
+  $scope.deletePost = function(post)
+  {
+    // TODO: Show alert on success/failure
+    deletePostURL = BACKEND_URL + 'delete_post/' + post.id.toString();
+    $http({
+      method: 'POST',
+      url: deletePostURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      }
+    }).then(function successCallback(response) {
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Successfully deleted post!";
+
+      $scope.loadPosts();
+      console.log(response);
+    }, function errorCallback(response) {
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "Could not delete post. Please try again later.";
+      console.log(response);
+    });
+  }
+
+  $scope.deleteComment = function(comment)
+  {
+    // TODO: Show alert on success/failure
+    deletePostURL = BACKEND_URL + 'delete_reply/' + comment.id.toString();
+    $http({
+      method: 'POST',
+      url: deletePostURL,
+      headers: {
+        'Authorization': $cookies.get("Travbook_auth_token")
+      }
+    }).then(function successCallback(response) {
+      $scope.alertClass = "alert-success";
+      $scope.alertMessage = "Successfully deleted comment!";
+
+      $scope.loadPosts();
+      console.log(response);
+    }, function errorCallback(response) {
+      $scope.alertClass = "alert-danger";
+      $scope.alertMessage = "Could not delete comment. Please try again later.";
+      console.log(response);
+    });
+  }
+
   $scope.viewProfile = function(profile_id)
   {
     $scope.changeView("profile/" + profile_id);

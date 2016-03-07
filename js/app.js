@@ -84,8 +84,7 @@ app.directive('newsFeedItem', function() {
   return { 
     restrict: 'E', 
     scope: { 
-      item: '=',
-      viewProfile: '&'
+      item: '='
     }, 
     templateUrl: 'js/directives/newsFeedItem.html' 
   }; 

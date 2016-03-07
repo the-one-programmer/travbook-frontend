@@ -3,7 +3,7 @@
 <div class="media-left">
   <div class="user-wrapper">
     <img src="images/theme/people/110/guy-5.jpg" alt="people" class="img-circle" width="80" />
-    <div><a href ng-click="viewProfile(item.author_id)">{{ item.author }}</a></div>
+    <div><a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a></div>
     <div class="date">19 OCT</div>
   </div>
 </div>
@@ -13,12 +13,23 @@
 
       <div class="panel-body">
         <p>{{ item.content }}</p>
+          <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
+            <a href data-toggle="dropdown" class="toggle-button">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <ul class="dropdown dropdown-menu" role="menu">
+              <!-- <li><a href="#">Edit</a></li> -->
+              <li>
+                <a href ng-click="$parent.deletePost(item)">Delete</a>
+              </li>
+            </ul>
+          </div>
       </div>
       <div>
       </div>
 
       <div class="view-all-comments">
-        <a href class="text-muted" ng-click="likePost(post)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
+        <a href ng-style="$parent.postLikedStyle(item)" ng-click="$parent.likePost(item)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
         <a href="#">
           <i class="fa fa-comments-o"></i> {{ item.replies.length }} comments
         </a>
@@ -27,8 +38,34 @@
       
       <!-- TODO: Loop through comments list, output all comments -->
       <ul class="comments">
-      <news-feed-comment comment=reply view-profile="viewProfile()" ng-repeat="reply in item.replies"></news-feed-comment>
 
+      <li class="media" ng-repeat="comment in item.replies">
+        <div class="media-left">
+          <a href="">
+            <img src="images/theme/people/50/guy-5.jpg" class="media-object">
+          </a>
+        </div>
+        <div class="media-body">
+          <div class="pull-right dropdown" ng-show="comment.author_id == $parent.$parent.data.current_user_id">
+            <a href data-toggle="dropdown" class="toggle-button">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <ul class="dropdown dropdown-menu" role="menu">
+              <!-- <li><a href="#">Edit</a></li> -->
+              <li>
+                <!-- <a href ng-click="$parent.$parent.deleteComment(comment)"><i class="fa fa-trash"></i></a>&nbsp; -->
+                <a href ng-click="$parent.$parent.deleteComment(comment)">Delete</a>
+              </li>
+            </ul>
+          </div>
+          <a href ng-click="$parent.$parent.viewProfile(comment.author_id)" class="comment-author pull-left">{{ comment.author_name }}</a>
+          <span>{{ comment.content }}</span>
+          <div class="comment-date">21st September</div>
+        </div>
+      </li>
+
+<!--       <news-feed-comment comment=reply ng-repeat="reply in item.replies"></news-feed-comment>
+ -->
       <li class="media">
         <div class="media-left">
           <a href="">
@@ -36,15 +73,6 @@
           </a>
         </div>
         <div class="media-body">
-          <div class="pull-right dropdown" data-show-hover="li">
-            <a href data-toggle="dropdown" class="toggle-button">
-              <i class="fa fa-pencil"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Edit</a></li>
-              <li><a href="#">Delete</a></li>
-            </ul>
-          </div>
           <a href ng-click="$parent.viewProfile($parent.data.current_user_id)" class="comment-author pull-left">{{ $parent.username }}</a>
           <span>
             <form name="status-form" novalidate ng-submit="$parent.postReply($parent.newReply, item.id)" id="status-form">
