@@ -10,7 +10,8 @@ app.config(function ($routeProvider)
   })
   .when('/register', {
     controller: "RegisterController",
-    templateUrl: "views/register.html"
+    templateUrl: "views/register.html",
+    css: "css/select-stylesheet.css"
   })
   .when('/news', {
     controller: "NewsFeedController",
@@ -35,7 +36,7 @@ app.config(function ($routeProvider)
   .when('/edit/', {
     controller: "EditProfileController",
     templateUrl: "views/edit.html",
-    css: "css/edit-stylesheet.css"
+    css: "css/select-stylesheet.css"
   }).when('/forgotpassword', {
     controller: "ForgotPasswordController",
     templateUrl: "views/forgotpassword.html"

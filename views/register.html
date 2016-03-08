@@ -126,14 +126,15 @@
 
                   <div class="form-group">
                   <label class="col-sm-3 control-label">Country of residence</label>
-                  <div class="col-sm-9">
-                  <select name="userNationResidence" title='Choose one of the following...' ng-model="newUser.nationResidence" ng-change="changeCitiesOption(newUser.nationResidence)" required>
+                  <div class="col-sm-9 select-styled">
+                  <select name="userNationResidence" title='Choose one of the following...' ng-model="newUser.nationResidence" ng-change="changeCitiesOption(newUser.nationResidence)" placeholder="Choose one of the following..." required>
+                  <option style="color: #999 !important;" value="" disabled selected>Select your country...</option>
                   <option ng-repeat="nation in data.nations" value="{{nation.id}}">{{nation.name}}</option>
                   </select>
                   </div>
                   </div>
 
-                  <br>
+                  <br><br>
 
                   <div class="error alert alert-danger" ng-show="registerForm.userNationResidence.$invalid">
                   <span ng-show="registerForm.userNationResidence.$error.required">
@@ -145,23 +146,21 @@
 
                   <div class="form-group city" ng-show="newUser.nationResidence">
                   <label class="col-sm-3 control-label">City:</label>
-                  <div class="col-sm-9">
+                  <div class="col-sm-9 select-styled">
                   <select name="userCityResidence" id="repeatSelect" class="" ng-model="newUser.city_id" required>
+                  <option style="color: #999 !important;" value="" disabled selected>Select your country...</option>
                   <option ng-repeat="city in data.cities" value="{{city.id}}">{{city.name}}</option>
                   </select>
                   </div>
                   </div>
 
-                  <br>
+                  <br><br>
 
                   <div class="error alert alert-danger" ng-show="registerForm.userCityResidence.$invalid && newUser.nationResidence">
                   <span ng-show="registerForm.userCityResidence.$error.required">
                   Uh please choose your residence
                   </span>
                   </div>
-
-                  <br>
-                  <br>
 
                   <div class="row">
                     <div class="col-xs-6">

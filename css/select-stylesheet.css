@@ -1,0 +1,29 @@
+select
+{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+
+.select-styled select {
+   background: transparent;
+   width: 100%;
+   font-size: 13px;
+   color: #777;
+   border: none;
+   height: 34px; 
+} 
+
+.select-styled{
+   height: 34px;
+   border: 1.5px solid #DDD;
+   border-radius: 5px;
+   overflow: hidden;
+   background-color: #EEE;
+   /*background: url(http://www.stackoverflow.com/favicon.ico) 96% / 20% no-repeat #ddd;*/
+}
+
