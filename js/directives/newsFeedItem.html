@@ -12,6 +12,7 @@
     <div class="panel panel-default">
 
       <div class="panel-body">
+      <a href ng-click="" class="btn btn-primary btn-xs" ng-show="item.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp
         <p>{{ item.content }}</p>
           <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
             <a href data-toggle="dropdown" class="toggle-button">
