@@ -149,25 +149,75 @@ app.controller("ProfileController",
 
     $scope.likePost = function(post)
     {
-      likeURL = BACKEND_URL + 'like_post/' + post.id.toString();
-      $http({
-        method: 'POST',
-        url: likeURL,
-        headers: {
-          'Authorization': $cookies.get("Travbook_auth_token")
-        }
-      }).then(function successCallback(response) {
-        $scope.alertClass = "alert-success";
-        $scope.alertMessage = "Successfully liked!";
+      if($scope.postLiked(post))
+      {
+        unlikeURL = BACKEND_URL + 'unlike_post/' + post.id.toString();
+        $http({
+          method: 'POST',
+          url: unlikeURL,
+          headers: {
+            'Authorization': $cookies.get("Travbook_auth_token")
+          }
+        }).then(function successCallback(response) {
+          $scope.alertClass = "alert-success";
+          $scope.alertMessage = "Successfully unliked!";
 
-        $scope.loadPosts();
-        
-        console.log(response);
-      }, function errorCallback(response) {
-        $scope.alertClass = "alert-danger";
-        $scope.alertMessage = "Could not like post. Please try again later.";
-        console.log(response);
-      });
+          $scope.loadPosts();
+          
+          console.log(response);
+        }, function errorCallback(response) {
+          $scope.alertClass = "alert-danger";
+          $scope.alertMessage = "Could not unlike post. Please try again later.";
+          console.log(response);
+        });
+      }
+      else
+      {
+        likeURL = BACKEND_URL + 'like_post/' + post.id.toString();
+        $http({
+          method: 'POST',
+          url: likeURL,
+          headers: {
+            'Authorization': $cookies.get("Travbook_auth_token")
+          }
+        }).then(function successCallback(response) {
+          $scope.alertClass = "alert-success";
+          $scope.alertMessage = "Successfully liked!";
+
+          $scope.loadPosts();
+          
+          console.log(response);
+        }, function errorCallback(response) {
+          $scope.alertClass = "alert-danger";
+          $scope.alertMessage = "Could not like post. Please try again later.";
+          console.log(response);
+        });
+      }
+    }
+
+    $scope.postLiked = function(post)
+    {
+      for(var i = 0; i < post.likers.length; i ++)
+      {
+        if(post.likers[i].liker_id == $scope.data.current_user_id)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    $scope.postLikedStyle = function(post)
+    {
+      if($scope.postLiked(post))
+      {
+        return {"color": "red"};
+      }
+      else
+      {
+        return {};
+      }
     }
 
     $scope.deletePost = function(post)

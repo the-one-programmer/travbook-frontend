@@ -13,6 +13,7 @@
 
       <div class="panel-body">
       <a href ng-click="" class="btn btn-primary btn-xs" ng-show="item.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp
+        <small ng-show="item.type == 'repost'">Reposted from <a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a></small>
         <p>{{ item.content }}</p>
           <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
             <a href data-toggle="dropdown" class="toggle-button">
@@ -31,7 +32,7 @@
 
       <div class="view-all-comments">
         <a href ng-style="$parent.postLikedStyle(item)" ng-click="$parent.likePost(item)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
-        <a href="#">
+        <a href ng-click="shouldShowComments = !shouldShowComments">
           <i class="fa fa-comments-o"></i> {{ item.replies.length }} comments
         </a>
 
@@ -40,7 +41,7 @@
       <!-- TODO: Loop through comments list, output all comments -->
       <ul class="comments">
 
-      <li class="media" ng-repeat="comment in item.replies">
+      <li class="media" ng-repeat="comment in item.replies" ng-show="shouldShowComments">
         <div class="media-left">
           <a href="">
             <img src="images/theme/people/50/guy-5.jpg" class="media-object">
