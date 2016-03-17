@@ -117,6 +117,29 @@ app.controller("NewsFeedController",
       //data: { "page": 0 }
     }).then(function successCallback(response) {
       $scope.news = response.data;
+
+      // for(var i = 0; i < $scope.news.length; i ++)
+      // {
+      //   var news = $scope.news[i];
+
+      //   if(news.type == "repost")
+      //   {
+      //     var postURL = BACKEND_URL + "show_post/" + news.original_post_id;
+
+      //     $http({
+      //       method: 'GET',
+      //       url: postURL,
+      //       headers: {
+      //         'Authorization': $cookies.get("Travbook_auth_token")
+      //       }
+      //     }).then(function successCallback(response) {
+      //       $scope.news[i].content = response.data.content;
+      //       console.log(response);
+      //     }, function errorCallback(response) {
+      //       console.log(response);
+      //     });
+      //   }
+      // }
       console.log(response);
     }, function errorCallback(response) {
       console.log(response);

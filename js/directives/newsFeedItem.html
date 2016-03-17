@@ -13,7 +13,7 @@
 
       <div class="panel-body">
       <a href ng-click="" class="btn btn-primary btn-xs" ng-show="item.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp
-        <small ng-show="item.type == 'repost'">Reposted from <a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a></small>
+        <small ng-show="item.type == 'repost'">Reposted from <a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a><br><br></small>
         <p>{{ item.content }}</p>
           <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
             <a href data-toggle="dropdown" class="toggle-button">
