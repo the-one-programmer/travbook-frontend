@@ -1,5 +1,6 @@
-var app = angular.module("TravBook", ["ngRoute","ngCookies"]);
+var app = angular.module("TravBook", ["ngRoute","ngCookies","naif.base64"]);
 var BACKEND_URL ="http://localhost:3000/api/";
+var BACKEND_RESOURCE_URL ="http://localhost:3000/";
 
 app.config(function ($routeProvider)
 {
@@ -81,23 +82,23 @@ app.directive('head', ['$rootScope','$compile',
     }
 ]);
 
-app.directive('newsFeedItem', function() { 
-  return { 
-    restrict: 'E', 
-    scope: { 
+app.directive('newsFeedItem', function() {
+  return {
+    restrict: 'E',
+    scope: {
       item: '='
-    }, 
-    templateUrl: 'js/directives/newsFeedItem.html' 
-  }; 
+    },
+    templateUrl: 'js/directives/newsFeedItem.html'
+  };
 });
 
-app.directive('newsFeedComment', function() { 
-  return { 
-    restrict: 'E', 
-    scope: { 
+app.directive('newsFeedComment', function() {
+  return {
+    restrict: 'E',
+    scope: {
       comment: '=' ,
       viewProfile: '&'
-    }, 
-    templateUrl: 'js/directives/newsFeedComment.html' 
-  }; 
+    },
+    templateUrl: 'js/directives/newsFeedComment.html'
+  };
 });

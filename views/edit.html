@@ -36,8 +36,8 @@
                     <div class="tab-content">
                       <div id="home" ng-show="currentTab == 0" align="center">
                         <div class="form-group">
-                        <img ng-src="user.avatar">
-                        <input class="" type="file" name="pic" accept="image/*" ng-model="user.avatar">
+                        <img ng-src="user.avatar" src="{{user.avatar}}">
+                        <input class="" type="file" name="pic" accept="image/*" ng-model="user.avatar" base-sixty-four-input>
                         </div>
 
                         <br>
@@ -134,7 +134,7 @@
                         </div>
 
                         <br>
-                        
+
                         <div class="checkbox checkbox-primary">
                         <input id="transport-checkbox" name="transport-checkbox" type="checkbox" ng-model="user.can_transport">
                         <label for="transport-checkbox">I can provide transport</label>
@@ -170,7 +170,7 @@
                         <label for="{{ nation.name }}">{{ nation.name }}</label>
                         </div>
                         </div>
-                        
+
                         <br>
                         <button class="btn btn-primary" type="submit" ng-disabled="editForm.$invalid">Update Profile</button>
                       </div>

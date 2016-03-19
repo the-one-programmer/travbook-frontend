@@ -25,7 +25,6 @@ $http({
     // Current user ID - only if user is logged in
     $scope.data.current_user_id = data.id;
 
-    console.log(data.id);
     // Get data of the profile currently being viewed
     profileURL = BACKEND_URL + 'show/' + $scope.data.current_user_id;
     $http({
@@ -35,13 +34,15 @@ $http({
         'Authorization': $cookies.get("Travbook_auth_token")
       },
     }).then(function successCallback(response) {
+
       $scope.user = response.data;
       $rootScope.username = $scope.user.name;
-
+      $scope.user.avatar = BACKEND_RESOURCE_URL + $scope.user.avatar;
+      console.log($scope.user.avatar)
       $scope.countrySelection = response.data.countries_want_to_go;
       $scope.hobbySelection = response.data.interests;
       $scope.languageSelection = response.data.languages;
-      console.log(response.data.countries_want_to_go);
+      //console.log(response.data.countries_want_to_go);
 
       var nationURL = BACKEND_URL + "countries";
       $http.get(nationURL).success(function (data){
@@ -135,9 +136,7 @@ $http({
       user.countries_want_to_go = $scope.countrySelection;
       user.interests = $scope.hobbySelection;
       user.languages = $scope.languageSelection;
-      user.avatar = ""; // TODO: Remove when avatar function is done
-
-      console.log(user);
+      console.log(user)
 
       // Register user
       $http({
@@ -163,7 +162,7 @@ $http({
         $scope.alertClass = "alert-danger";
         $scope.alertMessage = "There was an error submitting your form. Please try again later.";
 
-        console.log(error);
+      //  console.log(error);
       });
     }
   })
