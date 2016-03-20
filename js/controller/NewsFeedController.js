@@ -71,6 +71,29 @@ app.controller("NewsFeedController",
       }
     }
 
+    $scope.repostPost = function(post)
+    {
+      repostURL = BACKEND_URL + 'repost/' + post.id.toString();
+      $http({
+        method: 'POST',
+        url: repostURL,
+        headers: {
+          'Authorization': $cookies.get("Travbook_auth_token")
+        }
+      }).then(function successCallback(response) {
+        $scope.alertClass = "alert-success";
+        $scope.alertMessage = "Successfully reposted!";
+
+        $scope.loadPosts();
+
+        console.log(response);
+      }, function errorCallback(response) {
+        $scope.alertClass = "alert-danger";
+        $scope.alertMessage = "Could not repost post. Please try again later.";
+        console.log(response);
+      });
+    }
+
     var findCitiesByNationID = function(nationID){
       console.log(nationID);
       for( var i=0, l=$scope.data.nations.length; i<l; i++ ) {
@@ -107,7 +130,7 @@ app.controller("NewsFeedController",
 
   $scope.loadPosts = function()
   {
-    var postsURL = BACKEND_URL + 'list_post/' + $scope.data.current_user_id.toString();
+    var postsURL = BACKEND_URL + 'feed/';
     $http({
       method: 'POST',
       url: postsURL,
@@ -172,8 +195,9 @@ app.controller("NewsFeedController",
     });
   }
 
-  $scope.postReply = function(reply, post_id)
+  $scope.postReply = function(reply, post_id, reply_to_id)
   {
+    alert(reply_to_id);
     replyURL = BACKEND_URL + 'reply/' + post_id.toString();
     $http({
       method: 'POST',

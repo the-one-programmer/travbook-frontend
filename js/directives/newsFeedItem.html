@@ -11,11 +11,14 @@
   <div class="media-body-wrapper">
     <div class="panel panel-default">
 
-      <div class="panel-body">
+      <div class="panel-body" ng-init="reply_to_id = item.author_id">
       <a href ng-click="" class="btn btn-primary btn-xs" ng-show="item.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp
         <small ng-show="item.type == 'repost'">Reposted from <a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a><br><br></small>
         <p>{{ item.content }}</p>
-          <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
+<!--           <div class="pull-left">
+                <a href ng-click="$parent.repostPost(item)" class="btn  btn-xs"><i class="fa fa-retweet"></i> Repost</a>
+          </div>
+ -->          <div class="pull-right dropdown" ng-show="item.author_id == $parent.data.current_user_id">
             <a href data-toggle="dropdown" class="toggle-button">
               <i class="fa fa-pencil"></i>
             </a>
@@ -32,16 +35,18 @@
 
       <div class="view-all-comments">
         <a href ng-style="$parent.postLikedStyle(item)" ng-click="$parent.likePost(item)"> <i class="fa fa-thumbs-up"></i> {{ item.likes_count }}</a>
-        <a href ng-click="shouldShowComments = !shouldShowComments">
+        <a href ng-click="$parent.repostPost(item)" class="btn  btn-xs"><i class="fa fa-retweet"></i> Repost</a>
+        <!-- <a href ng-click="shouldShowComments = !shouldShowComments"> -->
           <i class="fa fa-comments-o"></i> {{ item.replies.length }} comments
-        </a>
+        <!-- </a> -->
 
       </div>
       
       <!-- TODO: Loop through comments list, output all comments -->
       <ul class="comments">
 
-      <li class="media" ng-repeat="comment in item.replies" ng-show="shouldShowComments">
+      <li class="media" ng-repeat="comment in item.replies">
+      <!-- <li class="media" ng-repeat="comment in item.replies" ng-show="shouldShowComments"> -->
         <div class="media-left">
           <a href="">
             <img src="images/theme/people/50/guy-5.jpg" class="media-object">
@@ -62,7 +67,7 @@
           </div>
           <a href ng-click="$parent.$parent.viewProfile(comment.author_id)" class="comment-author pull-left">{{ comment.author_name }}</a>
           <span>{{ comment.content }}</span>
-          <div class="comment-date">21st September</div>
+          <div class="comment-date">21st September <a href ng-click="reply_to_id = comment.author_id">Reply</a></div>
         </div>
       </li>
 
@@ -75,9 +80,10 @@
           </a>
         </div>
         <div class="media-body">
-          <a href ng-click="$parent.viewProfile($parent.data.current_user_id)" class="comment-author pull-left">{{ $parent.username }}</a>
+          <a href ng-click="$parent.viewProfile($parent.data.current_user_id)" class="comment-author pull-left">{{ $parent.username }}</a> 
+          <span class="text-muted" ng-show="reply_to_id">(Replying to {{ reply_to_id }})</span>
           <span>
-            <form name="status-form" novalidate ng-submit="$parent.postReply($parent.newReply, item.id)" id="status-form">
+            <form name="status-form" novalidate ng-submit="$parent.postReply($parent.newReply, item.id, reply_to_id)" id="status-form">
                 <input type="text" name="status" class="form-control share-text" rows="3" placeholder="Share your comment..." ng-model="$parent.newReply">
                 <button type="submit" class="btn btn-primary btn-xs pull-right" ng-disabled="!$parent.newReply">Post!</button>
             </form>
