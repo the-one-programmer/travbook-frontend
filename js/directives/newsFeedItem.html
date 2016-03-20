@@ -11,7 +11,7 @@
   <div class="media-body-wrapper">
     <div class="panel panel-default">
 
-      <div class="panel-body" ng-init="reply_to_id = item.author_id">
+      <div class="panel-body" ng-init="reply_to_id = item.author_id; reply_to_name = item.author">
       <a href ng-click="" class="btn btn-primary btn-xs" ng-show="item.type == 'repost'"><i class="fa fa-retweet"></i> Repost</a>&nbsp
         <small ng-show="item.type == 'repost'">Reposted from <a href ng-click="$parent.viewProfile(item.author_id)">{{ item.author }}</a><br><br></small>
         <p>{{ item.content }}</p>
@@ -67,7 +67,7 @@
           </div>
           <a href ng-click="$parent.$parent.viewProfile(comment.author_id)" class="comment-author pull-left">{{ comment.author_name }}</a>
           <span>{{ comment.content }}</span>
-          <div class="comment-date">21st September <a href ng-click="reply_to_id = comment.author_id">Reply</a></div>
+          <div class="comment-date">21st September <a href ng-click="$parent.reply_to_id = 2; $parent.reply_to_name = comment.author_name;">Reply</a></div>
         </div>
       </li>
 
@@ -81,7 +81,7 @@
         </div>
         <div class="media-body">
           <a href ng-click="$parent.viewProfile($parent.data.current_user_id)" class="comment-author pull-left">{{ $parent.username }}</a> 
-          <span class="text-muted" ng-show="reply_to_id">(Replying to {{ reply_to_id }})</span>
+          <span class="text-muted" ng-show="reply_to_id">(Replying to {{ reply_to_name }})</span>
           <span>
             <form name="status-form" novalidate ng-submit="$parent.postReply($parent.newReply, item.id, reply_to_id)" id="status-form">
                 <input type="text" name="status" class="form-control share-text" rows="3" placeholder="Share your comment..." ng-model="$parent.newReply">

@@ -205,7 +205,7 @@ app.controller("NewsFeedController",
       headers: {
         'Authorization': $cookies.get("Travbook_auth_token")
       },
-      data: { "content": reply, "reply_to": $scope.data.current_user_id }
+      data: { "content": reply, "reply_to": reply_to_id }
     }).then(function successCallback(response) {
       $scope.alertClass = "alert-success";
       $scope.alertMessage = "Successfully posted comment!";
