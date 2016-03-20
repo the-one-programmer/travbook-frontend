@@ -124,7 +124,7 @@ app.controller("ProfileController",
         });
     }
 
-    $scope.repostPost = function(post)
+    $scope.repostPost = function(post, content)
     {
       repostURL = BACKEND_URL + 'repost/' + post.id.toString();
       $http({
@@ -132,7 +132,8 @@ app.controller("ProfileController",
         url: repostURL,
         headers: {
           'Authorization': $cookies.get("Travbook_auth_token")
-        }
+        },
+        data: { "content" : content }
       }).then(function successCallback(response) {
         $scope.alertClass = "alert-success";
         $scope.alertMessage = "Successfully reposted!";
@@ -146,6 +147,35 @@ app.controller("ProfileController",
         console.log(response);
       });
     }
+
+    $scope.postReply = function(reply, post_id, reply_to_id)
+    {
+    alert(reply_to_id);
+    replyURL = BACKEND_URL + 'reply/' + post_id.toString();
+    $http({
+    method: 'POST',
+    url: replyURL,
+    headers: {
+      'Authorization': $cookies.get("Travbook_auth_token")
+    },
+    data: { "content": reply, "reply_to": reply_to_id }
+    }).then(function successCallback(response) {
+    $scope.alertClass = "alert-success";
+    $scope.alertMessage = "Successfully posted comment!";
+
+    // Reset new status
+    $scope.newComment = "";
+
+    $scope.loadPosts();
+
+    console.log(response);
+    }, function errorCallback(response) {
+    $scope.alertClass = "alert-danger";
+    $scope.alertMessage = "Could not post a new status. Please try again later.";
+    console.log(response);
+    });
+    }
+
 
     $scope.likePost = function(post)
     {

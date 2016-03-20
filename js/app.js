@@ -16,8 +16,8 @@ app.config(function ($routeProvider)
   })
   .when('/news', {
     controller: "NewsFeedController",
-    templateUrl: "views/news.html"
-    // css: "css/news-stylesheet.css"
+    templateUrl: "views/news.html",
+    css: "css/news-stylesheet.css"
   })
   .when('/search/', {
     controller: "SearchController",
@@ -31,8 +31,8 @@ app.config(function ($routeProvider)
   })
   .when('/profile/:id', {
     controller: "ProfileController",
-    templateUrl: "views/profile.html"
-    // css: "css/profile-stylesheet.css"
+    templateUrl: "views/profile.html",
+    css: "css/profile-stylesheet.css"
   })
   .when('/edit/', {
     controller: "EditProfileController",

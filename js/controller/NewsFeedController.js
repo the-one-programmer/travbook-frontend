@@ -71,7 +71,7 @@ app.controller("NewsFeedController",
       }
     }
 
-    $scope.repostPost = function(post)
+    $scope.repostPost = function(post, content)
     {
       repostURL = BACKEND_URL + 'repost/' + post.id.toString();
       $http({
@@ -79,7 +79,8 @@ app.controller("NewsFeedController",
         url: repostURL,
         headers: {
           'Authorization': $cookies.get("Travbook_auth_token")
-        }
+        },
+        data: { "content" : content }
       }).then(function successCallback(response) {
         $scope.alertClass = "alert-success";
         $scope.alertMessage = "Successfully reposted!";
